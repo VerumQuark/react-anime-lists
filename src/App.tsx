@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { List } from "./Components";
 import { useSelectableList } from "./hooks";
 import { v4 as uuid4 } from "uuid";
@@ -28,6 +28,16 @@ const items: { title: string; id: string }[] = [
 
 function App() {
   const [selected, toggleSelect] = useSelectableList();
+
+
+  // 3. Create out useEffect function
+  useEffect(() => {
+    fetch("http://localhost:5000/animeLists")
+      .then((response) => response.json())
+      // 4. Setting *dogImage* to the image url that we received from the response above
+      .then((data) => console.log(data));
+  }, []);
+
 
   return (
     <>
