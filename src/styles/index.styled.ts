@@ -44,6 +44,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+* {
+	font-family: 'Comfortaa', cursive !important;
+}
 `;
 
 export default GlobalStyles;

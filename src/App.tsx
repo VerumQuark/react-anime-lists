@@ -1,57 +1,85 @@
 import React, { useState, useEffect } from 'react';
 import { List } from "./Components";
 import { useSelectableList } from "./hooks";
-import { v4 as uuid4 } from "uuid";
+import axios, {AxiosResponse} from "axios"
 
-const items: { title: string; id: string }[] = [
+type ListResponse = [
   {
-    title: "item1",
-    id: uuid4(),
-  },
-  {
-    title: "item2",
-    id: uuid4(),
-  },
-  {
-    title: "item3",
-    id: uuid4(),
-  },
-  {
-    title: "item4",
-    id: uuid4(),
-  },
-  {
-    title: "item5",
-    id: uuid4(),
-  },
-];
+    title: string,
+    id: string,
+  }
+]
 
 function App() {
   const [selected, toggleSelect] = useSelectableList();
+  const [selected1, toggleSelect1] = useSelectableList();
+  const [selected2, toggleSelect2] = useSelectableList();
+  const [selected3, toggleSelect3] = useSelectableList();
+  const [fetchedList, setFetchedList] = useState<ListResponse[] | [[], [], [], []]>([[], [], [], []])
 
-
-  // 3. Create out useEffect function
   useEffect(() => {
-    fetch("http://localhost:5000/animeLists")
-      .then((response) => response.json())
-      // 4. Setting *dogImage* to the image url that we received from the response above
-      .then((data) => console.log(data));
+    (async () => {
+      const response: AxiosResponse<ListResponse[]> = await axios.get<ListResponse[]>("http://localhost:5000/animeLists")
+
+      if (![200, 201, 204].includes(response.status)) {
+        console.error(response)
+        return;
+      }
+
+      const data: ListResponse[] = response.data
+
+      setFetchedList(data)
+    })()
   }, []);
 
 
   return (
-    <>
+    <div style={{display: "flex", flexDirection: "column"}}>
       <List
-        items={items}
+        title="Переглянуті"
+        items={fetchedList[0]}
         selected={selected}
         toggleSelect={toggleSelect}
         width="120px"
         isBorderCollapse
       />
+      <List
+        title="Заплановані"
+        items={fetchedList[1]}
+        selected={selected1}
+        toggleSelect={toggleSelect1}
+        width="120px"
+        isBorderCollapse
+      />
+      <List
+        title="Вподобайки"
+        items={fetchedList[2]}
+        selected={selected2}
+        toggleSelect={toggleSelect2}
+        width="120px"
+        isBorderCollapse
+      />
+      <List
+        title="Дивлюся"
+        items={fetchedList[3]}
+        selected={selected3}
+        toggleSelect={toggleSelect3}
+        width="120px"
+        isBorderCollapse
+      />
       <button onClick={() => alert([...selected].join("\n"))}>
-        Show selected items
+        Show selected items1
       </button>
-    </>
+      <button onClick={() => alert([...selected1].join("\n"))}>
+        Show selected items2
+      </button>
+      <button onClick={() => alert([...selected2].join("\n"))}>
+        Show selected items3
+      </button>
+      <button onClick={() => alert([...selected3].join("\n"))}>
+        Show selected items4
+      </button>
+    </div>
   );
 }
 
