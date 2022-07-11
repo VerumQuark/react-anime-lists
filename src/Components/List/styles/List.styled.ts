@@ -1,18 +1,23 @@
-  import styled, { css } from "styled-components";
+import styled, { css } from "styled-components";
 
 interface StyleProps {
   width?: string | number;
   height?: string | number;
   isBorderCollapse?: boolean;
   isSelected?: boolean;
+  isOpen?: boolean;
 }
 
 const StyledList = styled.ul<StyleProps>`
-  width: ${({ width }) => width || "100%"};
-  height: ${({ height }) => height || "100%"};
+  width: ${({ width }) => `${width}px` || "100%"};
   list-style: square;
   display: flex;
   flex-direction: column;
+  background-color: orange;
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: ${({ isOpen, height }) =>
+    isOpen ? `${`${height}px` || "100%"}` : `0px;`};
   ${({ isBorderCollapse }) =>
     isBorderCollapse &&
     css`

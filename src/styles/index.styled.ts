@@ -45,7 +45,11 @@ table {
 	border-spacing: 0;
 }
 * {
-	font-family: 'Comfortaa', cursive !important;
+	font-family: 'Fira Code', monospace !important;
+}
+body, html, #root {
+  height: 100vh;
+  width: 100vw;
 }
 `;
 

@@ -1,0 +1,24 @@
+{
+  "name": "esbuild-config",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node scripts/esbuild-serve.js",
+    "build": "node scripts/esbuild-build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obezglavlen/esbuild-config.git"
+  },
+  "devDependencies": {
+    "create-serve": "^1.0.1",
+    "esbuild": "^0.14.48"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obezglavlen/esbuild-config/issues"
+  },
+  "homepage": "https://github.com/obezglavlen/esbuild-config#readme"
+}
