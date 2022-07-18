@@ -21,20 +21,56 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const response: AxiosResponse<ListResponse[]> = await axios.get<
-        ListResponse[]
-      >("http://localhost:5000/animeLists");
-
-      if (![200, 201, 204].includes(response.status)) {
-        console.error(response);
-        return;
-      }
-
-      const data: ListResponse[] = response.data;
-
-      setFetchedList(data);
+      await fetchList();
     })();
   }, []);
+
+  const fetchList = async () => {
+    const response: AxiosResponse<ListResponse[]> = await axios.get<
+      ListResponse[]
+    >("http://localhost:5000/animeLists");
+
+    if (![200, 201, 204].includes(response.status)) {
+      console.error(response);
+      return;
+    }
+
+    const data: ListResponse[] = response.data;
+
+    setFetchedList(data);
+  };
+
+  enum DICT {
+    WATCHED = "anime_watching",
+    SEEN = "anime_seen",
+    LIKED = "anime_liked",
+    FUTURE = "anime_future",
+  }
+
+  const addAnimeToList: (list: string) => () => void = (list: string) => {
+    const listName = list;
+    return () => {
+      const title = window.prompt("Enter the title");
+      const userId = 308041205;
+
+      if (title !== null) {
+        axios
+          .post(`http://localhost:5000/animeLists/${userId}`, {
+            listName,
+            title,
+          })
+          .then((data) => {
+            (async () => {
+              await fetchList();
+            })();
+          })
+          .catch((err) => {
+            if (err.response.status)
+              window.alert("Це аніме вже знаходиться у цьому списку");
+          });
+      }
+    };
+  };
 
   return (
     <>
@@ -44,6 +80,7 @@ function App() {
         selected={selected}
         toggleSelect={toggleSelect}
         isBorderCollapse
+        addAnime={addAnimeToList(DICT.SEEN)}
       />
       <List
         title="Заплановані"
@@ -51,6 +88,7 @@ function App() {
         selected={selected1}
         toggleSelect={toggleSelect1}
         isBorderCollapse
+        addAnime={addAnimeToList(DICT.FUTURE)}
       />
       <List
         title="Вподобайки"
@@ -58,6 +96,7 @@ function App() {
         selected={selected2}
         toggleSelect={toggleSelect2}
         isBorderCollapse
+        addAnime={addAnimeToList(DICT.LIKED)}
       />
       <List
         title="Дивлюся"
@@ -65,6 +104,7 @@ function App() {
         selected={selected3}
         toggleSelect={toggleSelect3}
         isBorderCollapse
+        addAnime={addAnimeToList(DICT.WATCHED)}
       />
       <button onClick={() => alert([...selected].join("\n"))}>
         Show selected items1

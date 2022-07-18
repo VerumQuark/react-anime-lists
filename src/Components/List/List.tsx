@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ListItem from "./ListItem";
 import StyledList, { StyleProps } from "./styles/List.styled";
 import Header from "../Header";
+import { v4 as uuidv4 } from "uuid";
 import {
   ANIME_TITLE_HEIGHT,
   ROBOTO_MONO_HEIGHT_WIDHT_RATIO,
@@ -12,6 +13,7 @@ interface ListProps extends StyleProps {
   items: Array<{ title: string; id: never | number | string }>;
   selected: Set<string | number>;
   toggleSelect: (arg: string | number) => void;
+  addAnime: () => void;
 }
 
 const CalcLineCnt = (
@@ -28,39 +30,56 @@ const CalcLineCnt = (
   return lineCnt;
 };
 
-function List({ title, items, selected, toggleSelect, ...props }: ListProps) {
+function List({
+  title,
+  items,
+  selected,
+  toggleSelect,
+  addAnime,
+  ...props
+}: ListProps) {
   const [isOpen, setOpen] = useState(false);
 
   const toggling = () => {
     setOpen(!isOpen);
-    console.log(isOpen);
   };
 
-  const width = 390;
+  const width = window.innerWidth;
   const LineCnt = CalcLineCnt(16, width, items);
 
   return (
     <>
-      <Header onClick={toggling}>{title ? title : "List title"}</Header>
+      <Header onClick={toggling} addAnime={addAnime}>
+        {title ? title : "List title"}
+      </Header>
       <StyledList
         {...props}
         isOpen={isOpen}
-        height={ANIME_TITLE_HEIGHT * LineCnt}
-        width={width}
+        height={
+          items.length === 0 ? ANIME_TITLE_HEIGHT : ANIME_TITLE_HEIGHT * LineCnt
+        }
       >
-        {items.map(({ title, id }) => {
-          const isSelected = selected.has(id);
-          return (
-            <ListItem
-              id={id}
-              toggleSelect={toggleSelect}
-              isSelected={isSelected}
-              isOpen={isOpen}
-            >
-              {title}
+        {
+          // if list is empty put default item
+          items.length === 0 ? (
+            <ListItem id={uuidv4()} toggleSelect={() => {}} isSelected={false}>
+              {"List is empty"}
             </ListItem>
-          );
-        })}
+          ) : (
+            items.map(({ title, id }) => {
+              const isSelected = selected.has(id);
+              return (
+                <ListItem
+                  id={id}
+                  toggleSelect={toggleSelect}
+                  isSelected={isSelected}
+                >
+                  {title}
+                </ListItem>
+              );
+            })
+          )
+        }
       </StyledList>
     </>
   );

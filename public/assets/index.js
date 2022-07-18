@@ -2340,9 +2340,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React6 = require_react();
+          var React8 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3743,7 +3743,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React6.Children.forEach(props.children, function(child) {
+                  React8.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -11869,7 +11869,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React6.Component().refs;
+          var emptyRefsObject = new React8.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -24624,14 +24624,14 @@
   });
 
   // src/index.tsx
-  var import_react7 = __toESM(require_react());
+  var import_react9 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/App.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
 
   // src/Components/List/List.tsx
-  var import_react4 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
 
   // src/Components/List/ListItem.tsx
   var import_react2 = __toESM(require_react());
@@ -25859,15 +25859,14 @@
   // src/Components/List/styles/ListItem.styled.ts
   var StyledLi = styled_components_browser_esm_default.li`
   cursor: pointer;
-  
+
   position: relative;
   border: 2px solid transparent;
-  border-color: ${({ isSelected }) => isSelected && "black"};
-  overflow: hidden;
+  ${({ isSelected }) => isSelected ? "border-color: black" : `overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  display: -webkit-box;
+  display: -webkit-box;`};
 `;
   var ListItem_styled_default = StyledLi;
 
@@ -25886,7 +25885,6 @@
 
   // src/Components/List/styles/List.styled.ts
   var StyledList = styled_components_browser_esm_default.ul`
-  width: ${({ width }) => `${width}px` || "100%"};
   list-style: square;
   display: flex;
   flex-direction: column;
@@ -25907,22 +25905,115 @@
   var List_styled_default = StyledList;
 
   // src/Components/Header/Header.tsx
+  var import_react5 = __toESM(require_react());
+
+  // src/Components/Header/Button.tsx
   var import_react3 = __toESM(require_react());
 
-  // src/Components/Header/styles/Header.styled.ts
-  var StyledHeader = styled_components_browser_esm_default.h1`
+  // src/Components/Header/styles/Button.styled.ts
+  var StyledButton = styled_components_browser_esm_default.button`
+  background-color: blue;
+`;
+  var Button_styled_default = StyledButton;
+
+  // src/Components/Header/Button.tsx
+  function Button({ children, addAnime }) {
+    return /* @__PURE__ */ import_react3.default.createElement(Button_styled_default, {
+      onClick: addAnime
+    }, children);
+  }
+  var Button_default = Button;
+
+  // src/Components/Header/Title.tsx
+  var import_react4 = __toESM(require_react());
+
+  // src/Components/Header/styles/Title.styled.ts
+  var StyledTitle = styled_components_browser_esm_default.h1`
   font-size: 22px;
   line-height: 25px;
   background-color: magenta;
-  color: lime;
+`;
+  var Title_styled_default = StyledTitle;
+
+  // src/Components/Header/Title.tsx
+  function Title(props) {
+    return /* @__PURE__ */ import_react4.default.createElement(Title_styled_default, __spreadValues({}, props));
+  }
+  var Title_default = Title;
+
+  // src/Components/Header/styles/Header.styled.tsx
+  var StyledHeader = styled_components_browser_esm_default.div`
+  background: magenta;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
 `;
   var Header_styled_default = StyledHeader;
 
   // src/Components/Header/Header.tsx
-  function Header(props) {
-    return /* @__PURE__ */ import_react3.default.createElement(Header_styled_default, __spreadValues({}, props));
+  function Header(_a) {
+    var _b = _a, { addAnime } = _b, titleProps = __objRest(_b, ["addAnime"]);
+    return /* @__PURE__ */ import_react5.default.createElement(Header_styled_default, null, /* @__PURE__ */ import_react5.default.createElement(Title_default, __spreadValues({}, titleProps)), /* @__PURE__ */ import_react5.default.createElement(Button_default, {
+      addAnime
+    }, "Add"));
   }
   var Header_default = Header;
+
+  // node_modules/uuid/dist/esm-browser/rng.js
+  var getRandomValues;
+  var rnds8 = new Uint8Array(16);
+  function rng() {
+    if (!getRandomValues) {
+      getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto !== "undefined" && typeof msCrypto.getRandomValues === "function" && msCrypto.getRandomValues.bind(msCrypto);
+      if (!getRandomValues) {
+        throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+      }
+    }
+    return getRandomValues(rnds8);
+  }
+
+  // node_modules/uuid/dist/esm-browser/regex.js
+  var regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+
+  // node_modules/uuid/dist/esm-browser/validate.js
+  function validate(uuid) {
+    return typeof uuid === "string" && regex_default.test(uuid);
+  }
+  var validate_default = validate;
+
+  // node_modules/uuid/dist/esm-browser/stringify.js
+  var byteToHex = [];
+  for (i2 = 0; i2 < 256; ++i2) {
+    byteToHex.push((i2 + 256).toString(16).substr(1));
+  }
+  var i2;
+  function stringify(arr) {
+    var offset = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
+    var uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+    if (!validate_default(uuid)) {
+      throw TypeError("Stringified UUID is invalid");
+    }
+    return uuid;
+  }
+  var stringify_default = stringify;
+
+  // node_modules/uuid/dist/esm-browser/v4.js
+  function v4(options, buf, offset) {
+    options = options || {};
+    var rnds = options.random || (options.rng || rng)();
+    rnds[6] = rnds[6] & 15 | 64;
+    rnds[8] = rnds[8] & 63 | 128;
+    if (buf) {
+      offset = offset || 0;
+      for (var i2 = 0; i2 < 16; ++i2) {
+        buf[offset + i2] = rnds[i2];
+      }
+      return buf;
+    }
+    return stringify_default(rnds);
+  }
+  var v4_default = v4;
 
   // src/Components/List/Constants.ts
   var ANIME_TITLE_HEIGHT = 20;
@@ -25938,36 +26029,51 @@
     return lineCnt;
   };
   function List(_a) {
-    var _b = _a, { title, items, selected, toggleSelect } = _b, props = __objRest(_b, ["title", "items", "selected", "toggleSelect"]);
-    const [isOpen, setOpen] = (0, import_react4.useState)(false);
+    var _b = _a, {
+      title,
+      items,
+      selected,
+      toggleSelect,
+      addAnime
+    } = _b, props = __objRest(_b, [
+      "title",
+      "items",
+      "selected",
+      "toggleSelect",
+      "addAnime"
+    ]);
+    const [isOpen, setOpen] = (0, import_react6.useState)(false);
     const toggling = () => {
       setOpen(!isOpen);
-      console.log(isOpen);
     };
-    const width = 390;
+    const width = window.innerWidth;
     const LineCnt = CalcLineCnt(16, width, items);
-    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(Header_default, {
-      onClick: toggling
-    }, title ? title : "List title"), /* @__PURE__ */ import_react4.default.createElement(List_styled_default, __spreadProps(__spreadValues({}, props), {
+    return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, /* @__PURE__ */ import_react6.default.createElement(Header_default, {
+      onClick: toggling,
+      addAnime
+    }, title ? title : "List title"), /* @__PURE__ */ import_react6.default.createElement(List_styled_default, __spreadProps(__spreadValues({}, props), {
       isOpen,
-      height: ANIME_TITLE_HEIGHT * LineCnt,
-      width
-    }), items.map(({ title: title2, id }) => {
+      height: items.length === 0 ? ANIME_TITLE_HEIGHT : ANIME_TITLE_HEIGHT * LineCnt
+    }), items.length === 0 ? /* @__PURE__ */ import_react6.default.createElement(ListItem_default, {
+      id: v4_default(),
+      toggleSelect: () => {
+      },
+      isSelected: false
+    }, "List is empty") : items.map(({ title: title2, id }) => {
       const isSelected = selected.has(id);
-      return /* @__PURE__ */ import_react4.default.createElement(ListItem_default, {
+      return /* @__PURE__ */ import_react6.default.createElement(ListItem_default, {
         id,
         toggleSelect,
-        isSelected,
-        isOpen
+        isSelected
       }, title2);
     })));
   }
   var List_default = List;
 
   // src/hooks/useSelectableList.ts
-  var import_react5 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   function useSelectableList() {
-    const [selected, setSelected] = (0, import_react5.useState)(/* @__PURE__ */ new Set());
+    const [selected, setSelected] = (0, import_react7.useState)(/* @__PURE__ */ new Set());
     function toggleSelected(id) {
       setSelected((prev) => {
         const set = new Set(prev);
@@ -25986,49 +26092,83 @@
     const [selected1, toggleSelect1] = useSelectableList_default();
     const [selected2, toggleSelect2] = useSelectableList_default();
     const [selected3, toggleSelect3] = useSelectableList_default();
-    const [fetchedList, setFetchedList] = (0, import_react6.useState)([[], [], [], []]);
-    (0, import_react6.useEffect)(() => {
+    const [fetchedList, setFetchedList] = (0, import_react8.useState)([[], [], [], []]);
+    (0, import_react8.useEffect)(() => {
       (() => __async(this, null, function* () {
-        const response = yield import_axios.default.get("http://localhost:5000/animeLists");
-        if (![200, 201, 204].includes(response.status)) {
-          console.error(response);
-          return;
-        }
-        const data = response.data;
-        setFetchedList(data);
+        yield fetchList();
       }))();
     }, []);
-    return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, /* @__PURE__ */ import_react6.default.createElement(List_default, {
+    const fetchList = () => __async(this, null, function* () {
+      const response = yield import_axios.default.get("http://localhost:5000/animeLists");
+      if (![200, 201, 204].includes(response.status)) {
+        console.error(response);
+        return;
+      }
+      const data = response.data;
+      setFetchedList(data);
+    });
+    let DICT;
+    ((DICT2) => {
+      DICT2["WATCHED"] = "anime_watching";
+      DICT2["SEEN"] = "anime_seen";
+      DICT2["LIKED"] = "anime_liked";
+      DICT2["FUTURE"] = "anime_future";
+    })(DICT || (DICT = {}));
+    const addAnimeToList = (list) => {
+      const listName = list;
+      return () => {
+        const title = window.prompt("Enter the title");
+        const userId = 308041205;
+        if (title !== null) {
+          import_axios.default.post(`http://localhost:5000/animeLists/${userId}`, {
+            listName,
+            title
+          }).then((data) => {
+            (() => __async(this, null, function* () {
+              yield fetchList();
+            }))();
+          }).catch((err) => {
+            if (err.response.status)
+              window.alert("\u0426\u0435 \u0430\u043D\u0456\u043C\u0435 \u0432\u0436\u0435 \u0437\u043D\u0430\u0445\u043E\u0434\u0438\u0442\u044C\u0441\u044F \u0443 \u0446\u044C\u043E\u043C\u0443 \u0441\u043F\u0438\u0441\u043A\u0443");
+          });
+        }
+      };
+    };
+    return /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, /* @__PURE__ */ import_react8.default.createElement(List_default, {
       title: "\u041F\u0435\u0440\u0435\u0433\u043B\u044F\u043D\u0443\u0442\u0456",
       items: fetchedList[0],
       selected,
       toggleSelect,
-      isBorderCollapse: true
-    }), /* @__PURE__ */ import_react6.default.createElement(List_default, {
+      isBorderCollapse: true,
+      addAnime: addAnimeToList("anime_seen" /* SEEN */)
+    }), /* @__PURE__ */ import_react8.default.createElement(List_default, {
       title: "\u0417\u0430\u043F\u043B\u0430\u043D\u043E\u0432\u0430\u043D\u0456",
       items: fetchedList[1],
       selected: selected1,
       toggleSelect: toggleSelect1,
-      isBorderCollapse: true
-    }), /* @__PURE__ */ import_react6.default.createElement(List_default, {
+      isBorderCollapse: true,
+      addAnime: addAnimeToList("anime_future" /* FUTURE */)
+    }), /* @__PURE__ */ import_react8.default.createElement(List_default, {
       title: "\u0412\u043F\u043E\u0434\u043E\u0431\u0430\u0439\u043A\u0438",
       items: fetchedList[2],
       selected: selected2,
       toggleSelect: toggleSelect2,
-      isBorderCollapse: true
-    }), /* @__PURE__ */ import_react6.default.createElement(List_default, {
+      isBorderCollapse: true,
+      addAnime: addAnimeToList("anime_liked" /* LIKED */)
+    }), /* @__PURE__ */ import_react8.default.createElement(List_default, {
       title: "\u0414\u0438\u0432\u043B\u044E\u0441\u044F",
       items: fetchedList[3],
       selected: selected3,
       toggleSelect: toggleSelect3,
-      isBorderCollapse: true
-    }), /* @__PURE__ */ import_react6.default.createElement("button", {
+      isBorderCollapse: true,
+      addAnime: addAnimeToList("anime_watching" /* WATCHED */)
+    }), /* @__PURE__ */ import_react8.default.createElement("button", {
       onClick: () => alert([...selected].join("\n"))
-    }, "Show selected items1"), /* @__PURE__ */ import_react6.default.createElement("button", {
+    }, "Show selected items1"), /* @__PURE__ */ import_react8.default.createElement("button", {
       onClick: () => alert([...selected1].join("\n"))
-    }, "Show selected items2"), /* @__PURE__ */ import_react6.default.createElement("button", {
+    }, "Show selected items2"), /* @__PURE__ */ import_react8.default.createElement("button", {
       onClick: () => alert([...selected2].join("\n"))
-    }, "Show selected items3"), /* @__PURE__ */ import_react6.default.createElement("button", {
+    }, "Show selected items3"), /* @__PURE__ */ import_react8.default.createElement("button", {
       onClick: () => alert([...selected3].join("\n"))
     }, "Show selected items4"));
   }
@@ -26091,7 +26231,7 @@ body, html, #root {
 
   // src/index.tsx
   var root = import_client.default.createRoot(document.getElementById("root"));
-  root.render(/* @__PURE__ */ import_react7.default.createElement(import_react7.default.StrictMode, null, /* @__PURE__ */ import_react7.default.createElement(index_styled_default, null), /* @__PURE__ */ import_react7.default.createElement(App_default, null)));
+  root.render(/* @__PURE__ */ import_react9.default.createElement(import_react9.default.StrictMode, null, /* @__PURE__ */ import_react9.default.createElement(index_styled_default, null), /* @__PURE__ */ import_react9.default.createElement(App_default, null)));
 })();
 /**
  * @license React

@@ -9,7 +9,6 @@ interface StyleProps {
 }
 
 const StyledList = styled.ul<StyleProps>`
-  width: ${({ width }) => `${width}px` || "100%"};
   list-style: square;
   display: flex;
   flex-direction: column;

@@ -1,15 +1,21 @@
 import React from "react";
-import StyledHeader from "./styles/Header.styled"
+import Button from "./Button";
+import Title from "./Title";
+import StyledHeader from "./styles/Header.styled";
 
 interface HeaderProps {
-    children: string;
-    onClick: () => void;
+  children: string;
+  onClick: () => void;
+  addAnime: () => void;
 }
 
-function  Header (props: HeaderProps) {
+function Header({ addAnime, ...titleProps }: HeaderProps) {
   return (
-    <StyledHeader {...props}/>
-  )
+    <StyledHeader>
+      <Title {...titleProps}></Title>
+      <Button addAnime={addAnime}>Add</Button>
+    </StyledHeader>
+  );
 }
 
-export default Header
+export default Header;
