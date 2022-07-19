@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { List } from "./Components";
 import { useSelectableList } from "./hooks";
-import axios, { AxiosResponse } from "axios";
+import { addAnimeToList, fetchAnimeLists } from "./Store/ListStore/actions";
+import { ListName } from "./Store/ListStore/types";
 
-type ListResponse = [
-  {
-    title: string;
-    id: string;
-  }
-];
+const userId = 308041205;
 
 function App() {
   // TODO
@@ -17,97 +14,58 @@ function App() {
   const [selected1, toggleSelect1] = useSelectableList();
   const [selected2, toggleSelect2] = useSelectableList();
   const [selected3, toggleSelect3] = useSelectableList();
-  const [fetchedList, setFetchedList] = useState<
-    ListResponse[] | [[], [], [], []]
-  >([[], [], [], []]);
+
+  const dispatch = useDispatch<any>();
+  const { anime_seen, anime_future, anime_liked, anime_watching } = useSelector(
+    (state) => (state as any).lists
+  );
 
   useEffect(() => {
-    (async () => {
-      await fetchList();
-    })();
+    dispatch(fetchAnimeLists(userId));
   }, []);
 
-  const fetchList = async () => {
-    const response: AxiosResponse<ListResponse[]> = await axios.get<
-      ListResponse[]
-    >("http://localhost:5000/animeLists");
+  function addAnime(list: ListName) {
+    const title = prompt()!;
+    const rating = Number(prompt());
 
-    if (![200, 201, 204].includes(response.status)) {
-      console.error(response);
-      return;
-    }
-
-    const data: ListResponse[] = response.data;
-
-    setFetchedList(data);
-  };
-
-  enum DICT {
-    WATCHED = "anime_watching",
-    SEEN = "anime_seen",
-    LIKED = "anime_liked",
-    FUTURE = "anime_future",
+    dispatch(addAnimeToList(list, title, rating, userId));
   }
-
-  const addAnimeToList: (list: string) => () => void = (list: string) => {
-    const listName = list;
-    return () => {
-      const title = window.prompt("Enter the title");
-      const userId = 308041205;
-
-      if (title !== null) {
-        axios
-          .post(`http://localhost:5000/animeLists/${userId}`, {
-            listName,
-            title,
-          })
-          .then((data) => {
-            (async () => {
-              await fetchList();
-            })();
-          })
-          .catch((err) => {
-            if (err.response.status)
-              window.alert("Це аніме вже знаходиться у цьому списку");
-          });
-      }
-    };
-  };
 
   return (
     <>
       <List
         title="Переглянуті"
-        items={fetchedList[0]}
+        items={anime_seen}
         selected={selected}
         toggleSelect={toggleSelect}
         isBorderCollapse
-        addAnime={addAnimeToList(DICT.SEEN)}
+        addAnime={() => addAnime("anime_seen")}
       />
       <List
         title="Заплановані"
-        items={fetchedList[1]}
+        items={anime_future}
         selected={selected1}
         toggleSelect={toggleSelect1}
         isBorderCollapse
-        addAnime={addAnimeToList(DICT.FUTURE)}
+        addAnime={() => addAnime("anime_seen")}
       />
       <List
         title="Вподобайки"
-        items={fetchedList[2]}
+        items={anime_liked}
         selected={selected2}
         toggleSelect={toggleSelect2}
         isBorderCollapse
-        addAnime={addAnimeToList(DICT.LIKED)}
+        addAnime={() => addAnime("anime_seen")}
       />
       <List
         title="Дивлюся"
-        items={fetchedList[3]}
+        items={anime_watching}
         selected={selected3}
         toggleSelect={toggleSelect3}
         isBorderCollapse
-        addAnime={addAnimeToList(DICT.WATCHED)}
+        addAnime={() => addAnime("anime_seen")}
       />
+
       <button onClick={() => alert([...selected].join("\n"))}>
         Show selected items1
       </button>
