@@ -1,19 +1,23 @@
 import React from "react";
-import Button from "./Button";
+import Button from "../Button";
 import Title from "./Title";
 import StyledHeader from "./styles/Header.styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 interface HeaderProps {
   children: string;
   onClick: () => void;
-  addAnime: () => void;
+  onAddAnime: () => void;
 }
 
-function Header({ addAnime, ...titleProps }: HeaderProps) {
+function Header({ onAddAnime: addAnime, ...titleProps }: HeaderProps) {
   return (
     <StyledHeader>
       <Title {...titleProps}></Title>
-      <Button addAnime={addAnime}>Add</Button>
+      <Button onClick={addAnime}>
+        <FontAwesomeIcon icon={faPlus} />
+      </Button>
     </StyledHeader>
   );
 }

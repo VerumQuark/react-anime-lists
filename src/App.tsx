@@ -11,6 +11,8 @@ type ListResponse = [
 ];
 
 function App() {
+  // TODO
+  // clean selected items on fetch
   const [selected, toggleSelect] = useSelectableList();
   const [selected1, toggleSelect1] = useSelectableList();
   const [selected2, toggleSelect2] = useSelectableList();
