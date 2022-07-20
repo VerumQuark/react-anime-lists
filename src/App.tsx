@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { List } from "./Components";
 import { useSelectableList } from "./hooks";
 import { addAnimeToList, fetchAnimeLists } from "./Store/ListStore/actions";
+import { State as ListState } from "./Store/ListStore/types";
+import { clearError } from "./Store/AppStore/actions";
+import { State } from "./Store";
 import { ListName } from "./Store/ListStore/types";
 
 const userId = 308041205;
@@ -16,9 +19,15 @@ function App() {
   const [selected3, toggleSelect3] = useSelectableList();
 
   const dispatch = useDispatch<any>();
-  const { anime_seen, anime_future, anime_liked, anime_watching } = useSelector(
-    (state) => (state as any).lists
-  );
+
+  // Take lists from redux state
+  const { anime_seen, anime_future, anime_liked, anime_watching } = useSelector<
+    State,
+    ListState
+  >((state) => state.lists);
+
+  // Take error form redux state
+  const error = useSelector<State, string | null>((state) => state.app.error);
 
   useEffect(() => {
     dispatch(fetchAnimeLists(userId));
@@ -33,6 +42,16 @@ function App() {
 
   return (
     <>
+      {error && (
+        <>
+          <div
+            style={{ width: "100%", height: "60px", backgroundColor: "red" }}
+            onClick={() => dispatch(clearError())}
+          >
+            {error}
+          </div>
+        </>
+      )}
       <List
         title="Переглянуті"
         items={anime_seen}

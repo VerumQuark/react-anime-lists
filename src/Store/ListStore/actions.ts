@@ -1,7 +1,8 @@
 import { Types } from "./types";
+import { causeError } from "../AppStore/actions";
 import { Dispatch } from "redux";
 import { ListName, Action, State, Anime } from "./types";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 
 export function fetchAnimeLists(uid: number) {
   return async (dispatch: Dispatch) => {
@@ -10,10 +11,6 @@ export function fetchAnimeLists(uid: number) {
         `http://localhost:5000/animeLists/${uid}`
       );
 
-      if (![200, 201, 204].includes(response.status)) {
-        throw new Error("Can't fetch lists");
-      }
-
       const lists: State = response.data;
 
       dispatch({
@@ -21,8 +18,19 @@ export function fetchAnimeLists(uid: number) {
         payload: lists,
       });
     } catch (err) {
-      console.error(err);
-      throw err;
+      let errorExplain: string;
+
+      if (err instanceof AxiosError) {
+        errorExplain = err.response?.data
+          ? err.response.data
+          : "Network Error or Server Shut down";
+
+        dispatch<any>(causeError(errorExplain));
+
+        console.error(`Request Error - ${errorExplain}`);
+      } else {
+        console.error(err);
+      }
     }
   };
 }
@@ -44,10 +52,6 @@ export function addAnimeToList(
         }
       );
 
-      if (![200, 201, 204].includes(response.status)) {
-        throw new Error("Can't add to list");
-      }
-
       const anime = response.data;
 
       dispatch({
@@ -56,17 +60,19 @@ export function addAnimeToList(
         list: listName,
       });
     } catch (err) {
-      console.error(err);
-      dispatch({
-        type: Types.ADD_ITEM_TO_LIST,
-        payload: {
-          title: animeTitle,
-          id: "0",
-          rating: rating,
-        },
-        list: listName,
-      });
-      throw err;
+      let errorExplain: string;
+
+      if (err instanceof AxiosError) {
+        errorExplain = err.response?.data
+          ? err.response.data
+          : "Network Error or Server Shut down";
+
+        dispatch<any>(causeError(errorExplain));
+
+        console.error(`Request Error - ${errorExplain}`);
+      } else {
+        console.error(err);
+      }
     }
   };
 }
@@ -82,10 +88,6 @@ export function removeAnimeFromList(
         `http://localhost:5000/animeLists/${uid}/${listName}/${animeTitle}`
       );
 
-      if (![200, 201, 204].includes(response.status)) {
-        throw new Error("Can't remove from list");
-      }
-
       const anime = response.data;
 
       dispatch({
@@ -94,16 +96,19 @@ export function removeAnimeFromList(
         list: listName,
       });
     } catch (err) {
-      console.error(err);
-      dispatch({
-        type: Types.REMOVE_ITEM_FROM_LIST,
-        payload: {
-          title: animeTitle,
-          id: "0",
-        },
-        list: listName,
-      });
-      throw err;
+      let errorExplain: string;
+
+      if (err instanceof AxiosError) {
+        errorExplain = err.response?.data
+          ? err.response.data
+          : "Network Error or Server Shut down";
+
+        dispatch<any>(causeError(errorExplain));
+
+        console.error(`Request Error - ${errorExplain}`);
+      } else {
+        console.error(err);
+      }
     }
   };
 }
@@ -129,10 +134,6 @@ export function setAnimeRating(
         }
       );
 
-      if (![200, 201, 204].includes(response.status)) {
-        throw new Error("Can't add to list");
-      }
-
       const anime = response.data;
 
       dispatch({
@@ -141,17 +142,19 @@ export function setAnimeRating(
         list: listName,
       });
     } catch (err) {
-      console.error(err);
-      dispatch({
-        type: Types.SET_ITEM_RATING,
-        payload: {
-          title: animeTitle,
-          id: "0",
-          rating: rating,
-        },
-        list: listName,
-      });
-      throw err;
+      let errorExplain: string;
+
+      if (err instanceof AxiosError) {
+        errorExplain = err.response?.data
+          ? err.response.data
+          : "Network Error or Server Shut down";
+
+        dispatch<any>(causeError(errorExplain));
+
+        console.error(`Request Error - ${errorExplain}`);
+      } else {
+        console.error(err);
+      }
     }
   };
 }

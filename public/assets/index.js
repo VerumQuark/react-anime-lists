@@ -1044,9 +1044,9 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState3(initialState2) {
+          function useState3(initialState3) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useState(initialState2);
+            return dispatcher.useState(initialState3);
           }
           function useReducer(reducer, initialArg, init) {
             var dispatcher = resolveDispatcher();
@@ -13622,20 +13622,20 @@
           }
           function mountReducer(reducer, initialArg, init) {
             var hook = mountWorkInProgressHook();
-            var initialState2;
+            var initialState3;
             if (init !== void 0) {
-              initialState2 = init(initialArg);
+              initialState3 = init(initialArg);
             } else {
-              initialState2 = initialArg;
+              initialState3 = initialArg;
             }
-            hook.memoizedState = hook.baseState = initialState2;
+            hook.memoizedState = hook.baseState = initialState3;
             var queue = {
               pending: null,
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
               lastRenderedReducer: reducer,
-              lastRenderedState: initialState2
+              lastRenderedState: initialState3
             };
             hook.queue = queue;
             var dispatch = queue.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue);
@@ -13912,28 +13912,28 @@
               scheduleUpdateOnFiber(root3, fiber, SyncLane, NoTimestamp);
             }
           }
-          function mountState(initialState2) {
+          function mountState(initialState3) {
             var hook = mountWorkInProgressHook();
-            if (typeof initialState2 === "function") {
-              initialState2 = initialState2();
+            if (typeof initialState3 === "function") {
+              initialState3 = initialState3();
             }
-            hook.memoizedState = hook.baseState = initialState2;
+            hook.memoizedState = hook.baseState = initialState3;
             var queue = {
               pending: null,
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
               lastRenderedReducer: basicStateReducer,
-              lastRenderedState: initialState2
+              lastRenderedState: initialState3
             };
             hook.queue = queue;
             var dispatch = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);
             return [hook.memoizedState, dispatch];
           }
-          function updateState(initialState2) {
+          function updateState(initialState3) {
             return updateReducer(basicStateReducer);
           }
-          function rerenderState(initialState2) {
+          function rerenderState(initialState3) {
             return rerenderReducer(basicStateReducer);
           }
           function pushEffect(tag, create, destroy, deps) {
@@ -14448,13 +14448,13 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState2);
+                  return mountState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14552,13 +14552,13 @@
                 updateHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState2);
+                  return mountState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14656,13 +14656,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState2);
+                  return updateState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14760,13 +14760,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
                 try {
-                  return rerenderState(initialState2);
+                  return rerenderState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14874,14 +14874,14 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState2);
+                  return mountState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14995,14 +14995,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState2);
+                  return updateState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15116,14 +15116,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState3) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return rerenderState(initialState2);
+                  return rerenderState(initialState3);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -24701,7 +24701,7 @@
     "node_modules/axios/lib/core/AxiosError.js"(exports, module) {
       "use strict";
       var utils = require_utils();
-      function AxiosError(message, code, config2, request, response) {
+      function AxiosError2(message, code, config2, request, response) {
         Error.call(this);
         this.message = message;
         this.name = "AxiosError";
@@ -24710,7 +24710,7 @@
         request && (this.request = request);
         response && (this.response = response);
       }
-      utils.inherits(AxiosError, Error, {
+      utils.inherits(AxiosError2, Error, {
         toJSON: function toJSON() {
           return {
             message: this.message,
@@ -24727,7 +24727,7 @@
           };
         }
       });
-      var prototype = AxiosError.prototype;
+      var prototype = AxiosError2.prototype;
       var descriptors = {};
       [
         "ERR_BAD_OPTION_VALUE",
@@ -24743,19 +24743,19 @@
       ].forEach(function(code) {
         descriptors[code] = { value: code };
       });
-      Object.defineProperties(AxiosError, descriptors);
+      Object.defineProperties(AxiosError2, descriptors);
       Object.defineProperty(prototype, "isAxiosError", { value: true });
-      AxiosError.from = function(error, code, config2, request, response, customProps) {
+      AxiosError2.from = function(error, code, config2, request, response, customProps) {
         var axiosError = Object.create(prototype);
         utils.toFlatObject(error, axiosError, function filter(obj) {
           return obj !== Error.prototype;
         });
-        AxiosError.call(axiosError, error.message, code, config2, request, response);
+        AxiosError2.call(axiosError, error.message, code, config2, request, response);
         axiosError.name = error.name;
         customProps && Object.assign(axiosError, customProps);
         return axiosError;
       };
-      module.exports = AxiosError;
+      module.exports = AxiosError2;
     }
   });
 
@@ -24829,13 +24829,13 @@
   var require_settle = __commonJS({
     "node_modules/axios/lib/core/settle.js"(exports, module) {
       "use strict";
-      var AxiosError = require_AxiosError();
+      var AxiosError2 = require_AxiosError();
       module.exports = function settle(resolve, reject, response) {
         var validateStatus = response.config.validateStatus;
         if (!response.status || !validateStatus || validateStatus(response.status)) {
           resolve(response);
         } else {
-          reject(new AxiosError("Request failed with status code " + response.status, [AxiosError.ERR_BAD_REQUEST, AxiosError.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4], response.config, response.request, response));
+          reject(new AxiosError2("Request failed with status code " + response.status, [AxiosError2.ERR_BAD_REQUEST, AxiosError2.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4], response.config, response.request, response));
         }
       };
     }
@@ -25018,13 +25018,13 @@
   var require_CanceledError = __commonJS({
     "node_modules/axios/lib/cancel/CanceledError.js"(exports, module) {
       "use strict";
-      var AxiosError = require_AxiosError();
+      var AxiosError2 = require_AxiosError();
       var utils = require_utils();
       function CanceledError(message) {
-        AxiosError.call(this, message == null ? "canceled" : message, AxiosError.ERR_CANCELED);
+        AxiosError2.call(this, message == null ? "canceled" : message, AxiosError2.ERR_CANCELED);
         this.name = "CanceledError";
       }
-      utils.inherits(CanceledError, AxiosError, {
+      utils.inherits(CanceledError, AxiosError2, {
         __CANCEL__: true
       });
       module.exports = CanceledError;
@@ -25054,7 +25054,7 @@
       var parseHeaders = require_parseHeaders();
       var isURLSameOrigin = require_isURLSameOrigin();
       var transitionalDefaults = require_transitional();
-      var AxiosError = require_AxiosError();
+      var AxiosError2 = require_AxiosError();
       var CanceledError = require_CanceledError();
       var parseProtocol = require_parseProtocol();
       module.exports = function xhrAdapter(config2) {
@@ -25123,11 +25123,11 @@
             if (!request) {
               return;
             }
-            reject(new AxiosError("Request aborted", AxiosError.ECONNABORTED, config2, request));
+            reject(new AxiosError2("Request aborted", AxiosError2.ECONNABORTED, config2, request));
             request = null;
           };
           request.onerror = function handleError() {
-            reject(new AxiosError("Network Error", AxiosError.ERR_NETWORK, config2, request, request));
+            reject(new AxiosError2("Network Error", AxiosError2.ERR_NETWORK, config2, request, request));
             request = null;
           };
           request.ontimeout = function handleTimeout() {
@@ -25136,7 +25136,7 @@
             if (config2.timeoutErrorMessage) {
               timeoutErrorMessage = config2.timeoutErrorMessage;
             }
-            reject(new AxiosError(timeoutErrorMessage, transitional.clarifyTimeoutError ? AxiosError.ETIMEDOUT : AxiosError.ECONNABORTED, config2, request));
+            reject(new AxiosError2(timeoutErrorMessage, transitional.clarifyTimeoutError ? AxiosError2.ETIMEDOUT : AxiosError2.ECONNABORTED, config2, request));
             request = null;
           };
           if (utils.isStandardBrowserEnv()) {
@@ -25185,7 +25185,7 @@
           }
           var protocol = parseProtocol(fullPath);
           if (protocol && ["http", "https", "file"].indexOf(protocol) === -1) {
-            reject(new AxiosError("Unsupported protocol " + protocol + ":", AxiosError.ERR_BAD_REQUEST, config2));
+            reject(new AxiosError2("Unsupported protocol " + protocol + ":", AxiosError2.ERR_BAD_REQUEST, config2));
             return;
           }
           request.send(requestData);
@@ -25207,7 +25207,7 @@
       "use strict";
       var utils = require_utils();
       var normalizeHeaderName = require_normalizeHeaderName();
-      var AxiosError = require_AxiosError();
+      var AxiosError2 = require_AxiosError();
       var transitionalDefaults = require_transitional();
       var toFormData = require_toFormData();
       var DEFAULT_CONTENT_TYPE = {
@@ -25279,7 +25279,7 @@
             } catch (e2) {
               if (strictJSONParsing) {
                 if (e2.name === "SyntaxError") {
-                  throw AxiosError.from(e2, AxiosError.ERR_BAD_RESPONSE, this, null, this.response);
+                  throw AxiosError2.from(e2, AxiosError2.ERR_BAD_RESPONSE, this, null, this.response);
                 }
                 throw e2;
               }
@@ -25480,7 +25480,7 @@
     "node_modules/axios/lib/helpers/validator.js"(exports, module) {
       "use strict";
       var VERSION = require_data().version;
-      var AxiosError = require_AxiosError();
+      var AxiosError2 = require_AxiosError();
       var validators = {};
       ["object", "boolean", "number", "function", "string", "symbol"].forEach(function(type, i3) {
         validators[type] = function validator(thing) {
@@ -25494,7 +25494,7 @@
         }
         return function(value, opt, opts) {
           if (validator === false) {
-            throw new AxiosError(formatMessage(opt, " has been removed" + (version ? " in " + version : "")), AxiosError.ERR_DEPRECATED);
+            throw new AxiosError2(formatMessage(opt, " has been removed" + (version ? " in " + version : "")), AxiosError2.ERR_DEPRECATED);
           }
           if (version && !deprecatedWarnings[opt]) {
             deprecatedWarnings[opt] = true;
@@ -25505,7 +25505,7 @@
       };
       function assertOptions(options, schema, allowUnknown) {
         if (typeof options !== "object") {
-          throw new AxiosError("options must be an object", AxiosError.ERR_BAD_OPTION_VALUE);
+          throw new AxiosError2("options must be an object", AxiosError2.ERR_BAD_OPTION_VALUE);
         }
         var keys = Object.keys(options);
         var i3 = keys.length;
@@ -25516,12 +25516,12 @@
             var value = options[opt];
             var result = value === void 0 || validator(value, opt, options);
             if (result !== true) {
-              throw new AxiosError("option " + opt + " must be " + result, AxiosError.ERR_BAD_OPTION_VALUE);
+              throw new AxiosError2("option " + opt + " must be " + result, AxiosError2.ERR_BAD_OPTION_VALUE);
             }
             continue;
           }
           if (allowUnknown !== true) {
-            throw new AxiosError("Unknown option " + opt, AxiosError.ERR_BAD_OPTION);
+            throw new AxiosError2("Unknown option " + opt, AxiosError2.ERR_BAD_OPTION);
           }
         }
       }
@@ -30234,37 +30234,61 @@
   }
   var useSelectableList_default = useSelectableList;
 
+  // src/Store/AppStore/actions.ts
+  function causeError(errorMessage) {
+    return (dispatch) => {
+      dispatch({
+        type: "CAUSE_ERROR" /* CAUSE_ERROR */,
+        payload: {
+          error: errorMessage
+        }
+      });
+    };
+  }
+  function clearError() {
+    return (dispatch) => {
+      dispatch({
+        type: "CLEAR_ERROR" /* CLEAR_ERROR */,
+        payload: {
+          error: ""
+        }
+      });
+    };
+  }
+
   // src/Store/ListStore/actions.ts
   var import_axios = __toESM(require_axios2());
   function fetchAnimeLists(uid) {
     return (dispatch) => __async(this, null, function* () {
+      var _a;
       try {
         const response = yield import_axios.default.get(`http://localhost:5000/animeLists/${uid}`);
-        if (![200, 201, 204].includes(response.status)) {
-          throw new Error("Can't fetch lists");
-        }
         const lists = response.data;
         dispatch({
           type: "FETCH" /* FETCH */,
           payload: lists
         });
       } catch (err) {
-        console.error(err);
-        throw err;
+        let errorExplain;
+        if (err instanceof import_axios.AxiosError) {
+          errorExplain = ((_a = err.response) == null ? void 0 : _a.data) ? err.response.data : "Network Error or Server Shut down";
+          dispatch(causeError(errorExplain));
+          console.error(`Request Error - ${errorExplain}`);
+        } else {
+          console.error(err);
+        }
       }
     });
   }
   function addAnimeToList(listName, animeTitle, rating, uid) {
     return (dispatch) => __async(this, null, function* () {
+      var _a;
       try {
         const response = yield import_axios.default.post(`http://localhost:5000/animeLists/${uid}/${listName}`, {
           listName,
           title: animeTitle,
           rating
         });
-        if (![200, 201, 204].includes(response.status)) {
-          throw new Error("Can't add to list");
-        }
         const anime = response.data;
         dispatch({
           type: "ADD_ITEM_TO_LIST" /* ADD_ITEM_TO_LIST */,
@@ -30272,17 +30296,14 @@
           list: listName
         });
       } catch (err) {
-        console.error(err);
-        dispatch({
-          type: "ADD_ITEM_TO_LIST" /* ADD_ITEM_TO_LIST */,
-          payload: {
-            title: animeTitle,
-            id: "0",
-            rating
-          },
-          list: listName
-        });
-        throw err;
+        let errorExplain;
+        if (err instanceof import_axios.AxiosError) {
+          errorExplain = ((_a = err.response) == null ? void 0 : _a.data) ? err.response.data : "Network Error or Server Shut down";
+          dispatch(causeError(errorExplain));
+          console.error(`Request Error - ${errorExplain}`);
+        } else {
+          console.error(err);
+        }
       }
     });
   }
@@ -30296,6 +30317,7 @@
     const [selected3, toggleSelect3] = useSelectableList_default();
     const dispatch = useDispatch();
     const { anime_seen, anime_future, anime_liked, anime_watching } = useSelector((state) => state.lists);
+    const error = useSelector((state) => state.app.error);
     (0, import_react16.useEffect)(() => {
       dispatch(fetchAnimeLists(userId));
     }, []);
@@ -30304,7 +30326,10 @@
       const rating = Number(prompt());
       dispatch(addAnimeToList(list, title, rating, userId));
     }
-    return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement(List_default, {
+    return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, error && /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("div", {
+      style: { width: "100%", height: "60px", backgroundColor: "red" },
+      onClick: () => dispatch(clearError())
+    }, error)), /* @__PURE__ */ import_react16.default.createElement(List_default, {
       title: "\u041F\u0435\u0440\u0435\u0433\u043B\u044F\u043D\u0443\u0442\u0456",
       items: anime_seen,
       selected,
@@ -31096,10 +31121,10 @@
   function assertReducerShape(reducers) {
     Object.keys(reducers).forEach(function(key) {
       var reducer = reducers[key];
-      var initialState2 = reducer(void 0, {
+      var initialState3 = reducer(void 0, {
         type: ActionTypes.INIT
       });
-      if (typeof initialState2 === "undefined") {
+      if (typeof initialState3 === "undefined") {
         throw new Error(false ? formatProdErrorMessage(12) : 'The slice reducer for key "' + key + `" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.`);
       }
       if (typeof reducer(void 0, {
@@ -31639,11 +31664,11 @@
   function configureStore(options) {
     var curriedGetDefaultMiddleware = curryGetDefaultMiddleware();
     var _c = options || {}, _d = _c.reducer, reducer = _d === void 0 ? void 0 : _d, _e2 = _c.middleware, middleware = _e2 === void 0 ? curriedGetDefaultMiddleware() : _e2, _f = _c.devTools, devTools = _f === void 0 ? true : _f, _g = _c.preloadedState, preloadedState = _g === void 0 ? void 0 : _g, _h = _c.enhancers, enhancers = _h === void 0 ? void 0 : _h;
-    var rootReducer;
+    var rootReducer2;
     if (typeof reducer === "function") {
-      rootReducer = reducer;
+      rootReducer2 = reducer;
     } else if (isPlainObject3(reducer)) {
-      rootReducer = combineReducers(reducer);
+      rootReducer2 = combineReducers(reducer);
     } else {
       throw new Error('"reducer" is a required argument, and must be a function or an object of functions that can be passed to combineReducers');
     }
@@ -31673,7 +31698,7 @@
       storeEnhancers = enhancers(storeEnhancers);
     }
     var composedEnhancer = finalCompose.apply(void 0, storeEnhancers);
-    return createStore(rootReducer, preloadedState, composedEnhancer);
+    return createStore(rootReducer2, preloadedState, composedEnhancer);
   }
   function createAction(type, prepareAction) {
     function actionCreator() {
@@ -31767,14 +31792,34 @@
       case "FETCH" /* FETCH */:
         return __spreadValues(__spreadValues({}, state), action.payload);
       default:
-        return state;
+        return __spreadValues({}, state);
+    }
+  }
+
+  // src/Store/AppStore/appReducer.ts
+  var initialState2 = {
+    error: null
+  };
+  function appReducer(state = initialState2, action) {
+    switch (action.type) {
+      case "CAUSE_ERROR" /* CAUSE_ERROR */:
+        return __spreadProps(__spreadValues({}, state), { error: action.payload.error });
+      case "CLEAR_ERROR" /* CLEAR_ERROR */:
+        return __spreadProps(__spreadValues({}, state), { error: null });
+      default:
+        return __spreadValues({}, state);
     }
   }
 
   // src/Store/index.ts
+  var rootReducer = combineReducers({
+    lists: listReducer,
+    app: appReducer
+  });
   var Store_default = configureStore({
     reducer: combineReducers({
-      lists: listReducer
+      lists: listReducer,
+      app: appReducer
     })
   });
 
