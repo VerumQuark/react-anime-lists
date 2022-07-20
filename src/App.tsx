@@ -11,6 +11,7 @@ import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 
 const userId = 308041205;
+(window as any).uid = userId;
 
 function App() {
   // TODO
