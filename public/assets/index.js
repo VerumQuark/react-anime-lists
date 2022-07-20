@@ -30497,12 +30497,20 @@ body, html, #root, #modal, #error {
   var import_react_dom3 = __toESM(require_react_dom());
 
   // src/Common/Modal/styles/animation.ts
-  var animation_default = Ue`
+  var appear = Ue`
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+`;
+  var disapear = Ue`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 `;
 
@@ -30518,7 +30526,14 @@ body, html, #root, #modal, #error {
   background-color: ${theme.colors.primary};
   z-index: 999;
   border-radius: 5px;
-  animation: ${animation_default} 0.5s;
+  /* Чтобы знать когда какую анимацию включить */
+  animation: ${({ isAnimationPending, isClosing }) => {
+    if (!isClosing && isAnimationPending)
+      return appear;
+    else if (isClosing && isAnimationPending)
+      return disapear;
+  }}
+    0.5s;
 
   & h1 {
     font-size: 24px;
@@ -30541,7 +30556,14 @@ body, html, #root, #modal, #error {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   z-index: 998;
-  animation: ${animation_default} 0.5s;
+  /* Чтобы знать когда какую анимацию включить */
+  animation: ${({ isAnimationPending, isClosing }) => {
+    if (!isClosing && isAnimationPending)
+      return appear;
+    else if (isClosing && isAnimationPending)
+      return disapear;
+  }}
+    0.5s;
 `;
   var Wrapper_styled_default = StyledWrapper;
 
@@ -30551,19 +30573,34 @@ body, html, #root, #modal, #error {
       dispatch({
         type: "SHOW_MODAL" /* SHOW_MODAL */,
         payload: {
-          list: listName,
-          isShow: true
+          list: listName
         }
+      });
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          dispatch({
+            type: "STOP_ANIMATION" /* STOP_ANIMATION */,
+            payload: {}
+          });
+          resolve();
+        }, 500);
       });
     };
   }
   function closeModal() {
     return (dispatch) => {
       dispatch({
-        type: "CLOSE_MODAL" /* CLOSE_MODAL */,
-        payload: {
-          isShow: false
-        }
+        type: "START_ANIMATION" /* START_ANIMATION */,
+        payload: {}
+      });
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          dispatch({
+            type: "CLOSE_MODAL" /* CLOSE_MODAL */,
+            payload: {}
+          });
+          resolve();
+        }, 500);
       });
     };
   }
@@ -30572,12 +30609,18 @@ body, html, #root, #modal, #error {
   function Modal(_a) {
     var _b = _a, { header, children } = _b, props = __objRest(_b, ["header", "children"]);
     const dispatch = useDispatch();
+    const isAnimationPending = useSelector((state) => state.modal.isAnimationPending);
+    const isClosing = useSelector((state) => state.modal.isClosing);
     return (0, import_react_dom3.createPortal)(/* @__PURE__ */ import_react18.default.createElement(Wrapper_styled_default, {
-      onClick: (e2) => dispatch(closeModal())
+      onClick: () => dispatch(closeModal()),
+      isAnimationPending,
+      isClosing
     }, /* @__PURE__ */ import_react18.default.createElement(Modal_styled_default, __spreadProps(__spreadValues({}, props), {
+      isAnimationPending,
       onClick: (e2) => {
         e2.stopPropagation();
-      }
+      },
+      isClosing
     }), /* @__PURE__ */ import_react18.default.createElement("h1", null, header), children)), document.getElementById("modal"));
   }
   var Modal_default = Modal;
@@ -30614,6 +30657,7 @@ body, html, #root, #modal, #error {
 
   // src/App.tsx
   var userId = 308041205;
+  window.uid = userId;
   function App() {
     const [selected, toggleSelect] = useSelectableList_default();
     const [selected1, toggleSelect1] = useSelectableList_default();
@@ -32116,17 +32160,29 @@ body, html, #root, #modal, #error {
   // src/Store/ModalStore/modalReducer.ts
   var initialState3 = {
     list: "",
-    isShow: false
+    isShow: false,
+    isAnimationPending: false,
+    isClosing: false
   };
   function modalReducer(state = initialState3, action) {
     switch (action.type) {
       case "SHOW_MODAL" /* SHOW_MODAL */:
         return __spreadProps(__spreadValues({}, state), {
           list: action.payload.list,
-          isShow: action.payload.isShow
+          isShow: true,
+          isAnimationPending: true
         });
       case "CLOSE_MODAL" /* CLOSE_MODAL */:
-        return __spreadProps(__spreadValues({}, state), { list: "", isShow: action.payload.isShow });
+        return initialState3;
+      case "STOP_ANIMATION" /* STOP_ANIMATION */:
+        return __spreadProps(__spreadValues({}, state), {
+          isAnimationPending: false
+        });
+      case "START_ANIMATION" /* START_ANIMATION */:
+        return __spreadProps(__spreadValues({}, state), {
+          isAnimationPending: true,
+          isClosing: true
+        });
       default:
         return __spreadValues({}, state);
     }

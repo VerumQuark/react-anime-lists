@@ -1,7 +1,12 @@
 import styled from "styled-components";
-import animation from "./animation";
+import { appear, disapear } from "./animation";
 
-const StyledWrapper = styled.div`
+interface StyleProps {
+  isAnimationPending: boolean;
+  isClosing: boolean;
+}
+
+const StyledWrapper = styled.div<StyleProps>`
   position: absolute;
   left: 0;
   top: 0;
@@ -14,7 +19,12 @@ const StyledWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   z-index: 998;
-  animation: ${animation} 0.5s;
+  /* Чтобы знать когда какую анимацию включить */
+  animation: ${({ isAnimationPending, isClosing }) => {
+      if (!isClosing && isAnimationPending) return appear;
+      else if (isClosing && isAnimationPending) return disapear;
+    }}
+    0.5s;
 `;
 
 export default StyledWrapper;
