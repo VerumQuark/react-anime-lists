@@ -3,12 +3,6 @@ export enum Types {
   CLEAR_ERROR = "CLEAR_ERROR",
 }
 
-export interface AError extends Error {
-  name: string;
-  message: string;
-  code: number | string;
-}
-
 export type State = {
   error: string;
 };

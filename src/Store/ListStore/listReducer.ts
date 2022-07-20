@@ -7,7 +7,10 @@ const initialState: State = {
   anime_watching: [],
 };
 
-export default function listReducer(state = initialState, action: Action) {
+export default function listReducer(
+  state = initialState,
+  action: Action
+): State {
   switch (action.type) {
     case Types.ADD_ITEM_TO_LIST:
       return {
@@ -40,6 +43,6 @@ export default function listReducer(state = initialState, action: Action) {
       return { ...state, ...action.payload };
 
     default:
-      return {...state};
+      return { ...state };
   }
 }

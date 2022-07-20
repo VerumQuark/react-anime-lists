@@ -4,7 +4,10 @@ const initialState: State = {
   error: "",
 };
 
-export default function appReducer(state = initialState, action: Action) {
+export default function appReducer(
+  state = initialState,
+  action: Action
+): State {
   switch (action.type) {
     case Types.CAUSE_ERROR:
       return { ...state, error: action.payload.error };

@@ -1044,9 +1044,9 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState3(initialState3) {
+          function useState4(initialState4) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useState(initialState3);
+            return dispatcher.useState(initialState4);
           }
           function useReducer(reducer, initialArg, init) {
             var dispatcher = resolveDispatcher();
@@ -1844,7 +1844,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef2;
-          exports.useState = useState3;
+          exports.useState = useState4;
           exports.useSyncExternalStore = useSyncExternalStore3;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2340,9 +2340,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React13 = require_react();
+          var React16 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React16.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3743,7 +3743,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React13.Children.forEach(props.children, function(child) {
+                  React16.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -5421,13 +5421,13 @@
           var Callback = 64;
           var DidCapture = 128;
           var ForceClientRender = 256;
-          var Ref = 512;
+          var Ref2 = 512;
           var Snapshot = 1024;
           var Passive = 2048;
           var Hydrating = 4096;
           var Visibility = 8192;
           var StoreConsistency = 16384;
-          var LifecycleEffectMask = Passive | Update | Callback | Ref | Snapshot | StoreConsistency;
+          var LifecycleEffectMask = Passive | Update | Callback | Ref2 | Snapshot | StoreConsistency;
           var HostEffectMask = 32767;
           var Incomplete = 32768;
           var ShouldCapture = 65536;
@@ -5439,8 +5439,8 @@
           var MountLayoutDev = 16777216;
           var MountPassiveDev = 33554432;
           var BeforeMutationMask = Update | Snapshot | 0;
-          var MutationMask = Placement | Update | ChildDeletion | ContentReset | Ref | Hydrating | Visibility;
-          var LayoutMask = Update | Callback | Ref | Visibility;
+          var MutationMask = Placement | Update | ChildDeletion | ContentReset | Ref2 | Hydrating | Visibility;
+          var LayoutMask = Update | Callback | Ref2 | Visibility;
           var PassiveMask = Passive | ChildDeletion;
           var StaticMask = LayoutStatic | PassiveStatic | RefStatic;
           var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
@@ -7215,7 +7215,7 @@
             defaultPrevented: 0,
             isTrusted: 0
           };
-          var SyntheticEvent = createSyntheticEvent(EventInterface);
+          var SyntheticEvent2 = createSyntheticEvent(EventInterface);
           var UIEventInterface = assign({}, EventInterface, {
             view: 0,
             detail: 0
@@ -7676,7 +7676,7 @@
             enqueueStateRestore(target);
             var listeners = accumulateTwoPhaseListeners(inst, "onChange");
             if (listeners.length > 0) {
-              var event = new SyntheticEvent("onChange", "change", null, nativeEvent, target);
+              var event = new SyntheticEvent2("onChange", "change", null, nativeEvent, target);
               dispatchQueue.push({
                 event,
                 listeners
@@ -8180,7 +8180,7 @@
               lastSelection = currentSelection;
               var listeners = accumulateTwoPhaseListeners(activeElementInst$1, "onSelect");
               if (listeners.length > 0) {
-                var event = new SyntheticEvent("onSelect", "select", null, nativeEvent, nativeEventTarget);
+                var event = new SyntheticEvent2("onSelect", "select", null, nativeEvent, nativeEventTarget);
                 dispatchQueue.push({
                   event,
                   listeners
@@ -8292,7 +8292,7 @@
             if (reactName === void 0) {
               return;
             }
-            var SyntheticEventCtor = SyntheticEvent;
+            var SyntheticEventCtor = SyntheticEvent2;
             var reactEventType = domEventName;
             switch (domEventName) {
               case "keypress":
@@ -11869,7 +11869,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React13.Component().refs;
+          var emptyRefsObject = new React16.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -13622,20 +13622,20 @@
           }
           function mountReducer(reducer, initialArg, init) {
             var hook = mountWorkInProgressHook();
-            var initialState3;
+            var initialState4;
             if (init !== void 0) {
-              initialState3 = init(initialArg);
+              initialState4 = init(initialArg);
             } else {
-              initialState3 = initialArg;
+              initialState4 = initialArg;
             }
-            hook.memoizedState = hook.baseState = initialState3;
+            hook.memoizedState = hook.baseState = initialState4;
             var queue = {
               pending: null,
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
               lastRenderedReducer: reducer,
-              lastRenderedState: initialState3
+              lastRenderedState: initialState4
             };
             hook.queue = queue;
             var dispatch = queue.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue);
@@ -13912,28 +13912,28 @@
               scheduleUpdateOnFiber(root3, fiber, SyncLane, NoTimestamp);
             }
           }
-          function mountState(initialState3) {
+          function mountState(initialState4) {
             var hook = mountWorkInProgressHook();
-            if (typeof initialState3 === "function") {
-              initialState3 = initialState3();
+            if (typeof initialState4 === "function") {
+              initialState4 = initialState4();
             }
-            hook.memoizedState = hook.baseState = initialState3;
+            hook.memoizedState = hook.baseState = initialState4;
             var queue = {
               pending: null,
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
               lastRenderedReducer: basicStateReducer,
-              lastRenderedState: initialState3
+              lastRenderedState: initialState4
             };
             hook.queue = queue;
             var dispatch = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);
             return [hook.memoizedState, dispatch];
           }
-          function updateState(initialState3) {
+          function updateState(initialState4) {
             return updateReducer(basicStateReducer);
           }
-          function rerenderState(initialState3) {
+          function rerenderState(initialState4) {
             return rerenderReducer(basicStateReducer);
           }
           function pushEffect(tag, create, destroy, deps) {
@@ -14448,13 +14448,13 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState3);
+                  return mountState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14552,13 +14552,13 @@
                 updateHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState3);
+                  return mountState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14656,13 +14656,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState3);
+                  return updateState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14760,13 +14760,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
                 try {
-                  return rerenderState(initialState3);
+                  return rerenderState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14874,14 +14874,14 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState3);
+                  return mountState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14995,14 +14995,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState3);
+                  return updateState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15116,14 +15116,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState3) {
+              useState: function(initialState4) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return rerenderState(initialState3);
+                  return rerenderState(initialState4);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15802,7 +15802,7 @@
           function markRef(current2, workInProgress2) {
             var ref = workInProgress2.ref;
             if (current2 === null && ref !== null || current2 !== null && current2.ref !== ref) {
-              workInProgress2.flags |= Ref;
+              workInProgress2.flags |= Ref2;
               {
                 workInProgress2.flags |= RefStatic;
               }
@@ -17172,7 +17172,7 @@
             workInProgress2.flags |= Update;
           }
           function markRef$1(workInProgress2) {
-            workInProgress2.flags |= Ref;
+            workInProgress2.flags |= Ref2;
             {
               workInProgress2.flags |= RefStatic;
             }
@@ -18328,7 +18328,7 @@
             }
             if (!offscreenSubtreeWasHidden) {
               {
-                if (finishedWork.flags & Ref) {
+                if (finishedWork.flags & Ref2) {
                   commitAttachRef(finishedWork);
                 }
               }
@@ -18892,7 +18892,7 @@
               case ClassComponent: {
                 recursivelyTraverseMutationEffects(root3, finishedWork);
                 commitReconciliationEffects(finishedWork);
-                if (flags & Ref) {
+                if (flags & Ref2) {
                   if (current2 !== null) {
                     safelyDetachRef(current2, current2.return);
                   }
@@ -18902,7 +18902,7 @@
               case HostComponent: {
                 recursivelyTraverseMutationEffects(root3, finishedWork);
                 commitReconciliationEffects(finishedWork);
-                if (flags & Ref) {
+                if (flags & Ref2) {
                   if (current2 !== null) {
                     safelyDetachRef(current2, current2.return);
                   }
@@ -21774,7 +21774,7 @@
             return root3;
           }
           var ReactVersion = "18.2.0";
-          function createPortal(children, containerInfo, implementation) {
+          function createPortal3(children, containerInfo, implementation) {
             var key = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : null;
             {
               checkKeyStringCoercion(key);
@@ -22576,7 +22576,7 @@
             if (!isValidContainer(container)) {
               throw new Error("Target container is not a DOM element.");
             }
-            return createPortal(children, container, null, key);
+            return createPortal3(children, container, null, key);
           }
           function renderSubtreeIntoContainer(parentComponent, element, containerNode, callback) {
             return unstable_renderSubtreeIntoContainer(parentComponent, element, containerNode, callback);
@@ -22699,8 +22699,8 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React13 = require_react();
-          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var React16 = require_react();
+          var ReactSharedInternals = React16.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -22730,13 +22730,13 @@
             return x3 === y3 && (x3 !== 0 || 1 / x3 === 1 / y3) || x3 !== x3 && y3 !== y3;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
-          var useState3 = React13.useState, useEffect3 = React13.useEffect, useLayoutEffect2 = React13.useLayoutEffect, useDebugValue2 = React13.useDebugValue;
+          var useState4 = React16.useState, useEffect3 = React16.useEffect, useLayoutEffect2 = React16.useLayoutEffect, useDebugValue2 = React16.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
             {
               if (!didWarnOld18Alpha) {
-                if (React13.startTransition !== void 0) {
+                if (React16.startTransition !== void 0) {
                   didWarnOld18Alpha = true;
                   error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
                 }
@@ -22752,7 +22752,7 @@
                 }
               }
             }
-            var _useState = useState3({
+            var _useState = useState4({
               inst: {
                 value,
                 getSnapshot
@@ -22801,7 +22801,7 @@
           var canUseDOM2 = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
           var isServerEnvironment = !canUseDOM2;
           var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore3;
-          var useSyncExternalStore$2 = React13.useSyncExternalStore !== void 0 ? React13.useSyncExternalStore : shim;
+          var useSyncExternalStore$2 = React16.useSyncExternalStore !== void 0 ? React16.useSyncExternalStore : shim;
           exports.useSyncExternalStore = useSyncExternalStore$2;
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -22833,14 +22833,14 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React13 = require_react();
+          var React16 = require_react();
           var shim = require_shim();
           function is(x3, y3) {
             return x3 === y3 && (x3 !== 0 || 1 / x3 === 1 / y3) || x3 !== x3 && y3 !== y3;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef2 = React13.useRef, useEffect3 = React13.useEffect, useMemo3 = React13.useMemo, useDebugValue2 = React13.useDebugValue;
+          var useRef2 = React16.useRef, useEffect3 = React16.useEffect, useMemo3 = React16.useMemo, useDebugValue2 = React16.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
             var instRef = useRef2(null);
             var inst;
@@ -25804,7 +25804,7 @@
   });
 
   // src/index.tsx
-  var import_react18 = __toESM(require_react());
+  var import_react21 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // node_modules/react-redux/es/index.js
@@ -26071,12 +26071,35 @@
   setBatch(import_react_dom.unstable_batchedUpdates);
 
   // src/App.tsx
-  var import_react17 = __toESM(require_react());
+  var import_react20 = __toESM(require_react());
 
-  // src/Components/List/List.tsx
-  var import_react14 = __toESM(require_react());
+  // src/Common/ErrorBox/ErrorBox.tsx
+  var import_react11 = __toESM(require_react());
+  var import_react_dom2 = __toESM(require_react_dom());
 
-  // src/Components/List/ListItem.tsx
+  // src/Store/AppStore/actions.ts
+  function causeError(errorMessage) {
+    return (dispatch) => {
+      dispatch({
+        type: "CAUSE_ERROR" /* CAUSE_ERROR */,
+        payload: {
+          error: errorMessage
+        }
+      });
+    };
+  }
+  function clearError() {
+    return (dispatch) => {
+      dispatch({
+        type: "CLEAR_ERROR" /* CLEAR_ERROR */,
+        payload: {
+          error: ""
+        }
+      });
+    };
+  }
+
+  // src/Components/Button/Button.tsx
   var import_react9 = __toESM(require_react());
 
   // node_modules/styled-components/dist/styled-components.browser.esm.js
@@ -27268,6 +27291,13 @@
     }
     return Oe(a3), import_react8.default.memo(l3);
   }
+  function Ue(e2) {
+    typeof navigator != "undefined" && navigator.product === "ReactNative" && console.warn("`keyframes` cannot be used on ReactNative, only on the web. To do animation in ReactNative please use Animated.");
+    for (var t3 = arguments.length, n3 = new Array(t3 > 1 ? t3 - 1 : 0), r3 = 1; r3 < t3; r3++)
+      n3[r3 - 1] = arguments[r3];
+    var o3 = Ce.apply(void 0, [e2].concat(n3)).join(""), s3 = xe(o3);
+    return new ve(s3, o3);
+  }
   var Je = function() {
     function e2() {
       var e3 = this;
@@ -27299,60 +27329,6 @@
   typeof navigator != "undefined" && navigator.product === "ReactNative" && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), typeof window != "undefined" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, window["__styled-components-init__"] === 1 && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
   var styled_components_browser_esm_default = He;
 
-  // src/Components/List/styles/ListItem.styled.ts
-  var StyledLi = styled_components_browser_esm_default.li`
-  cursor: pointer;
-
-  position: relative;
-  border: 2px solid transparent;
-  ${({ isSelected }) => isSelected ? "border-color: black" : `overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;`};
-`;
-  var ListItem_styled_default = StyledLi;
-
-  // src/Components/List/ListItem.tsx
-  function ListItem({ toggleSelect, id, children, isSelected }) {
-    function onClick() {
-      toggleSelect(id);
-    }
-    return /* @__PURE__ */ import_react9.default.createElement(ListItem_styled_default, {
-      key: id,
-      onClick,
-      isSelected
-    }, children);
-  }
-  var ListItem_default = ListItem;
-
-  // src/Components/List/styles/List.styled.ts
-  var StyledList = styled_components_browser_esm_default.ul`
-  list-style: square;
-  display: flex;
-  flex-direction: column;
-  background-color: orange;
-  transition: max-height 0.5s ease-in-out;
-  overflow: hidden;
-  max-height: ${({ isOpen, height }) => isOpen ? `${`${height}px` || "100%"}` : `0px;`};
-  ${({ isBorderCollapse }) => isBorderCollapse && Ce`
-      & li {
-        position: relative;
-        margin-top: -1px;
-        margin-left: -1px;
-        left: 1px;
-        top: 1px;
-      }
-    `}
-`;
-  var List_styled_default = StyledList;
-
-  // src/Components/Header/Header.tsx
-  var import_react13 = __toESM(require_react());
-
-  // src/Components/Button/Button.tsx
-  var import_react10 = __toESM(require_react());
-
   // src/Components/Button/styles/Button.styled.ts
   var StyledButton = styled_components_browser_esm_default.button`
   background-color: blue;
@@ -27361,38 +27337,27 @@
 
   // src/Components/Button/Button.tsx
   function Button({ children, onClick }) {
-    return /* @__PURE__ */ import_react10.default.createElement(Button_styled_default, {
+    return /* @__PURE__ */ import_react9.default.createElement(Button_styled_default, {
       onClick
     }, children);
   }
   var Button_default = Button;
 
-  // src/Components/Header/Title.tsx
-  var import_react11 = __toESM(require_react());
-
-  // src/Components/Header/styles/Title.styled.ts
-  var StyledTitle = styled_components_browser_esm_default.h1`
-  font-size: 22px;
-  line-height: 25px;
-  background-color: magenta;
-`;
-  var Title_styled_default = StyledTitle;
-
-  // src/Components/Header/Title.tsx
-  function Title(props) {
-    return /* @__PURE__ */ import_react11.default.createElement(Title_styled_default, __spreadValues({}, props));
-  }
-  var Title_default = Title;
-
-  // src/Components/Header/styles/Header.styled.tsx
-  var StyledHeader = styled_components_browser_esm_default.div`
-  background: magenta;
+  // src/Common/ErrorBox/styles/ErrorBox.styled.tsx
+  var StyledErrorBox = styled_components_browser_esm_default.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: ${({ critical }) => critical ? "100vh" : "40px"};
+  background-color: ${({ warning: warning3 }) => !warning3 ? "red" : "orange"};
+  color: white;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 20px;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 `;
-  var Header_styled_default = StyledHeader;
+  var ErrorBox_styled_default = StyledErrorBox;
 
   // node_modules/@fortawesome/fontawesome-svg-core/index.es.js
   function ownKeys(object, enumerableOnly) {
@@ -27727,13 +27692,13 @@
     flipX: false,
     flipY: false
   };
-  function insertCss(css2) {
-    if (!css2 || !IS_DOM) {
+  function insertCss(css3) {
+    if (!css3 || !IS_DOM) {
       return;
     }
     var style = DOCUMENT.createElement("style");
     style.setAttribute("type", "text/css");
-    style.innerHTML = css2;
+    style.innerHTML = css3;
     var headChildren = DOCUMENT.head.childNodes;
     var beforeChild = null;
     for (var i3 = headChildren.length - 1; i3 > -1; i3--) {
@@ -27744,7 +27709,7 @@
       }
     }
     DOCUMENT.head.insertBefore(style, beforeChild);
-    return css2;
+    return css3;
   }
   var idPool = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   function nextUniqueId() {
@@ -29764,7 +29729,7 @@
 
   // node_modules/@fortawesome/react-fontawesome/index.es.js
   var import_prop_types = __toESM(require_prop_types());
-  var import_react12 = __toESM(require_react());
+  var import_react10 = __toESM(require_react());
   function ownKeys2(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
@@ -30004,7 +29969,7 @@
   function objectWithKey(key, value) {
     return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty2({}, key, value) : {};
   }
-  var FontAwesomeIcon = /* @__PURE__ */ import_react12.default.forwardRef(function(props, ref) {
+  var FontAwesomeIcon = /* @__PURE__ */ import_react10.default.forwardRef(function(props, ref) {
     var iconArgs = props.icon, maskArgs = props.mask, symbol = props.symbol, className = props.className, title = props.title, titleId = props.titleId, maskId = props.maskId;
     var iconLookup = normalizeIconArgs(iconArgs);
     var classes = objectWithKey("classes", [].concat(_toConsumableArray2(classList(props)), _toConsumableArray2(className.split(" "))));
@@ -30089,7 +30054,7 @@
     transform: null,
     swapOpacity: false
   };
-  var convertCurry = convert.bind(null, import_react12.default.createElement);
+  var convertCurry = convert.bind(null, import_react10.default.createElement);
 
   // node_modules/@fortawesome/free-solid-svg-icons/index.es.js
   var faPlus = {
@@ -30103,12 +30068,125 @@
     icon: [320, 512, [128473, 10005, 10006, 10060, 215, "close", "multiply", "remove", "times"], "f00d", "M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"]
   };
 
+  // src/Common/ErrorBox/ErrorBox.tsx
+  function ErrorBox(props) {
+    const dispatch = useDispatch();
+    const reduxError = useSelector((state) => state.app.error);
+    return (0, import_react_dom2.createPortal)(/* @__PURE__ */ import_react11.default.createElement(ErrorBox_styled_default, __spreadValues({}, props), reduxError, /* @__PURE__ */ import_react11.default.createElement("div", {
+      style: { position: "absolute", right: 0 }
+    }, /* @__PURE__ */ import_react11.default.createElement(Button_default, {
+      onClick: () => dispatch(clearError())
+    }, /* @__PURE__ */ import_react11.default.createElement(FontAwesomeIcon, {
+      icon: faXmark
+    })))), document.getElementById("error"));
+  }
+  var ErrorBox_default = ErrorBox;
+
+  // src/hooks/useSelectableList.ts
+  var import_react12 = __toESM(require_react());
+  function useSelectableList() {
+    const [selected, setSelected] = (0, import_react12.useState)(/* @__PURE__ */ new Set());
+    function toggleSelected(id) {
+      setSelected((prev) => {
+        const set = new Set(prev);
+        set.has(id) ? set.delete(id) : set.add(id);
+        return set;
+      });
+    }
+    return [selected, toggleSelected];
+  }
+  var useSelectableList_default = useSelectableList;
+
+  // src/Components/List/List.tsx
+  var import_react16 = __toESM(require_react());
+
+  // src/Components/List/ListItem.tsx
+  var import_react13 = __toESM(require_react());
+
+  // src/Components/List/styles/ListItem.styled.ts
+  var StyledLi = styled_components_browser_esm_default.li`
+  cursor: pointer;
+
+  position: relative;
+  border: 2px solid transparent;
+  ${({ isSelected }) => isSelected ? "border-color: black" : `overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;`};
+`;
+  var ListItem_styled_default = StyledLi;
+
+  // src/Components/List/ListItem.tsx
+  function ListItem({ toggleSelect, id, children, isSelected }) {
+    function onClick() {
+      toggleSelect(id);
+    }
+    return /* @__PURE__ */ import_react13.default.createElement(ListItem_styled_default, {
+      key: id,
+      onClick,
+      isSelected
+    }, children);
+  }
+  var ListItem_default = ListItem;
+
+  // src/Components/List/styles/List.styled.ts
+  var StyledList = styled_components_browser_esm_default.ul`
+  list-style: square;
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: ${({ isOpen, height }) => isOpen ? `${`${height}px` || "100%"}` : `0px;`};
+  ${({ isBorderCollapse }) => isBorderCollapse && Ce`
+      & li {
+        position: relative;
+        margin-top: -1px;
+        margin-left: -1px;
+        left: 1px;
+        top: 1px;
+      }
+    `}
+`;
+  var List_styled_default = StyledList;
+
+  // src/Components/Header/Header.tsx
+  var import_react15 = __toESM(require_react());
+
+  // src/Components/Header/Title.tsx
+  var import_react14 = __toESM(require_react());
+
+  // src/Components/Header/styles/Title.styled.ts
+  var StyledTitle = styled_components_browser_esm_default.h1`
+  font-size: 22px;
+  line-height: 25px;
+  background-color: magenta;
+`;
+  var Title_styled_default = StyledTitle;
+
+  // src/Components/Header/Title.tsx
+  function Title(props) {
+    return /* @__PURE__ */ import_react14.default.createElement(Title_styled_default, __spreadValues({}, props));
+  }
+  var Title_default = Title;
+
+  // src/Components/Header/styles/Header.styled.tsx
+  var StyledHeader = styled_components_browser_esm_default.div`
+  background: magenta;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+`;
+  var Header_styled_default = StyledHeader;
+
   // src/Components/Header/Header.tsx
   function Header(_a) {
     var _b = _a, { onAddAnime: addAnime } = _b, titleProps = __objRest(_b, ["onAddAnime"]);
-    return /* @__PURE__ */ import_react13.default.createElement(Header_styled_default, null, /* @__PURE__ */ import_react13.default.createElement(Title_default, __spreadValues({}, titleProps)), /* @__PURE__ */ import_react13.default.createElement(Button_default, {
+    return /* @__PURE__ */ import_react15.default.createElement(Header_styled_default, null, /* @__PURE__ */ import_react15.default.createElement(Title_default, __spreadValues({}, titleProps)), /* @__PURE__ */ import_react15.default.createElement(Button_default, {
       onClick: addAnime
-    }, /* @__PURE__ */ import_react13.default.createElement(FontAwesomeIcon, {
+    }, /* @__PURE__ */ import_react15.default.createElement(FontAwesomeIcon, {
       icon: faPlus
     })));
   }
@@ -30196,26 +30274,26 @@
       "toggleSelect",
       "addAnime"
     ]);
-    const [isOpen, setOpen] = (0, import_react14.useState)(false);
+    const [isOpen, setOpen] = (0, import_react16.useState)(false);
     const toggling = () => {
       setOpen(!isOpen);
     };
     const width = window.innerWidth;
     const LineCnt = CalcLineCnt(16, width, items);
-    return /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, /* @__PURE__ */ import_react14.default.createElement(Header_default, {
+    return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement(Header_default, {
       onClick: toggling,
       onAddAnime: addAnime
-    }, title ? title : "List title"), /* @__PURE__ */ import_react14.default.createElement(List_styled_default, __spreadProps(__spreadValues({}, props), {
+    }, title ? title : "List title"), /* @__PURE__ */ import_react16.default.createElement(List_styled_default, __spreadProps(__spreadValues({}, props), {
       isOpen,
       height: items.length === 0 ? ANIME_TITLE_HEIGHT : ANIME_TITLE_HEIGHT * LineCnt
-    }), items.length === 0 ? /* @__PURE__ */ import_react14.default.createElement(ListItem_default, {
+    }), items.length === 0 ? /* @__PURE__ */ import_react16.default.createElement(ListItem_default, {
       id: v4_default(),
       toggleSelect: () => {
       },
       isSelected: false
     }, "List is empty") : items.map(({ title: title2, id }) => {
       const isSelected = selected.has(id);
-      return /* @__PURE__ */ import_react14.default.createElement(ListItem_default, {
+      return /* @__PURE__ */ import_react16.default.createElement(ListItem_default, {
         id,
         toggleSelect,
         isSelected
@@ -30223,43 +30301,6 @@
     })));
   }
   var List_default = List;
-
-  // src/hooks/useSelectableList.ts
-  var import_react15 = __toESM(require_react());
-  function useSelectableList() {
-    const [selected, setSelected] = (0, import_react15.useState)(/* @__PURE__ */ new Set());
-    function toggleSelected(id) {
-      setSelected((prev) => {
-        const set = new Set(prev);
-        set.has(id) ? set.delete(id) : set.add(id);
-        return set;
-      });
-    }
-    return [selected, toggleSelected];
-  }
-  var useSelectableList_default = useSelectableList;
-
-  // src/Store/AppStore/actions.ts
-  function causeError(errorMessage) {
-    return (dispatch) => {
-      dispatch({
-        type: "CAUSE_ERROR" /* CAUSE_ERROR */,
-        payload: {
-          error: errorMessage
-        }
-      });
-    };
-  }
-  function clearError() {
-    return (dispatch) => {
-      dispatch({
-        type: "CLEAR_ERROR" /* CLEAR_ERROR */,
-        payload: {
-          error: ""
-        }
-      });
-    };
-  }
 
   // src/Store/ListStore/actions.ts
   var import_axios = __toESM(require_axios2());
@@ -30313,37 +30354,263 @@
     });
   }
 
-  // src/Components/ErrorBox/ErrorBox.tsx
-  var import_react16 = __toESM(require_react());
+  // src/Components/AddModal/AddModal.tsx
+  var import_react19 = __toESM(require_react());
 
-  // src/Components/ErrorBox/styles/ErrorBox.styled.tsx
-  var StyledErrorBox = styled_components_browser_esm_default.div`
+  // src/Common/Input/Input.tsx
+  var import_react17 = __toESM(require_react());
+
+  // src/styles/index.styled.ts
+  var GlobalStyles = We`
+  html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+	font-family: 'Fira Code', monospace !important;
+}
+body, html, #root, #modal, #error {
+  /* max-height: 100vh; */
+  max-width: 100vw;
+}
+
+#modal, #error {
+  z-index: 999;
+}
+`;
+  var theme = {
+    colors: {
+      primary: "#222532",
+      secondary: "#393E53",
+      accent: "#181B25",
+      identifiers: {
+        seen: "#6CC75D",
+        watching: "#CAD873",
+        future: "#EB942F",
+        liked: "#D445A4"
+      },
+      text: "#FFFFFF",
+      topBar: "linear-gradient(180deg, #222532 0%, #1B1F2E 100%)",
+      actionSelect: "#0E0F12",
+      edit: "#540E8B",
+      remove: "#942424"
+    }
+  };
+  var index_styled_default = GlobalStyles;
+
+  // src/Common/Input/styles/Input.styled.tsx
+  var StyledInput = styled_components_browser_esm_default.input`
+  width: ${({ width }) => width || "30%"};
+  height: 30px;
+  background-color: ${theme.colors.secondary};
+  color: ${theme.colors.text};
+  text-align: center;
+  font-size: 16px;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+
+  ${({ type }) => type === "button" && Ce`
+      &:active {
+        background-color: ${theme.colors.accent};
+      }
+
+      &:hover {
+        border: 2px solid ${theme.colors.accent};
+      }
+    `}
+`;
+  var Input_styled_default = StyledInput;
+
+  // src/Common/Input/Input.tsx
+  function Input(_a) {
+    var _b = _a, {
+      type,
+      ref,
+      onChange: onChange2,
+      onClick,
+      value,
+      pattern
+    } = _b, props = __objRest(_b, [
+      "type",
+      "ref",
+      "onChange",
+      "onClick",
+      "value",
+      "pattern"
+    ]);
+    return /* @__PURE__ */ import_react17.default.createElement(Input_styled_default, __spreadValues({
+      ref,
+      onChange: onChange2,
+      type,
+      value,
+      pattern,
+      onClick
+    }, props));
+  }
+  Input.defaultProps = {
+    type: "text"
+  };
+  var Input_default = Input;
+
+  // src/Common/Modal/Modal.tsx
+  var import_react18 = __toESM(require_react());
+  var import_react_dom3 = __toESM(require_react_dom());
+
+  // src/Common/Modal/styles/animation.ts
+  var animation_default = Ue`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+  // src/Common/Modal/styles/Modal.styled.tsx
+  var StyledModal = styled_components_browser_esm_default.div`
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 29px 27px;
+  gap: 10px;
+  background-color: ${theme.colors.primary};
+  z-index: 999;
+  border-radius: 5px;
+  animation: ${animation_default} 0.5s;
+
+  & h1 {
+    font-size: 24px;
+    color: ${theme.colors.text};
+  }
+`;
+  var Modal_styled_default = StyledModal;
+
+  // src/Common/Modal/styles/Wrapper.styled.tsx
+  var StyledWrapper = styled_components_browser_esm_default.div`
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: ${({ critical }) => critical ? "100vh" : "40px"};
-  background-color: ${({ warning: warning3 }) => !warning3 ? "red" : "orange"};
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 998;
+  animation: ${animation_default} 0.5s;
 `;
-  var ErrorBox_styled_default = StyledErrorBox;
+  var Wrapper_styled_default = StyledWrapper;
 
-  // src/Components/ErrorBox/ErrorBox.tsx
-  function ErrorBox(props) {
-    const dispatch = useDispatch();
-    const reduxError = useSelector((state) => state.app.error);
-    return /* @__PURE__ */ import_react16.default.createElement(ErrorBox_styled_default, __spreadValues({}, props), reduxError, /* @__PURE__ */ import_react16.default.createElement("div", {
-      style: { position: "absolute", right: 0 }
-    }, /* @__PURE__ */ import_react16.default.createElement(Button_default, {
-      onClick: () => dispatch(clearError())
-    }, /* @__PURE__ */ import_react16.default.createElement(FontAwesomeIcon, {
-      icon: faXmark
-    }))));
+  // src/Store/ModalStore/actions.ts
+  function showModal(listName) {
+    return (dispatch) => {
+      dispatch({
+        type: "SHOW_MODAL" /* SHOW_MODAL */,
+        payload: {
+          list: listName,
+          isShow: true
+        }
+      });
+    };
   }
-  var ErrorBox_default = ErrorBox;
+  function closeModal() {
+    return (dispatch) => {
+      dispatch({
+        type: "CLOSE_MODAL" /* CLOSE_MODAL */,
+        payload: {
+          isShow: false
+        }
+      });
+    };
+  }
+
+  // src/Common/Modal/Modal.tsx
+  function Modal(_a) {
+    var _b = _a, { header, children } = _b, props = __objRest(_b, ["header", "children"]);
+    const dispatch = useDispatch();
+    return (0, import_react_dom3.createPortal)(/* @__PURE__ */ import_react18.default.createElement(Wrapper_styled_default, {
+      onClick: (e2) => dispatch(closeModal())
+    }, /* @__PURE__ */ import_react18.default.createElement(Modal_styled_default, __spreadProps(__spreadValues({}, props), {
+      onClick: (e2) => {
+        e2.stopPropagation();
+      }
+    }), /* @__PURE__ */ import_react18.default.createElement("h1", null, header), children)), document.getElementById("modal"));
+  }
+  var Modal_default = Modal;
+
+  // src/Components/AddModal/AddModal.tsx
+  function AddModal({ title, rating }) {
+    const [t3, setT] = (0, import_react19.useState)(title || "");
+    const [r3, setR] = (0, import_react19.useState)(rating || 0);
+    const dispatch = useDispatch();
+    const list = useSelector((state) => state.modal.list);
+    return /* @__PURE__ */ import_react19.default.createElement(Modal_default, {
+      header: "\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443"
+    }, /* @__PURE__ */ import_react19.default.createElement(Input_default, {
+      value: t3,
+      onChange: (e2) => {
+        setT(e2.target.value);
+      },
+      width: "60%"
+    }), /* @__PURE__ */ import_react19.default.createElement(Input_default, {
+      value: r3,
+      onChange: (e2) => {
+        e2.preventDefault();
+        Number.isInteger(Number(e2.nativeEvent.data)) && setR(Number(e2.target.value));
+      }
+    }), /* @__PURE__ */ import_react19.default.createElement(Input_default, {
+      type: "button",
+      value: "\u0414\u043E\u0434\u0430\u0442\u0438",
+      onClick: () => {
+        dispatch(addAnimeToList(list, t3, r3, window.uid));
+        dispatch(closeModal());
+      }
+    }));
+  }
 
   // src/App.tsx
   var userId = 308041205;
@@ -30355,49 +30622,50 @@
     const dispatch = useDispatch();
     const { anime_seen, anime_future, anime_liked, anime_watching } = useSelector((state) => state.lists);
     const error = useSelector((state) => state.app.error);
-    (0, import_react17.useEffect)(() => {
+    const isShowModal = useSelector((state) => state.modal.isShow);
+    (0, import_react20.useEffect)(() => {
       dispatch(fetchAnimeLists(userId));
     }, []);
     function addAnime(list) {
-      const title = prompt();
-      const rating = Number(prompt());
-      dispatch(addAnimeToList(list, title, rating, userId));
+      dispatch(showModal(list));
     }
-    return /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, error && /* @__PURE__ */ import_react17.default.createElement(ErrorBox_default, null), /* @__PURE__ */ import_react17.default.createElement(List_default, {
+    return /* @__PURE__ */ import_react20.default.createElement(import_react20.default.Fragment, null, isShowModal && /* @__PURE__ */ import_react20.default.createElement(AddModal, {
+      title: "Aboba"
+    }), error && /* @__PURE__ */ import_react20.default.createElement(ErrorBox_default, null), /* @__PURE__ */ import_react20.default.createElement(List_default, {
       title: "\u041F\u0435\u0440\u0435\u0433\u043B\u044F\u043D\u0443\u0442\u0456",
       items: anime_seen,
       selected,
       toggleSelect,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react17.default.createElement(List_default, {
+    }), /* @__PURE__ */ import_react20.default.createElement(List_default, {
       title: "\u0417\u0430\u043F\u043B\u0430\u043D\u043E\u0432\u0430\u043D\u0456",
       items: anime_future,
       selected: selected1,
       toggleSelect: toggleSelect1,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react17.default.createElement(List_default, {
+    }), /* @__PURE__ */ import_react20.default.createElement(List_default, {
       title: "\u0412\u043F\u043E\u0434\u043E\u0431\u0430\u0439\u043A\u0438",
       items: anime_liked,
       selected: selected2,
       toggleSelect: toggleSelect2,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react17.default.createElement(List_default, {
+    }), /* @__PURE__ */ import_react20.default.createElement(List_default, {
       title: "\u0414\u0438\u0432\u043B\u044E\u0441\u044F",
       items: anime_watching,
       selected: selected3,
       toggleSelect: toggleSelect3,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react17.default.createElement("button", {
+    }), /* @__PURE__ */ import_react20.default.createElement("button", {
       onClick: () => alert([...selected].join("\n"))
-    }, "Show selected items1"), /* @__PURE__ */ import_react17.default.createElement("button", {
+    }, "Show selected items1"), /* @__PURE__ */ import_react20.default.createElement("button", {
       onClick: () => alert([...selected1].join("\n"))
-    }, "Show selected items2"), /* @__PURE__ */ import_react17.default.createElement("button", {
+    }, "Show selected items2"), /* @__PURE__ */ import_react20.default.createElement("button", {
       onClick: () => alert([...selected2].join("\n"))
-    }, "Show selected items3"), /* @__PURE__ */ import_react17.default.createElement("button", {
+    }, "Show selected items3"), /* @__PURE__ */ import_react20.default.createElement("button", {
       onClick: () => alert([...selected3].join("\n"))
     }, "Show selected items4"));
   }
@@ -31155,10 +31423,10 @@
   function assertReducerShape(reducers) {
     Object.keys(reducers).forEach(function(key) {
       var reducer = reducers[key];
-      var initialState3 = reducer(void 0, {
+      var initialState4 = reducer(void 0, {
         type: ActionTypes.INIT
       });
-      if (typeof initialState3 === "undefined") {
+      if (typeof initialState4 === "undefined") {
         throw new Error(false ? formatProdErrorMessage(12) : 'The slice reducer for key "' + key + `" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.`);
       }
       if (typeof reducer(void 0, {
@@ -31845,78 +32113,40 @@
     }
   }
 
+  // src/Store/ModalStore/modalReducer.ts
+  var initialState3 = {
+    list: "",
+    isShow: false
+  };
+  function modalReducer(state = initialState3, action) {
+    switch (action.type) {
+      case "SHOW_MODAL" /* SHOW_MODAL */:
+        return __spreadProps(__spreadValues({}, state), {
+          list: action.payload.list,
+          isShow: action.payload.isShow
+        });
+      case "CLOSE_MODAL" /* CLOSE_MODAL */:
+        return __spreadProps(__spreadValues({}, state), { list: "", isShow: action.payload.isShow });
+      default:
+        return __spreadValues({}, state);
+    }
+  }
+
   // src/Store/index.ts
   var rootReducer = combineReducers({
     lists: listReducer,
-    app: appReducer
+    app: appReducer,
+    modal: modalReducer
   });
   var Store_default = configureStore({
-    reducer: combineReducers({
-      lists: listReducer,
-      app: appReducer
-    })
+    reducer: rootReducer
   });
-
-  // src/styles/index.styled.ts
-  var GlobalStyles = We`
-  html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-* {
-	font-family: 'Fira Code', monospace !important;
-}
-body, html, #root {
-  height: 100vh;
-  width: 100vw;
-}
-`;
-  var index_styled_default = GlobalStyles;
 
   // src/index.tsx
   var root = import_client.default.createRoot(document.getElementById("root"));
-  root.render(/* @__PURE__ */ import_react18.default.createElement(import_react18.default.StrictMode, null, /* @__PURE__ */ import_react18.default.createElement(Provider_default, {
+  root.render(/* @__PURE__ */ import_react21.default.createElement(import_react21.default.StrictMode, null, /* @__PURE__ */ import_react21.default.createElement(Provider_default, {
     store: Store_default
-  }, /* @__PURE__ */ import_react18.default.createElement(index_styled_default, null), /* @__PURE__ */ import_react18.default.createElement(App_default, null))));
+  }, /* @__PURE__ */ import_react21.default.createElement(index_styled_default, null), /* @__PURE__ */ import_react21.default.createElement(App_default, null))));
 })();
 /*
 object-assign
