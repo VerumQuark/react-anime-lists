@@ -1,7 +1,7 @@
 import { State, Types, Action } from "./types";
 
 const initialState: State = {
-  error: null,
+  error: "",
 };
 
 export default function appReducer(state = initialState, action: Action) {
@@ -10,7 +10,7 @@ export default function appReducer(state = initialState, action: Action) {
       return { ...state, error: action.payload.error };
 
     case Types.CLEAR_ERROR:
-      return { ...state, error: null };
+      return { ...state, error: "" };
 
     default:
       return { ...state };

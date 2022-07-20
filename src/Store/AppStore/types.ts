@@ -10,7 +10,7 @@ export interface AError extends Error {
 }
 
 export type State = {
-  error: string | null;
+  error: string;
 };
 
 export type Payload = {

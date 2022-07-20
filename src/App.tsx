@@ -7,6 +7,7 @@ import { State as ListState } from "./Store/ListStore/types";
 import { clearError } from "./Store/AppStore/actions";
 import { State } from "./Store";
 import { ListName } from "./Store/ListStore/types";
+import ErrorBox from "./Components/ErrorBox";
 
 const userId = 308041205;
 
@@ -27,7 +28,7 @@ function App() {
   >((state) => state.lists);
 
   // Take error form redux state
-  const error = useSelector<State, string | null>((state) => state.app.error);
+  const error = useSelector<State, string>((state) => state.app.error);
 
   useEffect(() => {
     dispatch(fetchAnimeLists(userId));
@@ -42,16 +43,7 @@ function App() {
 
   return (
     <>
-      {error && (
-        <>
-          <div
-            style={{ width: "100%", height: "60px", backgroundColor: "red" }}
-            onClick={() => dispatch(clearError())}
-          >
-            {error}
-          </div>
-        </>
-      )}
+      {error && <ErrorBox />}
       <List
         title="Переглянуті"
         items={anime_seen}

@@ -2340,9 +2340,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React12 = require_react();
+          var React13 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3743,7 +3743,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React12.Children.forEach(props.children, function(child) {
+                  React13.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -11869,7 +11869,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React12.Component().refs;
+          var emptyRefsObject = new React13.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -22699,8 +22699,8 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React12 = require_react();
-          var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var React13 = require_react();
+          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -22730,13 +22730,13 @@
             return x3 === y3 && (x3 !== 0 || 1 / x3 === 1 / y3) || x3 !== x3 && y3 !== y3;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
-          var useState3 = React12.useState, useEffect3 = React12.useEffect, useLayoutEffect2 = React12.useLayoutEffect, useDebugValue2 = React12.useDebugValue;
+          var useState3 = React13.useState, useEffect3 = React13.useEffect, useLayoutEffect2 = React13.useLayoutEffect, useDebugValue2 = React13.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
             {
               if (!didWarnOld18Alpha) {
-                if (React12.startTransition !== void 0) {
+                if (React13.startTransition !== void 0) {
                   didWarnOld18Alpha = true;
                   error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
                 }
@@ -22801,7 +22801,7 @@
           var canUseDOM2 = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
           var isServerEnvironment = !canUseDOM2;
           var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore3;
-          var useSyncExternalStore$2 = React12.useSyncExternalStore !== void 0 ? React12.useSyncExternalStore : shim;
+          var useSyncExternalStore$2 = React13.useSyncExternalStore !== void 0 ? React13.useSyncExternalStore : shim;
           exports.useSyncExternalStore = useSyncExternalStore$2;
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -22833,14 +22833,14 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React12 = require_react();
+          var React13 = require_react();
           var shim = require_shim();
           function is(x3, y3) {
             return x3 === y3 && (x3 !== 0 || 1 / x3 === 1 / y3) || x3 !== x3 && y3 !== y3;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef2 = React12.useRef, useEffect3 = React12.useEffect, useMemo3 = React12.useMemo, useDebugValue2 = React12.useDebugValue;
+          var useRef2 = React13.useRef, useEffect3 = React13.useEffect, useMemo3 = React13.useMemo, useDebugValue2 = React13.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
             var instRef = useRef2(null);
             var inst;
@@ -25804,7 +25804,7 @@
   });
 
   // src/index.tsx
-  var import_react17 = __toESM(require_react());
+  var import_react18 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // node_modules/react-redux/es/index.js
@@ -26071,7 +26071,7 @@
   setBatch(import_react_dom.unstable_batchedUpdates);
 
   // src/App.tsx
-  var import_react16 = __toESM(require_react());
+  var import_react17 = __toESM(require_react());
 
   // src/Components/List/List.tsx
   var import_react14 = __toESM(require_react());
@@ -30097,6 +30097,11 @@
     iconName: "plus",
     icon: [448, 512, [10133, 61543, "add"], "2b", "M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"]
   };
+  var faXmark = {
+    prefix: "fas",
+    iconName: "xmark",
+    icon: [320, 512, [128473, 10005, 10006, 10060, 215, "close", "multiply", "remove", "times"], "f00d", "M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"]
+  };
 
   // src/Components/Header/Header.tsx
   function Header(_a) {
@@ -30308,6 +30313,38 @@
     });
   }
 
+  // src/Components/ErrorBox/ErrorBox.tsx
+  var import_react16 = __toESM(require_react());
+
+  // src/Components/ErrorBox/styles/ErrorBox.styled.tsx
+  var StyledErrorBox = styled_components_browser_esm_default.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: ${({ critical }) => critical ? "100vh" : "40px"};
+  background-color: ${({ warning: warning3 }) => !warning3 ? "red" : "orange"};
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+  var ErrorBox_styled_default = StyledErrorBox;
+
+  // src/Components/ErrorBox/ErrorBox.tsx
+  function ErrorBox(props) {
+    const dispatch = useDispatch();
+    const reduxError = useSelector((state) => state.app.error);
+    return /* @__PURE__ */ import_react16.default.createElement(ErrorBox_styled_default, __spreadValues({}, props), reduxError, /* @__PURE__ */ import_react16.default.createElement("div", {
+      style: { position: "absolute", right: 0 }
+    }, /* @__PURE__ */ import_react16.default.createElement(Button_default, {
+      onClick: () => dispatch(clearError())
+    }, /* @__PURE__ */ import_react16.default.createElement(FontAwesomeIcon, {
+      icon: faXmark
+    }))));
+  }
+  var ErrorBox_default = ErrorBox;
+
   // src/App.tsx
   var userId = 308041205;
   function App() {
@@ -30318,7 +30355,7 @@
     const dispatch = useDispatch();
     const { anime_seen, anime_future, anime_liked, anime_watching } = useSelector((state) => state.lists);
     const error = useSelector((state) => state.app.error);
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       dispatch(fetchAnimeLists(userId));
     }, []);
     function addAnime(list) {
@@ -30326,44 +30363,41 @@
       const rating = Number(prompt());
       dispatch(addAnimeToList(list, title, rating, userId));
     }
-    return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, error && /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("div", {
-      style: { width: "100%", height: "60px", backgroundColor: "red" },
-      onClick: () => dispatch(clearError())
-    }, error)), /* @__PURE__ */ import_react16.default.createElement(List_default, {
+    return /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, error && /* @__PURE__ */ import_react17.default.createElement(ErrorBox_default, null), /* @__PURE__ */ import_react17.default.createElement(List_default, {
       title: "\u041F\u0435\u0440\u0435\u0433\u043B\u044F\u043D\u0443\u0442\u0456",
       items: anime_seen,
       selected,
       toggleSelect,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react16.default.createElement(List_default, {
+    }), /* @__PURE__ */ import_react17.default.createElement(List_default, {
       title: "\u0417\u0430\u043F\u043B\u0430\u043D\u043E\u0432\u0430\u043D\u0456",
       items: anime_future,
       selected: selected1,
       toggleSelect: toggleSelect1,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react16.default.createElement(List_default, {
+    }), /* @__PURE__ */ import_react17.default.createElement(List_default, {
       title: "\u0412\u043F\u043E\u0434\u043E\u0431\u0430\u0439\u043A\u0438",
       items: anime_liked,
       selected: selected2,
       toggleSelect: toggleSelect2,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react16.default.createElement(List_default, {
+    }), /* @__PURE__ */ import_react17.default.createElement(List_default, {
       title: "\u0414\u0438\u0432\u043B\u044E\u0441\u044F",
       items: anime_watching,
       selected: selected3,
       toggleSelect: toggleSelect3,
       isBorderCollapse: true,
       addAnime: () => addAnime("anime_seen")
-    }), /* @__PURE__ */ import_react16.default.createElement("button", {
+    }), /* @__PURE__ */ import_react17.default.createElement("button", {
       onClick: () => alert([...selected].join("\n"))
-    }, "Show selected items1"), /* @__PURE__ */ import_react16.default.createElement("button", {
+    }, "Show selected items1"), /* @__PURE__ */ import_react17.default.createElement("button", {
       onClick: () => alert([...selected1].join("\n"))
-    }, "Show selected items2"), /* @__PURE__ */ import_react16.default.createElement("button", {
+    }, "Show selected items2"), /* @__PURE__ */ import_react17.default.createElement("button", {
       onClick: () => alert([...selected2].join("\n"))
-    }, "Show selected items3"), /* @__PURE__ */ import_react16.default.createElement("button", {
+    }, "Show selected items3"), /* @__PURE__ */ import_react17.default.createElement("button", {
       onClick: () => alert([...selected3].join("\n"))
     }, "Show selected items4"));
   }
@@ -31798,14 +31832,14 @@
 
   // src/Store/AppStore/appReducer.ts
   var initialState2 = {
-    error: null
+    error: ""
   };
   function appReducer(state = initialState2, action) {
     switch (action.type) {
       case "CAUSE_ERROR" /* CAUSE_ERROR */:
         return __spreadProps(__spreadValues({}, state), { error: action.payload.error });
       case "CLEAR_ERROR" /* CLEAR_ERROR */:
-        return __spreadProps(__spreadValues({}, state), { error: null });
+        return __spreadProps(__spreadValues({}, state), { error: "" });
       default:
         return __spreadValues({}, state);
     }
@@ -31880,9 +31914,9 @@ body, html, #root {
 
   // src/index.tsx
   var root = import_client.default.createRoot(document.getElementById("root"));
-  root.render(/* @__PURE__ */ import_react17.default.createElement(import_react17.default.StrictMode, null, /* @__PURE__ */ import_react17.default.createElement(Provider_default, {
+  root.render(/* @__PURE__ */ import_react18.default.createElement(import_react18.default.StrictMode, null, /* @__PURE__ */ import_react18.default.createElement(Provider_default, {
     store: Store_default
-  }, /* @__PURE__ */ import_react17.default.createElement(index_styled_default, null), /* @__PURE__ */ import_react17.default.createElement(App_default, null))));
+  }, /* @__PURE__ */ import_react18.default.createElement(index_styled_default, null), /* @__PURE__ */ import_react18.default.createElement(App_default, null))));
 })();
 /*
 object-assign
