@@ -107,6 +107,8 @@ export function removeAnimeFromList(
 
         console.error(`Request Error - ${errorExplain}`);
       } else {
+        dispatch<any>(causeError((err as Error).message));
+
         console.error(err);
       }
     }
