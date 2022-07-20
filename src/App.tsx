@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { List } from "./Components";
+import ErrorBox from "./Common/ErrorBox";
 import { useSelectableList } from "./hooks";
-import { addAnimeToList, fetchAnimeLists } from "./Store/ListStore/actions";
+import { useDispatch, useSelector } from "react-redux";
 import { State as ListState } from "./Store/ListStore/types";
-import { clearError } from "./Store/AppStore/actions";
 import { State } from "./Store";
 import { ListName } from "./Store/ListStore/types";
-import ErrorBox from "./Components/ErrorBox";
+import { List } from "./Components";
+import { addAnimeToList, fetchAnimeLists } from "./Store/ListStore/actions";
+import AddModal from "./Components/AddModal";
+import { showModal } from "./Store/ModalStore/actions";
 
 const userId = 308041205;
+(window as any).uid = userId;
 
 function App() {
   // TODO
@@ -29,20 +31,21 @@ function App() {
 
   // Take error form redux state
   const error = useSelector<State, string>((state) => state.app.error);
+  const isShowModal = useSelector<State, boolean>(
+    (state) => state.modal.isShow
+  );
 
   useEffect(() => {
     dispatch(fetchAnimeLists(userId));
   }, []);
 
   function addAnime(list: ListName) {
-    const title = prompt()!;
-    const rating = Number(prompt());
-
-    dispatch(addAnimeToList(list, title, rating, userId));
+    dispatch(showModal(list));
   }
 
   return (
     <>
+      {isShowModal && <AddModal title="Aboba" />}
       {error && <ErrorBox />}
       <List
         title="Переглянуті"

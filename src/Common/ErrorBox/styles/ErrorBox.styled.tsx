@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface StyleProps {
@@ -17,6 +16,7 @@ const StyledErrorBox = styled.div<StyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
 export default StyledErrorBox;
