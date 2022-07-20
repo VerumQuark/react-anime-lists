@@ -40,6 +40,6 @@ export default function listReducer(state = initialState, action: Action) {
       return { ...state, ...action.payload };
 
     default:
-      return state;
+      return {...state};
   }
 }
