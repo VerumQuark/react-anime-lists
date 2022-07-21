@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { theme } from "../../../styles/index.styled";
 
 interface StyleProps {
   width?: string | number;
@@ -12,7 +13,7 @@ const StyledList = styled.ul<StyleProps>`
   list-style: square;
   display: flex;
   flex-direction: column;
-  background-color: orange;
+  background-color: ${theme.colors.primary};
   transition: max-height 0.5s ease-in-out;
   overflow: hidden;
   max-height: ${({ isOpen, height }) =>

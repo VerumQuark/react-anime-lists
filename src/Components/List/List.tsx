@@ -49,7 +49,7 @@ function List({
 
   return (
     <>
-      <Header onClick={toggling} onAddAnime={addAnime}>
+      <Header onClick={toggling} isOpen={isOpen} onAddAnime={addAnime}>
         {title ? title : "List title"}
       </Header>
       <StyledList

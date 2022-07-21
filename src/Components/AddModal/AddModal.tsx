@@ -33,7 +33,6 @@ export default function AddModal({ title, rating }: AddModalProps) {
       <Input
         value={r}
         onChange={(e) => {
-          e.preventDefault();
           Number.isInteger(Number((e.nativeEvent as InputEvent).data)) &&
             setR(Number(e.target.value));
         }}
