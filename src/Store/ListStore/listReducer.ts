@@ -27,15 +27,11 @@ export default function listReducer(
       };
 
     case Types.SET_ITEM_RATING:
-      const anime: Anime = state[action.list].find(
-        (a) => a.title === action.payload.title
-      )!;
-      anime.rating = action.payload.rating!;
       return {
         ...state,
         [action.list]: [
           ...state[action.list].filter((a) => a.title !== action.payload.title),
-          anime,
+          action.payload,
         ],
       };
 
