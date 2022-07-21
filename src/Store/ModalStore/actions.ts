@@ -7,8 +7,16 @@ export function showModal(listName: string) {
       type: Types.SHOW_MODAL,
       payload: {
         list: listName,
-        isShow: true,
       },
+    });
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        dispatch({
+          type: Types.STOP_ANIMATION,
+          payload: {},
+        });
+        resolve();
+      }, 500);
     });
   };
 }
@@ -16,10 +24,18 @@ export function showModal(listName: string) {
 export function closeModal() {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: Types.CLOSE_MODAL,
-      payload: {
-        isShow: false,
-      },
+      type: Types.START_ANIMATION,
+      payload: {},
+    });
+
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        dispatch({
+          type: Types.CLOSE_MODAL,
+          payload: {},
+        });
+        resolve();
+      }, 500);
     });
   };
 }

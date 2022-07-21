@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../../styles/index.styled";
-import animation from "./animation";
+import { appear, disapear } from "./animation";
 
 interface StyleProps {
   height?: number;
   dimmed?: boolean;
+  isAnimationPending: boolean;
+  isClosing: boolean;
 }
 
 const StyledModal = styled.div<StyleProps>`
@@ -18,7 +20,12 @@ const StyledModal = styled.div<StyleProps>`
   background-color: ${theme.colors.primary};
   z-index: 999;
   border-radius: 5px;
-  animation: ${animation} 0.5s;
+  /* Чтобы знать когда какую анимацию включить */
+  animation: ${({ isAnimationPending, isClosing }) => {
+      if (!isClosing && isAnimationPending) return appear;
+      else if (isClosing && isAnimationPending) return disapear;
+    }}
+    0.5s;
 
   & h1 {
     font-size: 24px;

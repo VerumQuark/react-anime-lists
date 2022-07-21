@@ -3,6 +3,8 @@ import { State, Types, Action } from "./types";
 const initialState: State = {
   list: "",
   isShow: false,
+  isAnimationPending: false,
+  isClosing: false,
 };
 
 export default function modalReducer(
@@ -14,11 +16,25 @@ export default function modalReducer(
       return {
         ...state,
         list: action.payload.list!,
-        isShow: action.payload.isShow,
+        isShow: true,
+        isAnimationPending: true,
       };
 
     case Types.CLOSE_MODAL:
-      return { ...state, list: "", isShow: action.payload.isShow };
+      return initialState;
+
+    case Types.STOP_ANIMATION:
+      return {
+        ...state,
+        isAnimationPending: false,
+      };
+
+    case Types.START_ANIMATION:
+      return {
+        ...state,
+        isAnimationPending: true,
+        isClosing: true,
+      };
 
     default:
       return { ...state };
