@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import StyledButton from "./styles/Button.styled";
+import StyledButton, { StyleProps } from "./styles/Button.styled";
 
-interface ButtonProps {
+interface ButtonProps extends StyleProps {
   children: string | JSX.Element;
   onClick: () => void;
 }
 
-function Button({ children, onClick }: ButtonProps) {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+function Button({ children, onClick, ...props }: ButtonProps) {
+  return (
+    <StyledButton onClick={onClick} {...props}>
+      {children}
+    </StyledButton>
+  );
 }
 
 export default Button;

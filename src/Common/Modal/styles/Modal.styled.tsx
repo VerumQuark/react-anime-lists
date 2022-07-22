@@ -5,11 +5,14 @@ import { appear, disapear } from "./animation";
 interface StyleProps {
   height?: number;
   dimmed?: boolean;
+}
+
+interface AnimateProps {
   isAnimationPending: boolean;
   isClosing: boolean;
 }
 
-const StyledModal = styled.div<StyleProps>`
+const StyledModal = styled.div<StyleProps & AnimateProps>`
   width: 60vw;
   display: flex;
   flex-direction: column;

@@ -17,7 +17,7 @@ function ErrorBox(props: ErrorBoxProps) {
   return createPortal(
     <StyledErrorBox {...props}>
       {reduxError}
-      <div style={{ position: "absolute", right: 0 }}>
+      <div style={{ position: "absolute", right: 0, height: 40, width: 40 }}>
         <Button onClick={() => dispatch(clearError())}>
           <FontAwesomeIcon icon={faXmark} />
         </Button>

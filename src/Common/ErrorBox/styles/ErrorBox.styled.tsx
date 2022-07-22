@@ -14,8 +14,9 @@ const StyledErrorBox = styled.div<StyleProps>`
   background-color: ${({ warning }) => (!warning ? "red" : "orange")};
   color: white;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
   z-index: 999;
 `;
 
