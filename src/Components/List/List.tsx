@@ -65,7 +65,6 @@ function List({
               {"List is empty"}
             </ListItem>
           ) : (
-            // <p>List is empty</p>
             items.map(({ title, id }) => {
               const isSelected = selected.has(id);
               return (
