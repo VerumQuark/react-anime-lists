@@ -10,7 +10,7 @@ import {
 
 interface ListProps extends StyleProps {
   title?: string;
-  items: Array<{ title: string; id: never | number | string }>;
+  items: Array<{ title: string; rating: number; id: never | number | string }>;
   selected: Set<string | number>;
   toggleSelect: (arg: string | number) => void;
   addAnime: () => void;
@@ -19,7 +19,7 @@ interface ListProps extends StyleProps {
 const CalcLineCnt = (
   fontSize: number,
   width: number,
-  arr: Array<{ title: string; id: never | number | string }>
+  arr: Array<{ title: string; rating: number; id: never | number | string }>
 ): number => {
   const charWidth = fontSize / ROBOTO_MONO_HEIGHT_WIDHT_RATIO;
   let lineCnt = 0;
@@ -43,10 +43,8 @@ function List({
   const toggling = () => {
     setOpen(!isOpen);
   };
-
   const width = window.innerWidth;
   const LineCnt = CalcLineCnt(16, width, items);
-
   return (
     <>
       <Header onClick={toggling} isOpen={isOpen} onAddAnime={addAnime}>

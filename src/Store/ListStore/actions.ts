@@ -43,10 +43,10 @@ export function addAnimeToList(
 ) {
   return async (dispatch: Dispatch<Action>) => {
     try {
-      const response = await axios.post<Anime>(
-        `http://localhost:5000/animeLists/${uid}/${listName}`,
+      const response = await axios.post<any>(
+        `http://localhost:5000/animeLists/${uid}`,
         {
-          listName,
+          list: listName,
           title: animeTitle,
           rating,
         }

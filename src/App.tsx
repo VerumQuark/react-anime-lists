@@ -61,7 +61,7 @@ function App() {
         selected={selected1}
         toggleSelect={toggleSelect1}
         isBorderCollapse
-        addAnime={() => addAnime("anime_seen")}
+        addAnime={() => addAnime("anime_future")}
       />
       <List
         title="Вподобайки"
@@ -69,7 +69,7 @@ function App() {
         selected={selected2}
         toggleSelect={toggleSelect2}
         isBorderCollapse
-        addAnime={() => addAnime("anime_seen")}
+        addAnime={() => addAnime("anime_liked")}
       />
       <List
         title="Дивлюся"
@@ -77,7 +77,7 @@ function App() {
         selected={selected3}
         toggleSelect={toggleSelect3}
         isBorderCollapse
-        addAnime={() => addAnime("anime_seen")}
+        addAnime={() => addAnime("anime_watching")}
       />
 
       <button onClick={() => alert([...selected].join("\n"))}>
