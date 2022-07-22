@@ -7,10 +7,9 @@ import Button from "../../Components/Button";
 import StyledErrorBox, { StyleProps } from "./styles/ErrorBox.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { theme } from "../../styles/index.styled";
 
-interface ErrorBoxProps extends StyleProps {}
-
-function ErrorBox(props: ErrorBoxProps) {
+function ErrorBox(props: StyleProps) {
   const dispatch = useDispatch<any>();
   const reduxError = useSelector<State, string>((state) => state.app.error);
 
@@ -18,7 +17,11 @@ function ErrorBox(props: ErrorBoxProps) {
     <StyledErrorBox {...props}>
       {reduxError}
       <div style={{ position: "absolute", right: 0, height: 40, width: 40 }}>
-        <Button onClick={() => dispatch(clearError())}>
+        <Button
+          onClick={() => dispatch(clearError())}
+          background={theme.colors.primary}
+          borderless
+        >
           <FontAwesomeIcon icon={faXmark} />
         </Button>
       </div>

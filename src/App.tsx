@@ -6,7 +6,7 @@ import { State as ListState } from "./Store/ListStore/types";
 import { State } from "./Store";
 import { ListName } from "./Store/ListStore/types";
 import { List } from "./Components";
-import { addAnimeToList, fetchAnimeLists } from "./Store/ListStore/actions";
+import { fetchAnimeLists } from "./Store/ListStore/actions";
 import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 

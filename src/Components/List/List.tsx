@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ListItem from "./ListItem";
 import StyledList, { StyleProps } from "./styles/List.styled";
 import Header from "../Header";
-import { v4 as uuidv4 } from "uuid";
 import {
   ANIME_TITLE_HEIGHT,
   ROBOTO_MONO_HEIGHT_WIDHT_RATIO,
@@ -60,7 +59,7 @@ function List({
         {
           // if list is empty put default item
           items.length === 0 ? (
-            <ListItem id={uuidv4()} toggleSelect={() => {}} isSelected={false}>
+            <ListItem id={0} toggleSelect={() => {}} key={0} isSelected={false}>
               {"List is empty"}
             </ListItem>
           ) : (
@@ -71,6 +70,7 @@ function List({
                   id={id}
                   toggleSelect={toggleSelect}
                   isSelected={isSelected}
+                  key={id}
                 >
                   {title}
                 </ListItem>
