@@ -52,6 +52,7 @@ export function addAnimeToList(
         }
       );
 
+      console.log(response.statusText);
       const anime = response.data;
 
       dispatch({
@@ -64,8 +65,8 @@ export function addAnimeToList(
 
       if (err instanceof AxiosError) {
         errorExplain = err.response?.data
-          ? err.response.data
-          : "Network Error or Server Shut down";
+          ? err.response.data.message
+          : err.response?.statusText;
 
         dispatch<any>(causeError(errorExplain));
 
@@ -79,20 +80,20 @@ export function addAnimeToList(
 
 export function removeAnimeFromList(
   listName: ListName,
-  animeTitle: string,
+  id: string,
   uid: number
 ) {
   return async (dispatch: Dispatch<Action>) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/animeLists/${uid}/${listName}/${animeTitle}`
+      await axios.delete(
+        `http://localhost:5000/animeLists/${uid}/${listName}/${id}`
       );
-
-      const anime = response.data;
 
       dispatch({
         type: Types.REMOVE_ITEM_FROM_LIST,
-        payload: anime,
+        payload: {
+          id,
+        },
         list: listName,
       });
     } catch (err) {
@@ -117,6 +118,7 @@ export function removeAnimeFromList(
 
 export function setAnimeRating(
   listName: ListName,
+  id: string,
   animeTitle: string,
   rating: number,
   uid: number
@@ -124,7 +126,7 @@ export function setAnimeRating(
   return async (dispatch: Dispatch<Action>) => {
     try {
       await axios.delete(
-        `http://localhost:5000/animeLists/${uid}/${listName}/${animeTitle}`
+        `http://localhost:5000/animeLists/${uid}/${listName}/${id}`
       );
 
       const response = await axios.post<Anime>(

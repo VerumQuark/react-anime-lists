@@ -9,16 +9,17 @@ import {
 
 interface ListProps extends StyleProps {
   title?: string;
-  items: Array<{ title: string; rating: number; id: never | number | string }>;
+  items: Array<{ title: string; rating: number; id: string }>;
   selected: Set<string | number>;
   toggleSelect: (arg: string | number) => void;
   addAnime: () => void;
+  removeAnime: (id: string) => void;
 }
 
 const CalcLineCnt = (
   fontSize: number,
   width: number,
-  arr: Array<{ title: string; rating: number; id: never | number | string }>
+  arr: Array<{ title: string; rating: number; id: string }>
 ): number => {
   const charWidth = fontSize / ROBOTO_MONO_HEIGHT_WIDHT_RATIO;
   let lineCnt = 0;
@@ -35,6 +36,7 @@ function List({
   selected,
   toggleSelect,
   addAnime,
+  removeAnime,
   ...props
 }: ListProps) {
   const [isOpen, setOpen] = useState(false);
@@ -59,7 +61,12 @@ function List({
         {
           // if list is empty put default item
           items.length === 0 ? (
-            <ListItem id={0} toggleSelect={() => {}} key={0} isSelected={false}>
+            <ListItem
+              id={"0"}
+              toggleSelect={() => {}}
+              key={0}
+              isSelected={false}
+            >
               {"List is empty"}
             </ListItem>
           ) : (
@@ -71,6 +78,7 @@ function List({
                   toggleSelect={toggleSelect}
                   isSelected={isSelected}
                   key={id}
+                  removeAnime={removeAnime}
                 >
                   {title}
                 </ListItem>
