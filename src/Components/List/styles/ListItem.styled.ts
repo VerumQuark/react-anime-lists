@@ -4,6 +4,7 @@ import { ANIME_TITLE_HEIGHT } from "../Constants";
 
 interface StyleProps {
   isSelected: boolean;
+  xMove?: number;
 }
 
 const StyledLi = styled.li<StyleProps>`
@@ -18,8 +19,15 @@ const StyledLi = styled.li<StyleProps>`
   display: flex !important;
   flex-direction: row;
   justify-content: space-between;
+  background-color: ${theme.colors.primary};
 
-  position: relative;
+  ${({ xMove }) =>
+    xMove &&
+    css`
+      transform: translateX(${xMove}px);
+    `}
+
+  /* position: relative; */
   border: 1px solid rgba(0, 0, 0, 0.5);
   ${({ isSelected }) =>
     isSelected

@@ -1,12 +1,14 @@
+import React from "react";
 import { Dispatch } from "react";
 import { Action, Types } from "./types";
 
-export function showModal(listName: string) {
+export function showModal(listName: string, modal: JSX.Element) {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: Types.SHOW_MODAL,
       payload: {
         list: listName,
+        modal,
       },
     });
     return new Promise<void>((resolve) => {
@@ -32,7 +34,9 @@ export function closeModal() {
       setTimeout(() => {
         dispatch({
           type: Types.CLOSE_MODAL,
-          payload: {},
+          payload: {
+            modal: <></>,
+          },
         });
         resolve();
       }, 500);

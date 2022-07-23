@@ -123,42 +123,8 @@ export function setAnimeRating(
   rating: number,
   uid: number
 ) {
-  return async (dispatch: Dispatch<Action>) => {
-    try {
-      await axios.delete(
-        `http://localhost:5000/animeLists/${uid}/${listName}/${id}`
-      );
-
-      const response = await axios.post<Anime>(
-        `http://localhost:5000/animeLists/${uid}/${listName}`,
-        {
-          listName,
-          title: animeTitle,
-          rating,
-        }
-      );
-
-      const anime = response.data;
-
-      dispatch({
-        type: Types.SET_ITEM_RATING,
-        payload: anime,
-        list: listName,
-      });
-    } catch (err) {
-      let errorExplain: string;
-
-      if (err instanceof AxiosError) {
-        errorExplain = err.response?.data
-          ? err.response.data
-          : "Network Error or Server Shut down";
-
-        dispatch<any>(causeError(errorExplain));
-
-        console.error(`Request Error - ${errorExplain}`);
-      } else {
-        console.error(err);
-      }
-    }
+  return async (dispatch: Dispatch<any>) => {
+    await removeAnimeFromList(listName, id, uid)(dispatch);
+    await addAnimeToList(listName, animeTitle, rating, uid)(dispatch);
   };
 }

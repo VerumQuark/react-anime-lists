@@ -6,6 +6,7 @@ import {
   ANIME_TITLE_HEIGHT,
   ROBOTO_MONO_HEIGHT_WIDHT_RATIO,
 } from "./Constants";
+import { theme } from "../../styles/index.styled";
 
 interface ListProps extends StyleProps {
   title?: string;
@@ -14,6 +15,7 @@ interface ListProps extends StyleProps {
   toggleSelect: (arg: string | number) => void;
   addAnime: () => void;
   removeAnime: (id: string) => void;
+  editAnime: (id: string, title: string, rating: number) => void;
 }
 
 const CalcLineCnt = (
@@ -37,6 +39,7 @@ function List({
   toggleSelect,
   addAnime,
   removeAnime,
+  editAnime,
   ...props
 }: ListProps) {
   const [isOpen, setOpen] = useState(false);
@@ -66,11 +69,12 @@ function List({
               toggleSelect={() => {}}
               key={0}
               isSelected={false}
+              rating={0}
             >
               {"List is empty"}
             </ListItem>
           ) : (
-            items.map(({ title, id }) => {
+            items.map(({ title, id, rating }) => {
               const isSelected = selected.has(id);
               return (
                 <ListItem
@@ -79,6 +83,8 @@ function List({
                   isSelected={isSelected}
                   key={id}
                   removeAnime={removeAnime}
+                  editAnime={editAnime}
+                  rating={rating}
                 >
                   {title}
                 </ListItem>

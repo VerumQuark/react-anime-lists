@@ -1,5 +1,24 @@
 import { createGlobalStyle } from "styled-components";
 
+const theme = {
+  colors: {
+    primary: "#222532",
+    secondary: "#393E53",
+    accent: "#181B25",
+    identifiers: {
+      seen: "#6CC75D",
+      watching: "#CAD873",
+      future: "#EB942F",
+      liked: "#D445A4",
+    },
+    text: "#FFFFFF",
+    topBar: "linear-gradient(180deg, #222532 0%, #1B1F2E 100%)",
+    actionSelect: "#0E0F12",
+    edit: "#540E8B",
+    remove: "#942424",
+  },
+};
+
 const GlobalStyles = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -51,31 +70,18 @@ table {
 body, html, #root, #modal, #error {
   /* max-height: 100vh; */
   max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  background-color: ${theme.colors.primary};
 }
 
 #modal, #error {
   z-index: 999;
 }
 `;
-
-const theme = {
-  colors: {
-    primary: "#222532",
-    secondary: "#393E53",
-    accent: "#181B25",
-    identifiers: {
-      seen: "#6CC75D",
-      watching: "#CAD873",
-      future: "#EB942F",
-      liked: "#D445A4",
-    },
-    text: "#FFFFFF",
-    topBar: "linear-gradient(180deg, #222532 0%, #1B1F2E 100%)",
-    actionSelect: "#0E0F12",
-    edit: "#540E8B",
-    remove: "#942424",
-  },
-};
 
 export default GlobalStyles;
 

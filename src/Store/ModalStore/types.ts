@@ -10,10 +10,12 @@ export type State = {
   isShow: boolean;
   isAnimationPending: boolean;
   isClosing: boolean;
+  modal: JSX.Element;
 };
 
 export type Payload = {
   list?: string;
+  modal?: JSX.Element;
 };
 
 export type Action = {
