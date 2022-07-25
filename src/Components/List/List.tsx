@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListItem from "./ListItem";
 import StyledList, { StyleProps } from "./styles/List.styled";
 import Header from "../Header";
@@ -50,6 +50,11 @@ function List({
   };
   const width = window.innerWidth - ANIME_TITLE_HEIGHT - LIST_ITEM_PADDING * 2;
   const LineCnt = CalcLineCnt(16, width, items);
+
+  useEffect(() => {
+    selected.forEach((item) => toggleSelect(item));
+  }, [items]);
+
   return (
     <>
       <Header onClick={toggling} isOpen={isOpen} onAddAnime={addAnime}>
