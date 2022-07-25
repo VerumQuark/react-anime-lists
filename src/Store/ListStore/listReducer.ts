@@ -22,7 +22,7 @@ export default function listReducer(
       return {
         ...state,
         [action.list]: state[action.list].filter(
-          (anime) => anime.title !== action.payload.title
+          (anime) => anime.id !== action.payload.id
         ),
       };
 
@@ -30,7 +30,7 @@ export default function listReducer(
       return {
         ...state,
         [action.list]: [
-          ...state[action.list].filter((a) => a.title !== action.payload.title),
+          ...state[action.list].filter((a) => a.id !== action.payload.id),
           action.payload,
         ],
       };

@@ -3,7 +3,7 @@ import StyledButton, { StyleProps } from "./styles/Button.styled";
 
 interface ButtonProps extends StyleProps {
   children: string | JSX.Element;
-  onClick: () => void;
+  onClick: (any: any) => void;
 }
 
 function Button({ children, onClick, ...props }: ButtonProps) {

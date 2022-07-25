@@ -6,7 +6,10 @@ import { State as ListState } from "./Store/ListStore/types";
 import { State } from "./Store";
 import { ListName } from "./Store/ListStore/types";
 import { List } from "./Components";
-import { fetchAnimeLists } from "./Store/ListStore/actions";
+import {
+  fetchAnimeLists,
+  removeAnimeFromList,
+} from "./Store/ListStore/actions";
 import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 
@@ -43,6 +46,11 @@ function App() {
     dispatch(showModal(list));
   }
 
+  function removeAnime(list: ListName) {
+    return (id: string) =>
+      dispatch(removeAnimeFromList(list, id, (window as any).uid));
+  }
+
   return (
     <>
       {isShowModal && <AddModal title="Aboba" />}
@@ -54,6 +62,7 @@ function App() {
         toggleSelect={toggleSelect}
         isBorderCollapse
         addAnime={() => addAnime("anime_seen")}
+        removeAnime={removeAnime("anime_seen")}
       />
       <List
         title="Заплановані"
@@ -62,6 +71,7 @@ function App() {
         toggleSelect={toggleSelect1}
         isBorderCollapse
         addAnime={() => addAnime("anime_future")}
+        removeAnime={removeAnime("anime_future")}
       />
       <List
         title="Вподобайки"
@@ -70,6 +80,7 @@ function App() {
         toggleSelect={toggleSelect2}
         isBorderCollapse
         addAnime={() => addAnime("anime_liked")}
+        removeAnime={removeAnime("anime_liked")}
       />
       <List
         title="Дивлюся"
@@ -78,6 +89,7 @@ function App() {
         toggleSelect={toggleSelect3}
         isBorderCollapse
         addAnime={() => addAnime("anime_watching")}
+        removeAnime={removeAnime("anime_watching")}
       />
 
       <button onClick={() => alert([...selected].join("\n"))}>

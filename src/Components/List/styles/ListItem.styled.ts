@@ -15,6 +15,9 @@ const StyledLi = styled.li<StyleProps>`
   padding: 0 15px;
   color: ${theme.colors.text};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
 
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.5);
