@@ -4,6 +4,7 @@ import StyledList, { StyleProps } from "./styles/List.styled";
 import Header from "../Header";
 import {
   ANIME_TITLE_HEIGHT,
+  LIST_ITEM_PADDING,
   ROBOTO_MONO_HEIGHT_WIDHT_RATIO,
 } from "./Constants";
 import { theme } from "../../styles/index.styled";
@@ -47,7 +48,7 @@ function List({
   const toggling = () => {
     setOpen(!isOpen);
   };
-  const width = window.innerWidth;
+  const width = window.innerWidth - ANIME_TITLE_HEIGHT - LIST_ITEM_PADDING * 2;
   const LineCnt = CalcLineCnt(16, width, items);
   return (
     <>

@@ -54,9 +54,15 @@ function ListItem({
       onTouchEnd={onTouchEnd}
       xMove={xMove}
     >
-      {children}
+      <p>{children}</p>
       {removeAnime && (
-        <div style={{ height: ANIME_TITLE_HEIGHT, width: ANIME_TITLE_HEIGHT }}>
+        <div
+          style={{
+            height: ANIME_TITLE_HEIGHT,
+            width: ANIME_TITLE_HEIGHT,
+            flex: "0 0 auto",
+          }}
+        >
           <Button
             onClick={(e) => {
               e.stopPropagation();
