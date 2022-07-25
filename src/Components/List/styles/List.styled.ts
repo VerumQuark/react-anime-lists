@@ -10,7 +10,7 @@ interface StyleProps {
 }
 
 const StyledList = styled.ul<StyleProps>`
-  list-style: square;
+  list-style: none;
   display: flex;
   flex-direction: column;
   background-color: ${theme.colors.primary};

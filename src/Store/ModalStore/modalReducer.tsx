@@ -1,7 +1,9 @@
+import React from "react";
 import { State, Types, Action } from "./types";
 
 const initialState: State = {
   list: "",
+  modal: <></>,
   isShow: false,
   isAnimationPending: false,
   isClosing: false,
@@ -16,6 +18,7 @@ export default function modalReducer(
       return {
         ...state,
         list: action.payload.list!,
+        modal: action.payload.modal!,
         isShow: true,
         isAnimationPending: true,
       };

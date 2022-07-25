@@ -12,6 +12,7 @@ import {
 } from "./Store/ListStore/actions";
 import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
+import EditModal from "./Components/EditModal";
 
 const userId = 308041205;
 (window as any).uid = userId;
@@ -37,13 +38,21 @@ function App() {
   const isShowModal = useSelector<State, boolean>(
     (state) => state.modal.isShow
   );
+  const modal = useSelector<State, JSX.Element>((state) => state.modal.modal);
 
   useEffect(() => {
     dispatch(fetchAnimeLists(userId));
   }, []);
 
   function addAnime(list: ListName) {
-    dispatch(showModal(list));
+    dispatch(showModal(list, <AddModal />));
+  }
+
+  function editAnime(list: ListName) {
+    return (id: string, title: string, rating: number) =>
+      dispatch(
+        showModal(list, <EditModal id={id} title={title} rating={rating} />)
+      );
   }
 
   function removeAnime(list: ListName) {
@@ -53,7 +62,7 @@ function App() {
 
   return (
     <>
-      {isShowModal && <AddModal title="Aboba" />}
+      {isShowModal && modal}
       {error && <ErrorBox />}
       <List
         title="Переглянуті"
@@ -63,6 +72,7 @@ function App() {
         isBorderCollapse
         addAnime={() => addAnime("anime_seen")}
         removeAnime={removeAnime("anime_seen")}
+        editAnime={editAnime("anime_seen")}
       />
       <List
         title="Заплановані"
@@ -72,6 +82,7 @@ function App() {
         isBorderCollapse
         addAnime={() => addAnime("anime_future")}
         removeAnime={removeAnime("anime_future")}
+        editAnime={editAnime("anime_future")}
       />
       <List
         title="Вподобайки"
@@ -81,6 +92,7 @@ function App() {
         isBorderCollapse
         addAnime={() => addAnime("anime_liked")}
         removeAnime={removeAnime("anime_liked")}
+        editAnime={editAnime("anime_liked")}
       />
       <List
         title="Дивлюся"
@@ -90,6 +102,7 @@ function App() {
         isBorderCollapse
         addAnime={() => addAnime("anime_watching")}
         removeAnime={removeAnime("anime_watching")}
+        editAnime={editAnime("anime_watching")}
       />
 
       <button onClick={() => alert([...selected].join("\n"))}>
