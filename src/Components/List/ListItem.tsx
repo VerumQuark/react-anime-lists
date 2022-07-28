@@ -2,14 +2,14 @@ import React from "react";
 import Button from "../Button";
 import StyledLi, { StyleProps } from "./styles/ListItem.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useSwipe } from "../../hooks";
 import { removeAnimeFromList } from "../../Store/ListStore/actions";
 import { ANIME_TITLE_HEIGHT } from "./Constants";
 
 interface ListItemProps extends StyleProps {
-  toggleSelect: (arg: string | number) => void;
+  toggleSelect: (arg: string) => void;
   id: string;
   rating: number;
   children: any;
@@ -55,20 +55,31 @@ function ListItem({
       xMove={xMove}
     >
       <p>{children}</p>
-      {removeAnime && (
+      {editAnime && removeAnime && (
         <div
           style={{
             height: ANIME_TITLE_HEIGHT,
-            width: ANIME_TITLE_HEIGHT,
+            width: ANIME_TITLE_HEIGHT * 2,
             flex: "0 0 auto",
           }}
         >
           <Button
             onClick={(e) => {
               e.stopPropagation();
+              editAnime(id, children, rating);
+            }}
+            borderless
+            width="50%"
+          >
+            <FontAwesomeIcon icon={faPencil} />
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
               removeAnime(id);
             }}
             borderless
+            width="50%"
           >
             <FontAwesomeIcon icon={faTrashCan} />
           </Button>

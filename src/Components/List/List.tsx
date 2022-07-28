@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import ListItem from "./ListItem";
 import StyledList, { StyleProps } from "./styles/List.styled";
 import Header from "../Header";
@@ -12,11 +12,13 @@ import { theme } from "../../styles/index.styled";
 interface ListProps extends StyleProps {
   title?: string;
   items: Array<{ title: string; rating: number; id: string }>;
-  selected: Set<string | number>;
-  toggleSelect: (arg: string | number) => void;
+  selected: Set<string>;
+  toggleSelect: (arg: string) => void;
   addAnime: () => void;
   removeAnime: (id: string) => void;
   editAnime: (id: string, title: string, rating: number) => void;
+  isOpen: boolean;
+  setOpenList: () => void;
 }
 
 const CalcLineCnt = (
@@ -41,14 +43,13 @@ function List({
   addAnime,
   removeAnime,
   editAnime,
+  isOpen,
+  setOpenList,
+
   ...props
 }: ListProps) {
-  const [isOpen, setOpen] = useState(false);
-
-  const toggling = () => {
-    setOpen(!isOpen);
-  };
-  const width = window.innerWidth - ANIME_TITLE_HEIGHT - LIST_ITEM_PADDING * 2;
+  const width =
+    window.innerWidth - ANIME_TITLE_HEIGHT * 2 - LIST_ITEM_PADDING * 2;
   const LineCnt = CalcLineCnt(16, width, items);
 
   useEffect(() => {
@@ -57,7 +58,13 @@ function List({
 
   return (
     <>
-      <Header onClick={toggling} isOpen={isOpen} onAddAnime={addAnime}>
+      <Header
+        onClick={() => {
+          setOpenList();
+        }}
+        isOpen={isOpen}
+        onAddAnime={addAnime}
+      >
         {title ? title : "List title"}
       </Header>
       <StyledList

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ErrorBox from "./Common/ErrorBox";
 import { useSelectableList } from "./hooks";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   function addAnime(list: ListName) {
-    dispatch(showModal(list, <AddModal />));
+    return () => dispatch(showModal(list, <AddModal />));
   }
 
   function editAnime(list: ListName) {
@@ -60,6 +60,13 @@ function App() {
       dispatch(removeAnimeFromList(list, id, (window as any).uid));
   }
 
+  const [currentOpenListName, setOpenListName] = useState("");
+  const setOpenList = (listName: string): void => {
+    currentOpenListName === listName
+      ? setOpenListName("")
+      : setOpenListName(listName);
+  };
+
   return (
     <>
       {isShowModal && modal}
@@ -70,9 +77,11 @@ function App() {
         selected={selected}
         toggleSelect={toggleSelect}
         isBorderCollapse
-        addAnime={() => addAnime("anime_seen")}
+        addAnime={addAnime("anime_seen")}
         removeAnime={removeAnime("anime_seen")}
         editAnime={editAnime("anime_seen")}
+        isOpen={"anime_seen" === currentOpenListName ? true : false}
+        setOpenList={() => setOpenList("anime_seen")}
       />
       <List
         title="Заплановані"
@@ -80,9 +89,11 @@ function App() {
         selected={selected1}
         toggleSelect={toggleSelect1}
         isBorderCollapse
-        addAnime={() => addAnime("anime_future")}
+        addAnime={addAnime("anime_future")}
         removeAnime={removeAnime("anime_future")}
         editAnime={editAnime("anime_future")}
+        isOpen={"anime_future" === currentOpenListName ? true : false}
+        setOpenList={() => setOpenList("anime_future")}
       />
       <List
         title="Вподобайки"
@@ -90,9 +101,11 @@ function App() {
         selected={selected2}
         toggleSelect={toggleSelect2}
         isBorderCollapse
-        addAnime={() => addAnime("anime_liked")}
+        addAnime={addAnime("anime_liked")}
         removeAnime={removeAnime("anime_liked")}
         editAnime={editAnime("anime_liked")}
+        isOpen={"anime_liked" === currentOpenListName ? true : false}
+        setOpenList={() => setOpenList("anime_liked")}
       />
       <List
         title="Дивлюся"
@@ -100,9 +113,11 @@ function App() {
         selected={selected3}
         toggleSelect={toggleSelect3}
         isBorderCollapse
-        addAnime={() => addAnime("anime_watching")}
+        addAnime={addAnime("anime_watching")}
         removeAnime={removeAnime("anime_watching")}
         editAnime={editAnime("anime_watching")}
+        isOpen={"anime_watching" === currentOpenListName ? true : false}
+        setOpenList={() => setOpenList("anime_watching")}
       />
 
       <button onClick={() => alert([...selected].join("\n"))}>

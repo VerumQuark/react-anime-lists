@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 function useSelectableList(): [
-  Set<string | number>,
-  (arg: string | number) => void
+  Set<string>,
+  (arg: string) => void
 ] {
-  const [selected, setSelected] = useState(new Set<string | number>());
+  const [selected, setSelected] = useState(new Set<string>());
 
-  function toggleSelected(id: string | number): void {
-    setSelected((prev: Set<string | number>): Set<string | number> => {
-      const set: Set<string | number> = new Set(prev);
+  function toggleSelected(id: string): void {
+    setSelected((prev: Set<string>): Set<string> => {
+      const set: Set<string> = new Set(prev);
 
       set.has(id) ? set.delete(id) : set.add(id);
 
@@ -20,3 +20,4 @@ function useSelectableList(): [
 }
 
 export default useSelectableList;
+ 
