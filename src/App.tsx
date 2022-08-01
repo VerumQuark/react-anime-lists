@@ -119,7 +119,11 @@ function App() {
         isOpen={"anime_watching" === currentOpenListName ? true : false}
         setOpenList={() => setOpenList("anime_watching")}
       />
+    </>
+  );
+}
 
+/*
       <button onClick={() => alert([...selected].join("\n"))}>
         Show selected items1
       </button>
@@ -131,9 +135,6 @@ function App() {
       </button>
       <button onClick={() => alert([...selected3].join("\n"))}>
         Show selected items4
-      </button>
-    </>
-  );
-}
+      </button>*/
 
 export default App;

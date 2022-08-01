@@ -1,11 +1,13 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import ListItem from "./ListItem";
 import StyledList, { StyleProps } from "./styles/List.styled";
-import Header from "../Header";
+import Header from "./Header";
 import {
   ANIME_TITLE_HEIGHT,
   LIST_ITEM_PADDING,
   ROBOTO_MONO_HEIGHT_WIDHT_RATIO,
+  BUTTON_SIZE,
+  LIST_ITEM_HEIGHT,
 } from "./Constants";
 import { theme } from "../../styles/index.styled";
 
@@ -48,8 +50,7 @@ function List({
 
   ...props
 }: ListProps) {
-  const width =
-    window.innerWidth - ANIME_TITLE_HEIGHT * 2 - LIST_ITEM_PADDING * 2;
+  const width = window.innerWidth - BUTTON_SIZE * 2 - LIST_ITEM_PADDING * 2;
   const LineCnt = CalcLineCnt(16, width, items);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ function List({
   }, [items]);
 
   return (
-    <>
+    <div>
       <Header
         onClick={() => {
           setOpenList();
@@ -70,9 +71,10 @@ function List({
       <StyledList
         {...props}
         isOpen={isOpen}
-        height={
-          items.length === 0 ? ANIME_TITLE_HEIGHT : ANIME_TITLE_HEIGHT * LineCnt
+        maxHeight={
+          items.length === 0 ? LIST_ITEM_HEIGHT : LIST_ITEM_HEIGHT * LineCnt
         }
+        height={window.innerHeight - ANIME_TITLE_HEIGHT * 4}
       >
         {
           // if list is empty put default item
@@ -106,7 +108,7 @@ function List({
           )
         }
       </StyledList>
-    </>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../styles/index.styled";
+import { theme } from "../../../../styles/index.styled";
 
 const StyledTitle = styled.h1`
   font-size: 22px;

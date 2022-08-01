@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../styles/index.styled";
+import { theme } from "../../../../styles/index.styled";
 
 const StyledHeader = styled.div`
   background: ${theme.colors.secondary};

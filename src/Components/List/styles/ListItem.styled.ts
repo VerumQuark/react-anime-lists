@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../../styles/index.styled";
-import { ANIME_TITLE_HEIGHT, LIST_ITEM_PADDING } from "../Constants";
+import { LIST_ITEM_HEIGHT, LIST_ITEM_PADDING } from "../Constants";
 
 interface StyleProps {
   isSelected: boolean;
@@ -10,7 +10,7 @@ interface StyleProps {
 const StyledLi = styled.li<StyleProps>`
   cursor: pointer;
 
-  line-height: ${ANIME_TITLE_HEIGHT}px;
+  line-height: ${LIST_ITEM_HEIGHT}px;
   text-align: left;
   font-size: 16px;
   padding: 0 ${LIST_ITEM_PADDING}px;

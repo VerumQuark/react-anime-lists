@@ -6,7 +6,7 @@ import { faTrashCan, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useSwipe } from "../../hooks";
 import { removeAnimeFromList } from "../../Store/ListStore/actions";
-import { ANIME_TITLE_HEIGHT } from "./Constants";
+import { BUTTON_SIZE } from "./Constants";
 
 interface ListItemProps extends StyleProps {
   toggleSelect: (arg: string) => void;
@@ -58,8 +58,8 @@ function ListItem({
       {editAnime && removeAnime && (
         <div
           style={{
-            height: ANIME_TITLE_HEIGHT,
-            width: ANIME_TITLE_HEIGHT * 2,
+            height: BUTTON_SIZE,
+            width: BUTTON_SIZE * 2,
             flex: "0 0 auto",
           }}
         >

@@ -3,6 +3,7 @@ import { theme } from "../../../styles/index.styled";
 
 interface StyleProps {
   width?: string | number;
+  maxHeight?: string | number;
   height?: string | number;
   isBorderCollapse?: boolean;
   isSelected?: boolean;
@@ -15,7 +16,8 @@ const StyledList = styled.ul<StyleProps>`
   flex-direction: column;
   background-color: ${theme.colors.primary};
   transition: max-height 0.5s ease-in-out;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   max-height: ${({ isOpen, height }) =>
     isOpen ? `${`${height}px` || "100%"}` : `0px;`};
   ${({ isBorderCollapse }) =>
