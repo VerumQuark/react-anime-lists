@@ -15,7 +15,8 @@ interface ListProps extends StyleProps {
   title?: string;
   items: Array<{ title: string; rating: number; id: string }>;
   selected: Set<string>;
-  toggleSelect: (arg: string) => void;
+  listName: string;
+  toggleSelect: (id: string, listName: string) => void;
   addAnime: () => void;
   removeAnime: (id: string) => void;
   editAnime: (id: string, title: string, rating: number) => void;
@@ -38,6 +39,7 @@ const CalcLineCnt = (
 };
 
 function List({
+  listName,
   title,
   items,
   selected,
@@ -54,7 +56,7 @@ function List({
   const LineCnt = CalcLineCnt(16, width, items);
 
   useEffect(() => {
-    selected.forEach((item) => toggleSelect(item));
+    selected.forEach((item) => toggleSelect(item, listName));
   }, [items]);
 
   return (
@@ -80,6 +82,7 @@ function List({
           // if list is empty put default item
           items.length === 0 ? (
             <ListItem
+              listName={listName}
               id={"0"}
               toggleSelect={() => {}}
               key={0}
@@ -93,6 +96,7 @@ function List({
               const isSelected = selected.has(id);
               return (
                 <ListItem
+                  listName={listName}
                   id={id}
                   toggleSelect={toggleSelect}
                   isSelected={isSelected}

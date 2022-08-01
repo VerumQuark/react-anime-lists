@@ -21,9 +21,6 @@ function App() {
   // TODO
   // clean selected items on fetch
   const [selected, toggleSelect] = useSelectableList();
-  const [selected1, toggleSelect1] = useSelectableList();
-  const [selected2, toggleSelect2] = useSelectableList();
-  const [selected3, toggleSelect3] = useSelectableList();
 
   const dispatch = useDispatch<any>();
 
@@ -62,9 +59,13 @@ function App() {
 
   const [currentOpenListName, setOpenListName] = useState("");
   const setOpenList = (listName: string): void => {
+    let openListName = "";
     currentOpenListName === listName
-      ? setOpenListName("")
-      : setOpenListName(listName);
+      ? (openListName = "")
+      : (openListName = listName);
+
+    setOpenListName(openListName);
+    toggleSelect("", openListName);
   };
 
   return (
@@ -77,6 +78,7 @@ function App() {
         selected={selected}
         toggleSelect={toggleSelect}
         isBorderCollapse
+        listName={"anime_seen"}
         addAnime={addAnime("anime_seen")}
         removeAnime={removeAnime("anime_seen")}
         editAnime={editAnime("anime_seen")}
@@ -86,9 +88,10 @@ function App() {
       <List
         title="Заплановані"
         items={anime_future}
-        selected={selected1}
-        toggleSelect={toggleSelect1}
+        selected={selected}
+        toggleSelect={toggleSelect}
         isBorderCollapse
+        listName={"anime_future"}
         addAnime={addAnime("anime_future")}
         removeAnime={removeAnime("anime_future")}
         editAnime={editAnime("anime_future")}
@@ -98,9 +101,10 @@ function App() {
       <List
         title="Вподобайки"
         items={anime_liked}
-        selected={selected2}
-        toggleSelect={toggleSelect2}
+        selected={selected}
+        toggleSelect={toggleSelect}
         isBorderCollapse
+        listName={"anime_liked"}
         addAnime={addAnime("anime_liked")}
         removeAnime={removeAnime("anime_liked")}
         editAnime={editAnime("anime_liked")}
@@ -110,9 +114,10 @@ function App() {
       <List
         title="Дивлюся"
         items={anime_watching}
-        selected={selected3}
-        toggleSelect={toggleSelect3}
+        selected={selected}
+        toggleSelect={toggleSelect}
         isBorderCollapse
+        listName={"anime_watching"}
         addAnime={addAnime("anime_watching")}
         removeAnime={removeAnime("anime_watching")}
         editAnime={editAnime("anime_watching")}

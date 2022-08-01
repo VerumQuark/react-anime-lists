@@ -9,7 +9,8 @@ import { removeAnimeFromList } from "../../Store/ListStore/actions";
 import { BUTTON_SIZE } from "./Constants";
 
 interface ListItemProps extends StyleProps {
-  toggleSelect: (arg: string) => void;
+  listName: string;
+  toggleSelect: (id: string, listName: string) => void;
   id: string;
   rating: number;
   children: any;
@@ -18,6 +19,7 @@ interface ListItemProps extends StyleProps {
 }
 
 function ListItem({
+  listName,
   toggleSelect,
   id,
   children,
@@ -41,7 +43,7 @@ function ListItem({
   }
 
   function onClick() {
-    toggleSelect(id);
+    toggleSelect(id, listName);
   }
 
   return (
