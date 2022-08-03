@@ -2,18 +2,18 @@ import React, { SyntheticEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Input from "../../Common/Input";
-import Modal from "../../Common/Modal";
 import { addAnimeToList, setAnimeRating } from "../../Store/ListStore/actions";
 import { State } from "../../Store";
 import { closeModal } from "../../Store/ModalStore/actions";
+import StyledEditModal from "./styles/EdiModal.styles";
 
-interface AddModalProps {
+interface EditModalProps {
   title?: string;
   rating?: number;
   id: string;
 }
 
-export default function AddModal({ title, rating, id }: AddModalProps) {
+export default function EditModal({ title, rating, id }: EditModalProps) {
   const [t, setT] = useState<string>(title || "");
   const [r, setR] = useState<number>(rating || 0);
 
@@ -22,20 +22,21 @@ export default function AddModal({ title, rating, id }: AddModalProps) {
   const list = useSelector<State, string>((state) => state.modal.list);
 
   return (
-    <Modal header="Введіть назву">
+    <StyledEditModal header="Введіть назву">
       <Input
         value={t}
         onChange={(e) => {
           setT(e.target.value);
         }}
-        width="60%"
+        width="100%"
       />
 
+      <p>Оцінка: </p>
       <Input
         value={r}
+        type={"number"}
         onChange={(e) => {
-          Number.isInteger(Number((e.nativeEvent as InputEvent).data)) &&
-            setR(Number(e.target.value));
+          setR(Number(e.target.value));
         }}
       />
 
@@ -47,6 +48,6 @@ export default function AddModal({ title, rating, id }: AddModalProps) {
           dispatch(closeModal());
         }}
       />
-    </Modal>
+    </StyledEditModal>
   );
 }

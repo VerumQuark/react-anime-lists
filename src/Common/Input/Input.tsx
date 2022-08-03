@@ -3,7 +3,7 @@ import StyledInput, { StyleProps } from "./styles/Input.styled";
 
 interface InputProps extends StyleProps {
   value: string | number;
-  type: "text" | "button";
+  type: "text" | "button" | "number";
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onClick?: MouseEventHandler<HTMLInputElement>;
   ref?: Ref<HTMLInputElement>;

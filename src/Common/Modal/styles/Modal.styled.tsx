@@ -13,7 +13,7 @@ interface AnimateProps {
 }
 
 const StyledModal = styled.div<StyleProps & AnimateProps>`
-  width: 60vw;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

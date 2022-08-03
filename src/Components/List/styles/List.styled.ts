@@ -18,6 +18,7 @@ const StyledList = styled.ul<StyleProps>`
   transition: max-height 0.5s ease-in-out;
   overflow-y: scroll;
   overflow-x: hidden;
+  height: ${props => `${props.height}px`};
   max-height: ${({ isOpen, height }) =>
     isOpen ? `${`${height}px` || "100%"}` : `0px;`};
   ${({ isBorderCollapse }) =>

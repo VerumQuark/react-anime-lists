@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../styles/index.styled";
 
 interface StyleProps {
-  type: "button" | "text";
+  type: "button" | "text" | "number";
   width?: number | string;
 }
 
