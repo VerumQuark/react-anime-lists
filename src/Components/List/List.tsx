@@ -10,13 +10,14 @@ import {
   LIST_ITEM_HEIGHT,
 } from "./Constants";
 import { theme } from "../../styles/index.styled";
+import { ListName } from "../../Store/ListStore/types";
 
 interface ListProps extends StyleProps {
   title?: string;
   items: Array<{ title: string; rating: number; id: string }>;
   selected: Set<string>;
-  listName: string;
-  toggleSelect: (id: string, listName: string) => void;
+  listName: ListName;
+  toggleSelect: (id: string, listName: ListName) => void;
   addAnime: () => void;
   removeAnime: (id: string) => void;
   editAnime: (id: string, title: string, rating: number) => void;

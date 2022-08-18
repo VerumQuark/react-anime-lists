@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { ListName } from "../Store/ListStore/types";
 
 function useSelectableList(): [
   Set<string>,
-  (id: string, listName: string) => void
+  (id: string, listName: ListName) => void,
+  ListName | undefined,
+  () => void
 ] {
   const [selected, setSelected] = useState(new Set<string>());
-  const [activeList, setActiveList] = useState("");
+  const [activeList, setActiveList] = useState<ListName>();
 
-  function toggleSelected(id: string, listName: string): void {
+  function toggleSelected(id: string, listName: ListName): void {
     if (listName !== activeList) {
       setSelected(new Set<string>());
       setActiveList(listName);
@@ -22,7 +25,11 @@ function useSelectableList(): [
     });
   }
 
-  return [selected, toggleSelected];
+  const clearSelected = () => {
+    setSelected(new Set<string>());
+  };
+
+  return [selected, toggleSelected, activeList, clearSelected];
 }
 
 export default useSelectableList;

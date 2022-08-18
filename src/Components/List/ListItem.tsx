@@ -7,10 +7,11 @@ import { useDispatch } from "react-redux";
 import { useSwipe } from "../../hooks";
 import { removeAnimeFromList } from "../../Store/ListStore/actions";
 import { BUTTON_SIZE } from "./Constants";
+import { ListName } from "../../Store/ListStore/types";
 
 interface ListItemProps extends StyleProps {
-  listName: string;
-  toggleSelect: (id: string, listName: string) => void;
+  listName: ListName;
+  toggleSelect: (id: string, listName: ListName) => void;
   id: string;
   rating: number;
   children: any;

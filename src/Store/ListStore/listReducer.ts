@@ -26,6 +26,14 @@ export default function listReducer(
         ),
       };
 
+    case Types.REMOVE_MANY_ITEMS_FROM_LIST:
+      return {
+        ...state,
+        [action.list]: state[action.list].filter(
+          (anime) => !action.payload.id?.includes(anime.id as string)
+        ),
+      };
+
     case Types.SET_ITEM_RATING:
       return {
         ...state,

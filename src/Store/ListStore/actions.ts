@@ -116,6 +116,45 @@ export function removeAnimeFromList(
   };
 }
 
+export function removeManyAnimeFromList(
+  listName: ListName,
+  id: string[],
+  uid: number
+) {
+  return async (dispatch: Dispatch<Action>) => {
+    try {
+      await axios.delete(
+        `http://localhost:5000/animeLists/${uid}/${listName}`,
+        { data: { itemsIdToDelete: id } }
+      );
+
+      dispatch({
+        type: Types.REMOVE_MANY_ITEMS_FROM_LIST,
+        payload: {
+          id,
+        },
+        list: listName,
+      });
+    } catch (err) {
+      let errorExplain: string;
+
+      if (err instanceof AxiosError) {
+        errorExplain = err.response?.data
+          ? err.response.data
+          : "Network Error or Server Shut down";
+
+        dispatch<any>(causeError(errorExplain));
+
+        console.error(`Request Error - ${errorExplain}`);
+      } else {
+        dispatch<any>(causeError((err as Error).message));
+
+        console.error(err);
+      }
+    }
+  };
+}
+
 export function setAnimeRating(
   listName: ListName,
   id: string,

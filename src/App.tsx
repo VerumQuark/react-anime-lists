@@ -13,14 +13,14 @@ import {
 import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 import EditModal from "./Components/EditModal";
+import ActionMenu from "./Components/ActionMenu/ActionMenu";
 
 const userId = 308041205;
 (window as any).uid = userId;
 
 function App() {
-  // TODO
-  // clean selected items on fetch
-  const [selected, toggleSelect] = useSelectableList();
+  const [selected, toggleSelect, activeList, clearSelected] =
+    useSelectableList();
 
   const dispatch = useDispatch<any>();
 
@@ -57,33 +57,39 @@ function App() {
       dispatch(removeAnimeFromList(list, id, (window as any).uid));
   }
 
-  const [currentOpenListName, setOpenListName] = useState("");
-  const setOpenList = (listName: string): void => {
-    let openListName = "";
+  const [currentOpenListName, setOpenListName] = useState<ListName>();
+  const setOpenList = (listName: ListName): void => {
+    let openListName: ListName | undefined = undefined;
     currentOpenListName === listName
-      ? (openListName = "")
+      ? (openListName = undefined)
       : (openListName = listName);
 
+    clearSelected();
     setOpenListName(openListName);
-    toggleSelect("", openListName);
   };
-
   return (
     <>
+      {selected.size > 0 && (
+        <ActionMenu
+          clearSelected={clearSelected}
+          selected={selected}
+          activeList={activeList}
+        />
+      )}
       {isShowModal && modal}
       {error && <ErrorBox />}
       <List
-        title="Переглянуті"
-        items={anime_seen}
+        title="Дивлюся"
+        items={anime_watching}
         selected={selected}
         toggleSelect={toggleSelect}
         isBorderCollapse
-        listName={"anime_seen"}
-        addAnime={addAnime("anime_seen")}
-        removeAnime={removeAnime("anime_seen")}
-        editAnime={editAnime("anime_seen")}
-        isOpen={"anime_seen" === currentOpenListName ? true : false}
-        setOpenList={() => setOpenList("anime_seen")}
+        listName={"anime_watching"}
+        addAnime={addAnime("anime_watching")}
+        removeAnime={removeAnime("anime_watching")}
+        editAnime={editAnime("anime_watching")}
+        isOpen={"anime_watching" === currentOpenListName ? true : false}
+        setOpenList={() => setOpenList("anime_watching")}
       />
       <List
         title="Заплановані"
@@ -99,6 +105,19 @@ function App() {
         setOpenList={() => setOpenList("anime_future")}
       />
       <List
+        title="Переглянуті"
+        items={anime_seen}
+        selected={selected}
+        toggleSelect={toggleSelect}
+        isBorderCollapse
+        listName={"anime_seen"}
+        addAnime={addAnime("anime_seen")}
+        removeAnime={removeAnime("anime_seen")}
+        editAnime={editAnime("anime_seen")}
+        isOpen={"anime_seen" === currentOpenListName ? true : false}
+        setOpenList={() => setOpenList("anime_seen")}
+      />
+      <List
         title="Вподобайки"
         items={anime_liked}
         selected={selected}
@@ -111,35 +130,12 @@ function App() {
         isOpen={"anime_liked" === currentOpenListName ? true : false}
         setOpenList={() => setOpenList("anime_liked")}
       />
-      <List
-        title="Дивлюся"
-        items={anime_watching}
-        selected={selected}
-        toggleSelect={toggleSelect}
-        isBorderCollapse
-        listName={"anime_watching"}
-        addAnime={addAnime("anime_watching")}
-        removeAnime={removeAnime("anime_watching")}
-        editAnime={editAnime("anime_watching")}
-        isOpen={"anime_watching" === currentOpenListName ? true : false}
-        setOpenList={() => setOpenList("anime_watching")}
-      />
     </>
   );
 }
 
-/*
-      <button onClick={() => alert([...selected].join("\n"))}>
-        Show selected items1
-      </button>
-      <button onClick={() => alert([...selected1].join("\n"))}>
-        Show selected items2
-      </button>
-      <button onClick={() => alert([...selected2].join("\n"))}>
-        Show selected items3
-      </button>
-      <button onClick={() => alert([...selected3].join("\n"))}>
-        Show selected items4
-      </button>*/
+/*<button onClick={() => alert([...selected].join("\n"))}>
+Show selected items1
+</button>*/
 
 export default App;
