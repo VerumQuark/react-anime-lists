@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ErrorBox from "./Common/ErrorBox";
+import NotificationBox from "./Common/NotificationBox";
 import { useSelectableList } from "./hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { State as ListState } from "./Store/ListStore/types";
@@ -14,6 +15,11 @@ import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 import EditModal from "./Components/EditModal";
 import ActionMenu from "./Components/ActionMenu/ActionMenu";
+
+import {
+  closeNotification,
+  showNotification,
+} from "./Store/NotificationStore/actions";
 
 const userId = 308041205;
 (window as any).uid = userId;
@@ -32,6 +38,15 @@ function App() {
 
   // Take error form redux state
   const error = useSelector<State, string>((state) => state.app.error);
+  const isShowNotification = useSelector<State, boolean>(
+    (state) => state.notification.isOpen
+  );
+  const isNotificationAnimationPending = useSelector<State, boolean>(
+    (state) => state.notification.isNotificationAnimationPending
+  );
+  const isNotificationClosing = useSelector<State, boolean>(
+    (state) => state.notification.isNotificationClosing
+  );
   const isShowModal = useSelector<State, boolean>(
     (state) => state.modal.isShow
   );
@@ -77,6 +92,12 @@ function App() {
         />
       )}
       {isShowModal && modal}
+      {isShowNotification && (
+        <NotificationBox
+          isAnimationPending={isNotificationAnimationPending}
+          isClosing={isNotificationClosing}
+        />
+      )}
       {error && <ErrorBox />}
       <List
         title="Дивлюся"
@@ -134,8 +155,12 @@ function App() {
   );
 }
 
-/*<button onClick={() => alert([...selected].join("\n"))}>
-Show selected items1
-</button>*/
+/*<button
+        onClick={() => {
+          showNotification("tet");
+        }}
+      >
+        Show selected items1
+      </button>*/
 
 export default App;

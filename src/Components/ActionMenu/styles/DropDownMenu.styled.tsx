@@ -8,8 +8,13 @@ interface StyledDropDownMenuProps {
 
 const StyledDropDownMenu = styled.div<StyledDropDownMenuProps>`
   width: ${BUTTON_SIZE}px;
+  height: 100%;
   position: relative;
   color: ${theme.colors.text};
+
+  :hover {
+    background-color: ${theme.colors.accent};
+  }
 
   & ul {
     position: absolute;

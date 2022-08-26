@@ -16,6 +16,7 @@ import DropDownMenu from "./DropDownMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../Store";
 import { addAnimeToList } from "../../Store/ListStore/actions";
+import { showNotification } from "../../Store/NotificationStore/actions";
 
 interface ActionMenuProps {
   clearSelected: () => void;
@@ -36,9 +37,37 @@ function ActionMenu({ clearSelected, selected, activeList }: ActionMenuProps) {
       )[0];
 
       dispatch(addAnimeToList(targetList, anime.title, anime.rating, uid));
-      clearSelected();
     });
+
+    showNotification("Копіювання успішне");
+
+    clearSelected();
   };
+
+  const transferSelectedTo = (targetList: ListName) => {
+    const uid = (window as any).uid;
+
+    selected.forEach((id) => {
+      const anime = animeLists[activeList as ListName].filter(
+        (anime) => anime.id === id
+      )[0];
+
+      dispatch(addAnimeToList(targetList, anime.title, anime.rating, uid));
+    });
+    dispatch(
+      removeManyAnimeFromList(
+        activeList as ListName,
+        [...selected],
+        (window as any).uid
+      )
+    );
+
+    showNotification("Перенесення успішне");
+
+    clearSelected();
+  };
+
+  // todo notification
 
   const deleteSelected = (): void => {
     dispatch(
@@ -48,6 +77,8 @@ function ActionMenu({ clearSelected, selected, activeList }: ActionMenuProps) {
         (window as any).uid
       )
     );
+
+    showNotification("Видалення успішне");
   };
 
   return createPortal(
@@ -71,16 +102,12 @@ function ActionMenu({ clearSelected, selected, activeList }: ActionMenuProps) {
         selectedAction={copySelectedTo}
       />
 
-      <Button
-        onClick={(e) => {
-          e.stopPropagation();
-          clearSelected();
-        }}
-        borderless
-        width={`${BUTTON_SIZE}px`}
-      >
-        <FontAwesomeIcon icon={faArrowRightArrowLeft} />
-      </Button>
+      <DropDownMenu
+        leftShift={-80}
+        icon={faArrowRightArrowLeft}
+        selectedAction={transferSelectedTo}
+      />
+
       <Button
         onClick={(e) => {
           e.stopPropagation();
