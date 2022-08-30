@@ -15,6 +15,7 @@ import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 import EditModal from "./Components/EditModal";
 import ActionMenu from "./Components/ActionMenu/ActionMenu";
+import { theme } from "./styles/index.styled";
 
 import {
   closeNotification,
@@ -82,7 +83,7 @@ function App() {
     clearSelected();
     setOpenListName(openListName);
   };
-  return (
+  return userId ? (
     <>
       {selected.size > 0 && (
         <ActionMenu
@@ -152,6 +153,19 @@ function App() {
         setOpenList={() => setOpenList("anime_liked")}
       />
     </>
+  ) : (
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: theme.colors.primary,
+      }}
+    >
+      <h1>You must enter this site from telegram bot @lapis_lazuri_bot</h1>
+    </div>
   );
 }
 
