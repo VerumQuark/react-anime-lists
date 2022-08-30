@@ -22,7 +22,7 @@ import {
   showNotification,
 } from "./Store/NotificationStore/actions";
 
-const userId = 306544780;
+const userId = (window as any).Telegram?.WebApp?.initDataUnsafe?.user?.id;
 (window as any).uid = userId;
 
 function App() {
@@ -162,9 +162,21 @@ function App() {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: theme.colors.primary,
+        color: theme.colors.text,
       }}
     >
-      <h1>You must enter this site from telegram bot @lapis_lazuri_bot</h1>
+      <h1>
+        You must enter this site from telegram bot{" "}
+        <a
+          href="https://t.me/lapis_lazuri_bot"
+          style={{
+            textDecoration: "none",
+            color: "blue",
+          }}
+        >
+          @lapis_lazuri_bot
+        </a>
+      </h1>
     </div>
   );
 }

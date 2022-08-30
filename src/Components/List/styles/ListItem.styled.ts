@@ -82,6 +82,12 @@ const StyledLi = styled.li<StyleProps>`
             }
           `};
   }
+
+  button {
+    @media (hover: none) {
+      display: none;
+    }
+  }
 `;
 
 export default StyledLi;
