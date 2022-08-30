@@ -22,7 +22,7 @@ import {
   showNotification,
 } from "./Store/NotificationStore/actions";
 
-const userId = (window as any).Telegram.WebApp.initDataUnsafe.user.id;
+const userId = 306544780;
 (window as any).uid = userId;
 
 function App() {

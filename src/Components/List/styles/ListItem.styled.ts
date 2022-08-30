@@ -47,11 +47,12 @@ const StyledLi = styled.li<StyleProps>`
     cursor: pointer;
 
     line-height: ${LIST_ITEM_HEIGHT}px;
+    height: ${LIST_ITEM_HEIGHT}px;
     text-align: left;
     font-size: 16px;
     padding: 0 ${LIST_ITEM_PADDING}px;
     color: ${theme.colors.text};
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -63,10 +64,10 @@ const StyledLi = styled.li<StyleProps>`
       xMove &&
       css`
         transform: translateX(${xMove}px);
-      `}
-
-    /* position: relative; */
+      `};
     border: 1px solid rgba(0, 0, 0, 0.5);
+    border-right: 0;
+    border-left: 0;
     ${({ isSelected }) =>
       isSelected
         ? css`
