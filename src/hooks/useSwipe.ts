@@ -52,15 +52,15 @@ export default function useSwipe({
 
     const touchEnd = evt.changedTouches[0].clientX;
 
-    if (onSwipeLeft && touch[0] && touchEnd - touch[0] < -40) {
+    if (onSwipeLeft && touch[0] && touchEnd - touch[0] < -80) {
       onSwipeLeft();
     }
 
-    if (onSwipeRight && touch[0] && touchEnd - touch[0] > 40) {
+    if (onSwipeRight && touch[0] && touchEnd - touch[0] > 80) {
       onSwipeRight();
     }
 
-    if (onSwipe && touch[0] && Math.abs(touchEnd - touch[0]) > 40) {
+    if (onSwipe && touch[0] && Math.abs(touchEnd - touch[0]) > 80) {
       onSwipe();
     }
 
