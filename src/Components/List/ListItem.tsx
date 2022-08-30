@@ -50,7 +50,7 @@ function ListItem({
     toggleSelect(id, listName);
   }
 
-  const swipeIcon = isLeftSwipe ? faTrashCan : faPencil;
+  const swipeIcon = isLeftSwipe ? faPencil : faTrashCan;
 
   return (
     <StyledLi

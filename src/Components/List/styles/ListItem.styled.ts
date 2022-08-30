@@ -16,13 +16,13 @@ const StyledLi = styled.li<StyleProps>`
   ${({ isLeftSwipe, shiftSize }) =>
     isLeftSwipe
       ? css`
-          background-color: ${theme.colors.remove};
+          background-color: ${theme.colors.edit};
           & .slideActionIcon {
             left: ${shiftSize}px;
           }
         `
       : css`
-          background-color: ${theme.colors.edit};
+          background-color: ${theme.colors.remove};
           & .slideActionIcon {
             right: ${shiftSize}px;
           }
@@ -46,7 +46,6 @@ const StyledLi = styled.li<StyleProps>`
   & .listItem {
     cursor: pointer;
 
-    z-index: 999;
     line-height: ${LIST_ITEM_HEIGHT}px;
     text-align: left;
     font-size: 16px;
