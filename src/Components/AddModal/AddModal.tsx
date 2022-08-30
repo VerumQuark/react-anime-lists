@@ -6,6 +6,7 @@ import Modal from "../../Common/Modal";
 import { addAnimeToList } from "../../Store/ListStore/actions";
 import { State } from "../../Store";
 import { closeModal } from "../../Store/ModalStore/actions";
+import StyledAddModal from "./styles/AddModal.styles"
 
 interface AddModalProps {
   title?: string;
@@ -21,7 +22,7 @@ export default function AddModal({ title, rating }: AddModalProps) {
   const list = useSelector<State, string>((state) => state.modal.list);
 
   return (
-    <Modal header="Введіть назву">
+    <StyledAddModal header="Введіть назву">
       <Input
         value={t}
         onChange={(e) => {
@@ -47,6 +48,6 @@ export default function AddModal({ title, rating }: AddModalProps) {
           dispatch(closeModal());
         }}
       />
-    </Modal>
+    </StyledAddModal>
   );
 }
