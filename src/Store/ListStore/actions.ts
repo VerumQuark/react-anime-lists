@@ -8,7 +8,7 @@ export function fetchAnimeLists(uid: number) {
   return async (dispatch: Dispatch) => {
     try {
       const response: AxiosResponse<State> = await axios.get<State>(
-        `http://localhost:5000/animeLists/${uid}`
+        `https://telegram-anime-lists-server.herokuapp.com/animeLists/${uid}`
       );
 
       const lists: State = response.data;
@@ -44,7 +44,7 @@ export function addAnimeToList(
   return async (dispatch: Dispatch<Action>) => {
     try {
       const response = await axios.post<any>(
-        `http://localhost:5000/animeLists/${uid}`,
+        `https://telegram-anime-lists-server.herokuapp.com/animeLists/${uid}`,
         {
           list: listName,
           title: animeTitle,
@@ -86,7 +86,7 @@ export function removeAnimeFromList(
   return async (dispatch: Dispatch<Action>) => {
     try {
       await axios.delete(
-        `http://localhost:5000/animeLists/${uid}/${listName}/${id}`
+        `https://telegram-anime-lists-server.herokuapp.com/animeLists/${uid}/${listName}/${id}`
       );
 
       dispatch({
@@ -124,7 +124,7 @@ export function removeManyAnimeFromList(
   return async (dispatch: Dispatch<Action>) => {
     try {
       await axios.delete(
-        `http://localhost:5000/animeLists/${uid}/${listName}`,
+        `https://telegram-anime-lists-server.herokuapp.com/animeLists/${uid}/${listName}`,
         { data: { itemsIdToDelete: id } }
       );
 
