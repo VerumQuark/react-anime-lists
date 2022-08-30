@@ -16,13 +16,13 @@ const StyledLi = styled.li<StyleProps>`
   ${({ isLeftSwipe, shiftSize }) =>
     isLeftSwipe
       ? css`
-          background-color: lime;
+          background-color: ${theme.colors.remove};
           & .slideActionIcon {
             left: ${shiftSize}px;
           }
         `
       : css`
-          background-color: magenta;
+          background-color: ${theme.colors.edit};
           & .slideActionIcon {
             right: ${shiftSize}px;
           }
