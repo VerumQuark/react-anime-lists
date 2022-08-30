@@ -47,7 +47,6 @@ const StyledLi = styled.li<StyleProps>`
     cursor: pointer;
 
     line-height: ${LIST_ITEM_HEIGHT}px;
-    height: ${LIST_ITEM_HEIGHT}px;
     text-align: left;
     font-size: 16px;
     padding: 0 ${LIST_ITEM_PADDING}px;
