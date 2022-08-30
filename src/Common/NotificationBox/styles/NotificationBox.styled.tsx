@@ -14,7 +14,7 @@ const StyledNotificationBox = styled.div<StyleProps>`
   top: 0;
   width: 100%;
   height: ${ANIME_TITLE_HEIGHT}px;
-  background-color: ${theme.colors.primary};
+  background-color: ${theme.colors.secondary};
   color: white;
   display: flex;
   justify-content: space-between;

@@ -30,11 +30,12 @@ export default function AddModal({ title, rating }: AddModalProps) {
         width="60%"
       />
 
+      <p>Оцінка: </p>
       <Input
         value={r}
+        type={"number"}
         onChange={(e) => {
-          Number.isInteger(Number((e.nativeEvent as InputEvent).data)) &&
-            setR(Number(e.target.value));
+          setR(Number(e.target.value));
         }}
       />
 
