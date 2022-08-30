@@ -8,6 +8,8 @@ type onSwipeArgs = {
   onSwipe?: Function;
   onSwipeLeft?: Function;
   onSwipeRight?: Function;
+  delta?: number;
+  distance?: number;
 };
 
 type ReturnValue = [
@@ -23,14 +25,17 @@ export default function useSwipe({
   onSwipeLeft,
   onSwipeRight,
   onSwipe,
+  delta = 0,
+  distance = 100,
 }: onSwipeArgs): ReturnValue {
   const [touch, setTouch] = useState<[number | null, number | null]>([
     null,
     null,
   ]); // [startValue, currentMoveValue]
 
-  function touchStartHandler(evt: TouchEvent) {
+  const [preventMove, setPreventMove] = useState(true);
 
+  function touchStartHandler(evt: TouchEvent) {
     const touchStart = evt.touches[0].clientX;
 
     setTouch([touchStart, null]);
@@ -38,10 +43,11 @@ export default function useSwipe({
 
   function touchMoveHandler(evt: TouchEvent) {
     if (touch[0]) {
-
+      if (Math.abs(evt.touches[0].clientX - touch[0]) > delta) {
+        setPreventMove(false);
+      }
       const touchCurrent = evt.touches[0].clientX;
       setTouch((t) => [t[0], touchCurrent]);
-      console.log(touch);
       touch[1] && touch[1] - touch[0] > 0
         ? (isLeftSwipe = true)
         : (isLeftSwipe = false);
@@ -49,25 +55,26 @@ export default function useSwipe({
   }
 
   function touchEndHandler(evt: TouchEvent) {
-
     const touchEnd = evt.changedTouches[0].clientX;
 
-    if (onSwipeLeft && touch[0] && touchEnd - touch[0] < -80) {
+    if (onSwipeLeft && touch[0] && touchEnd - touch[0] < -distance) {
       onSwipeLeft();
     }
 
-    if (onSwipeRight && touch[0] && touchEnd - touch[0] > 80) {
+    if (onSwipeRight && touch[0] && touchEnd - touch[0] > distance) {
       onSwipeRight();
     }
 
-    if (onSwipe && touch[0] && Math.abs(touchEnd - touch[0]) > 80) {
+    if (onSwipe && touch[0] && Math.abs(touchEnd - touch[0]) > distance) {
       onSwipe();
     }
 
     setTouch([null, null]);
+    setPreventMove(true);
   }
 
-  const xMove = touch[0] && touch[1] && touch[1] ? touch[1] - touch[0] : 0;
+  const xMove =
+    !preventMove && touch[0] && touch[1] && touch[1] ? touch[1] - touch[0] : 0;
 
   return [
     touchStartHandler,

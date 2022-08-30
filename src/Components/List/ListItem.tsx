@@ -35,6 +35,8 @@ function ListItem({
   const [onTouchStart, onTouchEnd, onTouchMove, xMove, isLeftSwipe] = useSwipe({
     onSwipeLeft: onSwipeLeft,
     onSwipeRight: onSwipeRight,
+    delta: 50,
+    distance: 100,
   });
 
   function onSwipeLeft() {
