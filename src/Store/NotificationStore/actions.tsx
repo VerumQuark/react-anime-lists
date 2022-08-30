@@ -9,12 +9,10 @@ import store from "../index";
 export async function showNotification(message: string) {
   store.dispatch(show(message));
 
-  console.log(message);
-
   await new Promise((resolve) => setTimeout(resolve, 500));
   store.dispatch(stopOpeningAnimation());
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 1500));
   store.dispatch(startCloseAnimation());
 
   await new Promise((resolve) => setTimeout(resolve, 500));

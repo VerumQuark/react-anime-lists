@@ -25,7 +25,7 @@ interface ListProps extends StyleProps {
   setOpenList: () => void;
 }
 
-const CalcLineCnt = (
+const CalcListLineCnt = (
   fontSize: number,
   width: number,
   arr: Array<{ title: string; rating: number; id: string }>
@@ -37,6 +37,15 @@ const CalcLineCnt = (
   });
 
   return lineCnt;
+};
+
+const CalcItemLineCnt = (
+  fontSize: number,
+  width: number,
+  title: string
+): number => {
+  const charWidth = fontSize / ROBOTO_MONO_HEIGHT_WIDHT_RATIO;
+  return Math.ceil((title.length * charWidth) / width);
 };
 
 function List({
@@ -54,7 +63,7 @@ function List({
   ...props
 }: ListProps) {
   const width = window.innerWidth - BUTTON_SIZE * 2 - LIST_ITEM_PADDING * 2;
-  const LineCnt = CalcLineCnt(16, width, items);
+  const LineCnt = CalcListLineCnt(16, width, items);
 
   useEffect(() => {
     selected.forEach((item) => toggleSelect(item, listName));
@@ -89,6 +98,7 @@ function List({
               key={0}
               isSelected={false}
               rating={0}
+              height={LIST_ITEM_HEIGHT}
             >
               {"List is empty"}
             </ListItem>
@@ -105,6 +115,7 @@ function List({
                   removeAnime={removeAnime}
                   editAnime={editAnime}
                   rating={rating}
+                  height={CalcItemLineCnt(16, width, title) * LIST_ITEM_HEIGHT}
                 >
                   {title}
                 </ListItem>

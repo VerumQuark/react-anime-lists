@@ -8,7 +8,7 @@ const StyledActionMenu = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 998;
+  z-index: 997;
   background-color: ${theme.colors.secondary};
   display: flex;
   align-items: center;

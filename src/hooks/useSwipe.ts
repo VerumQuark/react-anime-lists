@@ -14,8 +14,10 @@ type ReturnValue = [
   TouchEventHandler,
   TouchEventHandler,
   TouchEventHandler,
-  number
+  number,
+  boolean
 ];
+let isLeftSwipe = false;
 
 export default function useSwipe({
   onSwipeLeft,
@@ -42,6 +44,9 @@ export default function useSwipe({
       const touchCurrent = evt.touches[0].clientX;
       setTouch((t) => [t[0], touchCurrent]);
       console.log(touch);
+      touch[1] && touch[1] - touch[0] > 0
+        ? (isLeftSwipe = true)
+        : (isLeftSwipe = false);
     }
   }
 
@@ -70,5 +75,11 @@ export default function useSwipe({
 
   const xMove = touch[0] && touch[1] && touch[1] ? touch[1] - touch[0] : 0;
 
-  return [touchStartHandler, touchEndHandler, touchMoveHandler, xMove];
+  return [
+    touchStartHandler,
+    touchEndHandler,
+    touchMoveHandler,
+    xMove,
+    isLeftSwipe,
+  ];
 }
