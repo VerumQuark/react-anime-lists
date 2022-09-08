@@ -67,7 +67,7 @@ table {
 * {
 	font-family: 'Fira Code', monospace !important;
 }
-body, html, #root, #modal, #error {
+body, html, #root, #modal, #error, #loader {
   /* max-height: 100vh; */
   max-width: 100vw;
   overflow-x: hidden;
@@ -78,7 +78,7 @@ html, body, #root {
   background-color: ${theme.colors.primary};
 }
 
-#modal, #error {
+#modal, #error, #loader {
   z-index: 999;
 }
 `;

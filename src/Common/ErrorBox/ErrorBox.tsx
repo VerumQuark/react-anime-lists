@@ -11,7 +11,7 @@ import { theme } from "../../styles/index.styled";
 
 function ErrorBox(props: StyleProps) {
   const dispatch = useDispatch<any>();
-  const reduxError = useSelector<State, string>((state) => state.app.error);
+  const reduxError = useSelector<State, string | undefined>((state) => state.app.error);
 
   return createPortal(
     <StyledErrorBox {...props}>

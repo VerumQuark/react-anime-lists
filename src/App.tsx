@@ -15,12 +15,8 @@ import AddModal from "./Components/AddModal";
 import { showModal } from "./Store/ModalStore/actions";
 import EditModal from "./Components/EditModal";
 import ActionMenu from "./Components/ActionMenu/ActionMenu";
-import { theme } from "./styles/index.styled";
-
-import {
-  closeNotification,
-  showNotification,
-} from "./Store/NotificationStore/actions";
+import NoTelegram from "./Components/NoTelegram";
+import Loader from "./Common/Loader";
 
 const userId = (window as any).Telegram?.WebApp?.initDataUnsafe?.user?.id;
 (window as any).uid = userId;
@@ -38,7 +34,9 @@ function App() {
   >((state) => state.lists);
 
   // Take error form redux state
-  const error = useSelector<State, string>((state) => state.app.error);
+  const error = useSelector<State, string | undefined>(
+    (state) => state.app.error
+  );
   const isShowNotification = useSelector<State, boolean>(
     (state) => state.notification.isOpen
   );
@@ -52,6 +50,7 @@ function App() {
     (state) => state.modal.isShow
   );
   const modal = useSelector<State, JSX.Element>((state) => state.modal.modal);
+  const loading = useSelector<State, boolean>((state) => state.app.loading);
 
   useEffect(() => {
     dispatch(fetchAnimeLists(userId));
@@ -83,8 +82,11 @@ function App() {
     clearSelected();
     setOpenListName(openListName);
   };
-  return userId ? (
+  return !userId ? (
+    <NoTelegram />
+  ) : (
     <>
+      {loading && <Loader />}
       {selected.size > 0 && (
         <ActionMenu
           clearSelected={clearSelected}
@@ -153,40 +155,7 @@ function App() {
         setOpenList={() => setOpenList("anime_liked")}
       />
     </>
-  ) : (
-    <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: theme.colors.primary,
-        color: theme.colors.text,
-      }}
-    >
-      <h1>
-        You must enter this site from telegram bot{" "}
-        <a
-          href="https://t.me/lapis_lazuri_bot"
-          style={{
-            textDecoration: "none",
-            color: "blue",
-          }}
-        >
-          @lapis_lazuri_bot
-        </a>
-      </h1>
-    </div>
   );
 }
-
-/*<button
-        onClick={() => {
-          showNotification("tet");
-        }}
-      >
-        Show selected items1
-      </button>*/
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
+import React, { useEffect } from "react";
 import ListItem from "./ListItem";
 import StyledList, { StyleProps } from "./styles/List.styled";
 import Header from "./Header";
@@ -9,7 +9,6 @@ import {
   BUTTON_SIZE,
   LIST_ITEM_HEIGHT,
 } from "./Constants";
-import { theme } from "../../styles/index.styled";
 import { ListName } from "../../Store/ListStore/types";
 
 interface ListProps extends StyleProps {

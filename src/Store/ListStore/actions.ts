@@ -3,10 +3,12 @@ import { causeError } from "../AppStore/actions";
 import { Dispatch } from "redux";
 import { ListName, Action, State, Anime } from "./types";
 import axios, { AxiosResponse, AxiosError } from "axios";
+import { startLoading, stopLoading } from "../AppStore/actions";
 
 export function fetchAnimeLists(uid: number) {
   return async (dispatch: Dispatch) => {
     try {
+      dispatch(startLoading() as any);
       const response: AxiosResponse<State> = await axios.get<State>(
         `https://telegram-anime-lists-server.herokuapp.com/animeLists/${uid}`
       );
@@ -31,6 +33,8 @@ export function fetchAnimeLists(uid: number) {
       } else {
         console.error(err);
       }
+    } finally {
+      dispatch(stopLoading() as any);
     }
   };
 }

@@ -22,3 +22,20 @@ export function clearError() {
     });
   };
 }
+
+
+export const startLoading = () => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: Types.START_LOAD,
+    })
+  }
+}
+
+export const stopLoading = () => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: Types.END_LOAD,
+    })
+  }
+}

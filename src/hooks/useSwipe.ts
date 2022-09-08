@@ -5,9 +5,9 @@ function logger(message: string) {
 }
 
 type onSwipeArgs = {
-  onSwipe?: Function;
-  onSwipeLeft?: Function;
-  onSwipeRight?: Function;
+  onSwipe?: () => void;
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
   delta?: number;
   distance?: number;
 };
