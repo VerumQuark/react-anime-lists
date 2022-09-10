@@ -2,11 +2,11 @@ import React, { SyntheticEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Input from "../../Common/Input";
-import Modal from "../../Common/Modal";
 import { addAnimeToList } from "../../Store/ListStore/actions";
 import { State } from "../../Store";
 import { closeModal } from "../../Store/ModalStore/actions";
 import StyledAddModal from "./styles/AddModal.styles"
+import { showNotification } from "../../Store/NotificationStore/actions";
 
 interface AddModalProps {
   title?: string;
@@ -46,6 +46,7 @@ export default function AddModal({ title, rating }: AddModalProps) {
         onClick={() => {
           dispatch(addAnimeToList(list as any, t, r, (window as any).uid));
           dispatch(closeModal());
+          showNotification(`${t} успішно додано`);
         }}
       />
     </StyledAddModal>

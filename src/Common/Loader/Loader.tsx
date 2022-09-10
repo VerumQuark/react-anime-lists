@@ -1,11 +1,8 @@
 import React from "react";
-import { createPortal } from "react-dom";
 
 import { Bars } from "react-loader-spinner";
 
-const Loader = () =>
-  createPortal(
-    <Bars
+const Loader = () => <Bars
       height="80"
       width="80"
       color="green"
@@ -23,8 +20,6 @@ const Loader = () =>
         backgroundColor: "rgba(250, 250, 250, 0.2)",
       }}
       visible
-    />,
-    document.getElementById("loader") as HTMLElement
-  );
+    />;
 
 export default Loader;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../styles/index.styled";
-import {ANIME_TITLE_HEIGHT} from "../../../Components/List/Constants";
+import { ANIME_TITLE_HEIGHT } from "../../../Components/List/Constants";
 import { appear, disapear } from "./animation";
 
 interface StyleProps {
@@ -14,7 +14,7 @@ const StyledNotificationBox = styled.div<StyleProps>`
   top: 0;
   width: 100%;
   height: ${ANIME_TITLE_HEIGHT}px;
-  background-color: ${theme.colors.secondary};
+  background-color: ${theme.colors.accent};
   color: white;
   display: flex;
   justify-content: space-between;

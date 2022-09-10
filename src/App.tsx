@@ -17,6 +17,7 @@ import EditModal from "./Components/EditModal";
 import ActionMenu from "./Components/ActionMenu/ActionMenu";
 import NoTelegram from "./Components/NoTelegram";
 import Loader from "./Common/Loader";
+import { createPortal } from "react-dom";
 
 const userId = (window as any).Telegram?.WebApp?.initDataUnsafe?.user?.id;
 (window as any).uid = userId;
@@ -86,22 +87,35 @@ function App() {
     <NoTelegram />
   ) : (
     <>
-      {loading && <Loader />}
-      {selected.size > 0 && (
-        <ActionMenu
-          clearSelected={clearSelected}
-          selected={selected}
-          activeList={activeList}
-        />
-      )}
-      {isShowModal && modal}
-      {isShowNotification && (
-        <NotificationBox
-          isAnimationPending={isNotificationAnimationPending}
-          isClosing={isNotificationClosing}
-        />
-      )}
-      {error && <ErrorBox />}
+      {loading &&
+        createPortal(
+          <Loader />,
+          document.getElementById("loader") as HTMLElement
+        )}
+      {selected.size > 0 &&
+        createPortal(
+          <ActionMenu
+            clearSelected={clearSelected}
+            selected={selected}
+            activeList={activeList}
+          />,
+          document.getElementById("actionScript") as HTMLElement
+        )}
+      {isShowModal &&
+        createPortal(modal, document.getElementById("modal") as HTMLElement)}
+      {isShowNotification &&
+        createPortal(
+          <NotificationBox
+            isAnimationPending={isNotificationAnimationPending}
+            isClosing={isNotificationClosing}
+          />,
+          document.getElementById("notification") as HTMLElement
+        )}
+      {error &&
+        createPortal(
+          <ErrorBox />,
+          document.getElementById("error") as HTMLElement
+        )}
       <List
         title="Дивлюся"
         items={anime_watching}

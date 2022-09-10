@@ -1,5 +1,4 @@
 import React from "react";
-import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import StyledModal, { StyleProps } from "./styles/Modal.styled";
 import StyledWrapper from "./styles/Wrapper.styled";
@@ -23,8 +22,7 @@ function Modal({ header, children, ...props }: ModalProps) {
     (state) => state.modal.isClosing
   );
 
-  return createPortal(
-    <StyledWrapper
+  return <StyledWrapper
       onClick={() => dispatch(closeModal())}
       isAnimationPending={isAnimationPending}
       isClosing={isClosing}
@@ -40,9 +38,7 @@ function Modal({ header, children, ...props }: ModalProps) {
         <h1>{header}</h1>
         {children}
       </StyledModal>
-    </StyledWrapper>,
-    document.getElementById("modal")!
-  );
+    </StyledWrapper>
 }
 
 export default Modal;

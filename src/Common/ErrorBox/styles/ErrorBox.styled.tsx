@@ -14,10 +14,14 @@ const StyledErrorBox = styled.div<StyleProps>`
   background-color: ${({ warning }) => (!warning ? "red" : "orange")};
   color: white;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: ${({critical}) => (!critical ? "space-between" : "flex-start")};
+  align-items: ${({critical}) => (!critical ? "center" : "flex-start")};
   padding: 0 15px;
   z-index: 999;
+
+  & > p {
+    margin: 12px 0;
+  }
 `;
 
 export default StyledErrorBox;

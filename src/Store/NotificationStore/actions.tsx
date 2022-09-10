@@ -4,7 +4,7 @@ import {
   startCloseAnimation,
   stopOpeningAnimation,
 } from "./NotificationSlice";
-import store from "../index";
+import { store } from "../../index";
 
 export async function showNotification(message: string) {
   store.dispatch(show(message));

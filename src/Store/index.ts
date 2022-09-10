@@ -13,6 +13,8 @@ const rootReducer = combineReducers({
 
 export type State = ReturnType<typeof rootReducer>;
 
-export default configureStore({
-  reducer: rootReducer,
-});
+export default (initialState: { [key: string]: any }) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState: initialState,
+  });

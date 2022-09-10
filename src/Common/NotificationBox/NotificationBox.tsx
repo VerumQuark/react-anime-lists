@@ -1,5 +1,4 @@
 import React from "react";
-import { createPortal } from "react-dom";
 import StyledNotificationBox, {
   StyleProps,
 } from "./styles/NotificationBox.styled";
@@ -16,8 +15,7 @@ function NotificationBox(props: StyleProps) {
     (state) => state.notification.message
   );
 
-  return createPortal(
-    <StyledNotificationBox {...props}>
+  return <StyledNotificationBox {...props}>
       {message}
       <div style={{ position: "absolute", right: 0, height: 40, width: 40 }}>
         <Button
@@ -30,9 +28,6 @@ function NotificationBox(props: StyleProps) {
           <FontAwesomeIcon icon={faXmark} />
         </Button>
       </div>
-    </StyledNotificationBox>,
-    document.getElementById("notification")!
-  );
+    </StyledNotificationBox>
 }
-
 export default NotificationBox;

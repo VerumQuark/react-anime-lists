@@ -1,5 +1,4 @@
 import React from "react";
-import { createPortal } from "react-dom";
 import StyledActionMenu from "./styles/ActionMenu.styled";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -81,7 +80,7 @@ function ActionMenu({ clearSelected, selected, activeList }: ActionMenuProps) {
     showNotification("Видалення успішне");
   };
 
-  return createPortal(
+  return (
     <StyledActionMenu>
       <Button
         onClick={(e) => {
@@ -118,8 +117,7 @@ function ActionMenu({ clearSelected, selected, activeList }: ActionMenuProps) {
       >
         <FontAwesomeIcon icon={faTrash} />
       </Button>
-    </StyledActionMenu>,
-    document.getElementById("actionScript")!
+    </StyledActionMenu>
   );
 }
 

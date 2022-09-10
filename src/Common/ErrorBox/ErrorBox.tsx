@@ -1,5 +1,4 @@
 import React from "react";
-import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../Store";
 import { clearError } from "../../Store/AppStore/actions";
@@ -11,11 +10,13 @@ import { theme } from "../../styles/index.styled";
 
 function ErrorBox(props: StyleProps) {
   const dispatch = useDispatch<any>();
-  const reduxError = useSelector<State, string | undefined>((state) => state.app.error);
+  const reduxError = useSelector<State, string | undefined>(
+    (state) => state.app.error
+  );
 
-  return createPortal(
+  return (
     <StyledErrorBox {...props}>
-      {reduxError}
+      <p>{reduxError}</p>
       <div style={{ position: "absolute", right: 0, height: 40, width: 40 }}>
         <Button
           onClick={() => dispatch(clearError())}
@@ -25,8 +26,7 @@ function ErrorBox(props: StyleProps) {
           <FontAwesomeIcon icon={faXmark} />
         </Button>
       </div>
-    </StyledErrorBox>,
-    document.getElementById("error")!
+    </StyledErrorBox>
   );
 }
 

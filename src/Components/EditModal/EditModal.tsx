@@ -6,6 +6,7 @@ import { addAnimeToList, setAnimeRating } from "../../Store/ListStore/actions";
 import { State } from "../../Store";
 import { closeModal } from "../../Store/ModalStore/actions";
 import StyledEditModal from "./styles/EdiModal.styles";
+import { showNotification } from "../../Store/NotificationStore/actions";
 
 interface EditModalProps {
   title?: string;
@@ -28,7 +29,7 @@ export default function EditModal({ title, rating, id }: EditModalProps) {
         onChange={(e) => {
           setT(e.target.value);
         }}
-        width="100%"
+        width="60%"
       />
 
       <p>Оцінка: </p>
@@ -46,6 +47,7 @@ export default function EditModal({ title, rating, id }: EditModalProps) {
         onClick={() => {
           dispatch(setAnimeRating(list as any, id, t, r, (window as any).uid));
           dispatch(closeModal());
+          showNotification("Редагування успішне");
         }}
       />
     </StyledEditModal>

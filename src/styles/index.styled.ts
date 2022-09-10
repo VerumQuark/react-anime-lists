@@ -67,18 +67,21 @@ table {
 * {
 	font-family: 'Fira Code', monospace !important;
 }
-body, html, #root, #modal, #error, #loader {
-  /* max-height: 100vh; */
-  max-width: 100vw;
-  overflow-x: hidden;
-}
 
 html, body, #root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
   min-height: 100vh;
+  min-width: 100vw;
   background-color: ${theme.colors.primary};
 }
 
 #modal, #error, #loader {
+  left: 0;
+  top: 0;
+  overflow-y: hidden;
   z-index: 999;
 }
 `;
