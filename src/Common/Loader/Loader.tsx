@@ -20,7 +20,7 @@ const Loader = () =>
         justifyContent: "center",
         alignItems: "center",
         backdropFilter: "blur(25px)",
-        backgroundColor: "rgba(250, 250, 250, 0.01)",
+        backgroundColor: "rgba(250, 250, 250, 0.2)",
       }}
       visible
     />,
